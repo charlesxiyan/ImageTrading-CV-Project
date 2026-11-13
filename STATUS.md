@@ -1,6 +1,6 @@
 # Status
 
-Last updated 2026-11-12 by jeffery (A).
+Last updated 2026-11-12 by jeffery.
 
 ## Project
 CV course research project: do pretrained vision models help on intraday price charts?
