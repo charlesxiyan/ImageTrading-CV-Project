@@ -20,3 +20,12 @@ No entries yet. Charles's Claude appends here.
   now moves inputs to its own device.
 - **Not verified:** the GPU run of this notebook version has not finished. The bundle's price
   adjustment has not been checked against the policy in `CLAUDE.md`.
+
+## 2026-11-13 (later)
+- **Asked:** compare the image CNN with a model fed the raw OHLCV numbers.
+- **Done:** added `series1d` to `CNN-Relevant` (PR #1): a 1D CNN on the same 78-bar windows as a
+  (5, 78) sequence, scaled exactly like the chart (per DECISIONS: same per-window scaling as the
+  images). Conv1d 128/256/384, 720,770 params vs 776,450 for the plain image CNN. The notebook
+  trains all three architectures on `vol_h1` and `xsdir_h12`; the analysis reports the paired
+  day-bootstrap AUC difference between the best image CNN and `series1d`.
+- **Not verified:** no GPU results yet; CPU smoke test only.

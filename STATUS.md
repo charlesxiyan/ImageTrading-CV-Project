@@ -25,7 +25,8 @@ The same data is reused for a Big Data course project. Presentation Dec 10, repo
 - Colab runs on 2023 H1 data, train to 2023-03-31, validate on April. See `EXPERIMENTS.md`.
 - Direction targets show no signal so far, AUC 0.50. A volatility target reaches AUC 0.69.
 - **CNN code is in PR #1** (`CNN-Relevant/`, branch `cnn-relevant-residual`): plain JKX-style
-  CNN and a residual (ResNet) variant, run on `vol_h1` and `xsdir_h12`. GPU run pending.
+  CNN, a residual (ResNet) variant and a 1D CNN on raw OHLCV (`series1d`, the no-image control),
+  run on `vol_h1` and `xsdir_h12`. GPU run pending.
 - Data preparation (`us_pipeline`) is still not in the repository.
 - To be confirmed by charles: how his bars were built and adjusted, and his current plan.
 
