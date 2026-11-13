@@ -13,6 +13,7 @@ paths, private links, or licensed WRDS data here. Aggregate statistics are fine.
 | `DECISIONS.md` | Decisions that are settled, each with its reason | Add or amend. Do not delete without the team agreeing. |
 | `EXPERIMENTS.md` | Index of training runs: setup, data version, result, where artifacts live | One row per run. |
 | `log/NAME.md` | One person's work log, newest entry last | Append only, and only your own file. |
+| `ONBOARDING.md` | Prompt that connects a teammate's Claude Code to this memory | Rarely changes. |
 
 A log entry is dated and short: what was asked, what was done, what was found, what was not
 verified. Record mistakes too. Rules that Claude must follow belong in `CLAUDE.md` on `main`,

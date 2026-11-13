@@ -49,3 +49,7 @@ Entries before 2026-11-12 are condensed from a private log.
 - Set up this branch, `scripts/memory_sync.sh`, the hooks in `.claude/settings.json` and the
   shared-memory section of `CLAUDE.md`. Seeded every file here from jeffery's side only.
 - Not verified: the hooks have been pipe-tested but not yet observed firing in a new session.
+- Verified from a second clone: a fresh clone creates `memory/` on `start`, an entry written
+  there reaches the first clone, edits to different files merge, and a same-line conflict is
+  reported and left for a person or Claude to resolve. A credential-like string blocks the push.
+- Added `ONBOARDING.md`, the prompt for connecting charles's Claude. Charles has not run it yet.
