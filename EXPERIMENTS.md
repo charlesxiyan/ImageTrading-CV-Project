@@ -15,3 +15,4 @@ filled in by jeffery from summary files and need charles to confirm or correct t
 Jiang, Kelly and Xiu (2023), daily US stocks, test 2001-2019: equal-weight decile spread Sharpe
 7.15 for 5-day images and 5-day returns, 1.02 when restricted to the 500 largest stocks.
 Out-of-sample McFadden R2 of 0.09-0.2% for the CNN forecast alone.
+<!-- t -->
