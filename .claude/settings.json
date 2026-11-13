@@ -1,0 +1,28 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"$CLAUDE_PROJECT_DIR\"/scripts/memory_sync.sh start",
+            "timeout": 60,
+            "statusMessage": "Syncing shared memory"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"$CLAUDE_PROJECT_DIR\"/scripts/memory_sync.sh stop",
+            "timeout": 60,
+            "statusMessage": "Pushing shared memory"
+          }
+        ]
+      }
+    ]
+  }
+}
