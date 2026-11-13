@@ -1,6 +1,6 @@
 # Status
 
-Last updated 2026-11-12 by jeffery.
+Last updated 2026-11-13 by charles.
 
 ## Project
 CV course research project: do pretrained vision models help on intraday price charts?
@@ -24,7 +24,9 @@ The same data is reused for a Big Data course project. Presentation Dec 10, repo
 ## Modeling (charles)
 - Colab runs on 2023 H1 data, train to 2023-03-31, validate on April. See `EXPERIMENTS.md`.
 - Direction targets show no signal so far, AUC 0.50. A volatility target reaches AUC 0.69.
-- Training code (`us_pipeline`) and its data preparation are not in the repository.
+- **CNN code is in PR #1** (`CNN-Relevant/`, branch `cnn-relevant-residual`): plain JKX-style
+  CNN and a residual (ResNet) variant, run on `vol_h1` and `xsdir_h12`. GPU run pending.
+- Data preparation (`us_pipeline`) is still not in the repository.
 - To be confirmed by charles: how his bars were built and adjusted, and his current plan.
 
 ## Open questions
