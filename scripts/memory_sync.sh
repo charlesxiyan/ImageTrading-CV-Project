@@ -18,6 +18,8 @@ mkdir -p "$STATE"
 
 author() { git -C "$REPO" config memory.author; }
 
+log_state() { cksum < "$MEM/log/$(author).md" 2>/dev/null || echo none; }
+
 json_field() {  # json_field NAME, reading hook JSON from $INPUT
     printf '%s' "$INPUT" | sed -n "s/.*\"$1\"[[:space:]]*:[[:space:]]*\"\{0,1\}\([^\",}]*\).*/\1/p" | head -n 1
 }
@@ -37,7 +39,7 @@ ensure_worktree() {
 }
 
 pull() {
-    git -C "$MEM" pull -q --rebase --autostash origin "$BRANCH" 2>&1 && return 0
+    git -C "$MEM" pull -q --rebase origin "$BRANCH" 2>&1 && return 0
     git -C "$MEM" rebase --abort 2>/dev/null
     return 1
 }
@@ -47,18 +49,22 @@ leak_check() {
     git -C "$MEM" grep -n -I -E 'gh[pousr]_[A-Za-z0-9]{20,}|github_pat_|sk-[A-Za-z0-9_-]{20,}|BEGIN [A-Z ]*PRIVATE KEY|(password|passwd|secret|token)[[:space:]]*[:=][[:space:]]*[^[:space:]<]{6,}' -- . 2>/dev/null
 }
 
-push() {
+commit_local() {
     git -C "$MEM" add -A
-    if ! git -C "$MEM" diff --cached --quiet; then
-        if hits=$(leak_check) && [ -n "$hits" ]; then
-            git -C "$MEM" reset -q
-            echo "memory: not pushed, possible credential in: $hits" >&2
-            return 1
-        fi
-        git -C "$MEM" commit -q -m "memory: $(author || echo unknown) $(date +%Y-%m-%d)" || return 1
+    git -C "$MEM" diff --cached --quiet && return 0
+    if hits=$(leak_check) && [ -n "$hits" ]; then
+        git -C "$MEM" reset -q
+        echo "memory: not committed, possible credential in: $hits" >&2
+        return 1
     fi
-    [ -z "$(git -C "$MEM" log --oneline "origin/$BRANCH..HEAD" 2>/dev/null)" ] && return 0
+    git -C "$MEM" commit -q -m "memory: $(author || echo unknown) $(date +%Y-%m-%d)"
+}
+
+# Commit local edits, take the teammate's, then publish.
+sync_all() {
+    commit_local || return 1
     pull || { echo "memory: pull failed or conflicted; resolve in $MEM, then run scripts/memory_sync.sh sync" >&2; return 1; }
+    [ -z "$(git -C "$MEM" log --oneline "origin/$BRANCH..HEAD" 2>/dev/null)" ] && return 0
     git -C "$MEM" push -q origin "HEAD:$BRANCH" 2>&1 || { echo "memory: push failed" >&2; return 1; }
 }
 
@@ -88,8 +94,9 @@ case ${1:-} in
         [ -t 0 ] || INPUT=$(cat)
         session=$(json_field session_id)
         ensure_worktree || { echo "Shared memory is unavailable: see scripts/memory_sync.sh."; exit 0; }
-        pull >/dev/null || echo "WARNING: could not pull memory; what follows may be stale."
-        [ -n "$session" ] && touch "$STATE/$session.start"
+        sync_all >/dev/null 2>&1 || echo "WARNING: could not sync memory; what follows may be stale."
+        # Remember the log as it is now; `stop` asks for an entry until it differs.
+        [ -n "$session" ] && log_state > "$STATE/$session.start"
         find "$STATE" -name '*.start' -mtime +14 -delete 2>/dev/null
         show
         ;;
@@ -102,11 +109,11 @@ case ${1:-} in
         log=$MEM/log/$(author).md
         if [ -f "$STATE/skip" ]; then
             rm -f "$STATE/skip" "$mark"
-        elif [ -n "$session" ] && [ -f "$mark" ] && [ "$again" != true ] && [ -n "$(author)" ] && ! [ "$log" -nt "$mark" ]; then
+        elif [ -n "$session" ] && [ -f "$mark" ] && [ "$again" != true ] && [ -n "$(author)" ] && [ "$(log_state)" = "$(cat "$mark")" ]; then
             printf '{"decision":"block","reason":"Shared memory: this session has no log entry yet. Append a dated entry to %s and update memory/STATUS.md if it is now wrong. If nothing project-related happened, run: %s/scripts/memory_sync.sh skip"}\n' "$log" "$REPO"
             exit 0
         fi
-        if ! out=$(push 2>&1); then
+        if ! out=$(sync_all 2>&1); then
             [ "$again" = true ] && exit 0
             echo "$out" >&2
             exit 2
@@ -114,8 +121,7 @@ case ${1:-} in
         ;;
     sync)
         ensure_worktree || exit 1
-        pull || { echo "memory: pull failed or conflicted in $MEM" >&2; exit 1; }
-        push && echo "memory: in sync with origin/$BRANCH"
+        sync_all && echo "memory: in sync with origin/$BRANCH"
         ;;
     skip)
         touch "$STATE/skip" && echo "memory: no log entry required for this turn"
