@@ -50,3 +50,17 @@ No entries yet. Charles's Claude appends here.
   CNN rows come from CNN run `run_20261113_185632`, not `run_20261114_020923`.
 - **Correction (same day):** charles says the EC repository has nothing to do with jeffery; no
   review request there. Only CV PR #2 is for jeffery.
+
+## 2026-11-14 (later)
+- **Asked:** switch model inputs to point-in-time price adjustment (anchor = window's last bar),
+  add absolute-direction targets next to vol_h1 / xsdir_h12, then hand charles a Colab rerun.
+- **Found:** the bundle already stores end-of-data-basis prices plus per-bar multipliers, and the
+  chart path already divided each window by its anchor's multipliers. That is exactly the
+  CLAUDE.md formula, so no data rebuild is needed. About 0.7% of validation windows contain an event.
+- **Done:** made it explicit (`chartcnn.images.point_in_time_window`), documented it in EC
+  `DATA_PIPELINE.md`, and added EC `tests/test_point_in_time.py`, which checks against raw CRSP
+  inputs that the anchor is unchanged and later events cancel. Added `dir_h1` (stride 6) and
+  `dir_h12` (stride 12) to both notebooks; zero returns are dropped. Executed notebooks of the
+  previous runs moved to `results/run_*/`. Pushed to EC PR #2 and CV PR #2.
+- **Not verified:** notebooks not executed (no torch here). The bundle's windows were already
+  filtered to a non-zero next-bar return when it was prepared (`zero_return_epsilon` at h=1).

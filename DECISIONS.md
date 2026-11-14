@@ -32,3 +32,8 @@ Each entry: the decision, then why. Add the date and who decided.
 
 ## Process
 - **Shared context lives in this branch**, not in each machine's local Claude memory. 2026-11-12.
+- **Model inputs use point-in-time adjustment: each window is rebased to its last input bar.**
+  Stored data stay on one basis with per-bar multipliers; nothing else is stored twice.
+  2026-11-14, charles (agrees with the policy in `CLAUDE.md`).
+- **Absolute direction (`dir_h1`, `dir_h12`) is reported next to `vol_h1` and `xsdir_h12`.**
+  Zero returns are dropped; stride 6 for h=1 and 12 for h=12. 2026-11-14, charles.
