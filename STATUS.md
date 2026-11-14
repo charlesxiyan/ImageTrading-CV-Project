@@ -28,8 +28,8 @@ The same data is reused for a Big Data course project. Presentation Dec 10, repo
   `EXPERIMENTS.md`. Code, executed notebooks and small results are in CV PR #2 (contains PR #1)
   and EC PR #2, branch `claude/project-thread-0s23rf`, waiting for review.
 - Charles's data preparation (`us_pipeline`, universe, TAQ bars, adjustment scripts) is in
-  `charlesxiyan/ImageTrading-EC-Project`, not in this repository. faintcicado is not yet a
-  collaborator on the EC repository.
+  `charlesxiyan/ImageTrading-EC-Project`, not in this repository. The EC repository is charles's
+  own (for another course); jeffery does not review it.
 - To be confirmed by charles: how his bars were built and adjusted, and his current plan.
 
 ## Open questions

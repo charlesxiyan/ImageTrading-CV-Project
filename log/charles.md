@@ -48,3 +48,5 @@ No entries yet. Charles's Claude appends here.
   absolute price level would see future splits under the scripts.
 - **Not verified:** the 8 tests that need `torch` or `wrds` were not run. The pretrained run's
   CNN rows come from CNN run `run_20261113_185632`, not `run_20261114_020923`.
+- **Correction (same day):** charles says the EC repository has nothing to do with jeffery; no
+  review request there. Only CV PR #2 is for jeffery.
