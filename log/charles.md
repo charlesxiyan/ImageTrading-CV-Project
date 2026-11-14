@@ -29,3 +29,22 @@ No entries yet. Charles's Claude appends here.
   trains all three architectures on `vol_h1` and `xsdir_h12`; the analysis reports the paired
   day-bootstrap AUC difference between the best image CNN and `series1d`.
 - **Not verified:** no GPU results yet; CPU smoke test only.
+
+## 2026-11-14
+- **Asked:** push the finished Colab runs of ChartCNN and the pretrained-model comparison to
+  GitHub for jeffery; then also make sure the EC repository has the universe, data processing and
+  model-test code, latest versions.
+- **Done:** EC PR #2 and CV PR #2 (branch `claude/project-thread-0s23rf`). Both carry the latest
+  `CNN-Relevant/` and `Pretrained Model Comparison/` code, executed notebooks with outputs, and
+  small result files for CNN run `run_20261114_020923` and pretrained run `run_20261114_012926`.
+  EC PR #2 also adds `colab/` (earlier CNN78u baseline, repair and scheduler tests), top-level
+  `diagnostics/` and three protocol tests. Universe and data-processing scripts on EC `main`
+  already matched charles's local copies apart from removed local paths. CV PR #2 contains CV PR #1.
+- **Found:** charles's adjustment scripts and the `CLAUDE.md` policy cover the same events
+  (`cfacpr`, cash dividends from `dsedist`, `cfacshr` for volume). The difference is the basis:
+  the scripts rebase every price to the last date of the data, the policy to each window's anchor.
+  Ratios inside a window are identical, so current models (all inputs are scaled per window,
+  hand features are log returns and volume ratios) are unaffected. Any feature that uses an
+  absolute price level would see future splits under the scripts.
+- **Not verified:** the 8 tests that need `torch` or `wrds` were not run. The pretrained run's
+  CNN rows come from CNN run `run_20261113_185632`, not `run_20261114_020923`.

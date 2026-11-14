@@ -1,6 +1,6 @@
 # Status
 
-Last updated 2026-11-13 by charles.
+Last updated 2026-11-14 by charles.
 
 ## Project
 CV course research project: do pretrained vision models help on intraday price charts?
@@ -24,10 +24,12 @@ The same data is reused for a Big Data course project. Presentation Dec 10, repo
 ## Modeling (charles)
 - Colab runs on 2023 H1 data, train to 2023-03-31, validate on April. See `EXPERIMENTS.md`.
 - Direction targets show no signal so far, AUC 0.50. A volatility target reaches AUC 0.69.
-- **CNN code is in PR #1** (`CNN-Relevant/`, branch `cnn-relevant-residual`): plain JKX-style
-  CNN, a residual (ResNet) variant and a 1D CNN on raw OHLCV (`series1d`, the no-image control),
-  run on `vol_h1` and `xsdir_h12`. GPU run pending.
-- Data preparation (`us_pipeline`) is still not in the repository.
+- **GPU results are in.** CNN `run_20261114_020923` and pretrained `run_20261114_012926`: see
+  `EXPERIMENTS.md`. Code, executed notebooks and small results are in CV PR #2 (contains PR #1)
+  and EC PR #2, branch `claude/project-thread-0s23rf`, waiting for review.
+- Charles's data preparation (`us_pipeline`, universe, TAQ bars, adjustment scripts) is in
+  `charlesxiyan/ImageTrading-EC-Project`, not in this repository. faintcicado is not yet a
+  collaborator on the EC repository.
 - To be confirmed by charles: how his bars were built and adjusted, and his current plan.
 
 ## Open questions
