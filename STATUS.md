@@ -1,6 +1,6 @@
 # Status
 
-Last updated 2026-11-14 by charles.
+Last updated 2026-11-14 by jeffery.
 
 ## Project
 CV course research project: do pretrained vision models help on intraday price charts?
@@ -14,7 +14,7 @@ The same data is reused for a Big Data course project. Presentation Dec 10, repo
   3,774 trading days, 877 PERMNOs, 518-531 securities a day. Checked against WRDS source tables.
 - **5-minute bars from TAQ:** built and validated for 2023 only: 250 dates, 10.2M bars.
   Open, high and low match CRSP within 1 bp on about 99.9% of security-days.
-- **Full 2010-2024 build:** not started. Planned on a university compute server, about 58 hours.
+- **Set aside on 2026-11-14:** charles's pipeline is the data source. No full build from this one.
 - **Code:** `taq_bars.py`, `examples.py`, `validate_bars.py`, `validate_universe.py`,
   `build_taq_symbol_map.py` and changes to `build_dynamic_universe.py` exist only in jeffery's
   working tree on `test/mock-wrds`. **Not committed or pushed.**
@@ -39,11 +39,10 @@ The same data is reused for a Big Data course project. Presentation Dec 10, repo
   unadjusted prices and drop horizons containing an ex-date (chartcnn 2026-11-14.3). See DECISIONS.
 
 ## Open questions
-- Jeffery's and Charles's bar data come from different pipelines. Which one is the source?
 - The demo predicts the next bar or 12 bars ahead. The proposal says 30 minutes, 6 bars.
 - Does the WRDS license allow TAQ-derived bars on shared servers and Colab? Not yet confirmed.
 
 ## Next steps
-1. jeffery: commit and push the bar pipeline; fix window adjustment; run the full build.
+1. jeffery: review CV PRs #1 to #3.
 2. charles: merge his memory here; push training code; confirm the points above.
 3. Both: agree on one dataset, one label and one evaluation protocol before more training.

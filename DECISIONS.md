@@ -17,6 +17,8 @@ Each entry: the decision, then why. Add the date and who decided.
 - **Early-close sessions are dropped when building examples**, as is 2023-01-24, the NYSE
   opening failure. Bars for those dates are still built. 2026-11-02, jeffery.
 - **Licensed WRDS data never enters the repository.** `data/` is gitignored.
+- **Charles's data pipeline is the source of bars for all modeling.** Jeffery's TAQ bar pipeline
+  is set aside: no full 2010-2024 build from it, and it is not being pushed. 2026-11-14, jeffery.
 
 ## Modeling and evaluation
 - **Learning rate 1e-5 with Adam**, as in Jiang, Kelly and Xiu (2023). Runs at 1e-3 collapsed to a

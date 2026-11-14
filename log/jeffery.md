@@ -61,3 +61,9 @@ Entries before 2026-11-12 are condensed from a private log.
   The bar pipeline is still uncommitted on `test/mock-wrds`; `main` is 2 commits behind
   `origin/main`. The full 2010-2024 build has not started.
 - Not verified: the contents of the pull requests were not read.
+
+## 2026-11-14 — Data source decided; model results read
+- Jeffery decided: charles's data pipeline is the source. Jeffery's bar pipeline is set aside.
+  Recorded in `DECISIONS.md` and `STATUS.md`.
+- Read the result summaries on the PR #3 branch (`takeaways.md`, `analysis.csv`, deciles,
+  `frame_corr`, pretrained `comparison.csv`). Did not read the model or data code.
