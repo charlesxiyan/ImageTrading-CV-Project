@@ -80,3 +80,18 @@ No entries yet. Charles's Claude appends here.
 - **Not verified:** no GPU run, so no results and no measured runtime (estimate 2.5–3.5 h on L4).
   Labels crossing the overnight gap into an ex-date session use stored (adjusted) closes, not the
   unadjusted return the policy asks for; unchanged from before.
+
+## 2026-11-14 (bundle v2 and unadjusted labels)
+- **Asked:** charles said fix both open data issues: the window list dropping zero next-bar
+  returns, and labels crossing an overnight ex-date using adjusted returns.
+- **Done:** `us_pipeline` `drop_zero_returns` option + `rescreen` command, `configs/us_5min_v2.json`,
+  `colab/build_colab_bundle.py --version v2`, EC `tests/test_bundle_v2.py`. v2 = 1,796,575 /
+  537,272 / 1,248,499 windows (v1 + 163,566 zero-return windows; bars byte-identical; audit passes).
+  `chartcnn.data.build_split` (2026-11-14.3) now uses unadjusted label returns and drops labels
+  whose horizon contains an ex-date (0.02% at H=1, 0.2% at H=12; includes a 2:1 split).
+  `stage_bundle` uses `cnn78u_colab_bundle_v2.zip` if on Drive, else derives v2 windows from the v1
+  zip at start-up (row-identical). Drive Multi-Target folder updated. Pushed to EC #3 / CV #3.
+- **Found:** the Drive connector refuses uploads over 10 MB, so the 109 MB v2 zip is not on Drive;
+  the start-up conversion makes that unnecessary.
+- **Not verified:** no GPU run. Drive's CNN-Relevant and Pretrained folders still have the old
+  chartcnn (v1 windows, adjusted labels) until charles copies the new chartcnn there.

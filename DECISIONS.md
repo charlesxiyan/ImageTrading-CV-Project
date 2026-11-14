@@ -37,3 +37,9 @@ Each entry: the decision, then why. Add the date and who decided.
   2026-11-14, charles (agrees with the policy in `CLAUDE.md`).
 - **Absolute direction (`dir_h1`, `dir_h12`) is reported next to `vol_h1` and `xsdir_h12`.**
   Zero returns are dropped; stride 6 for h=1 and 12 for h=12. 2026-11-14, charles.
+
+## 2026-11-14: window screening and labels (charles)
+- Window lists never filter on the label or future returns. Bundle v2 keeps zero next-bar returns;
+  direction targets drop zeros per target and horizon at label time.
+- Labels are unadjusted traded-price returns. A label whose horizon contains an ex-date (only across
+  the overnight gap) is dropped rather than computed, since its unadjusted return holds the event jump.
