@@ -32,6 +32,10 @@ The same data is reused for a Big Data course project. Presentation Dec 10, repo
   own (for another course); jeffery does not review it.
 - To be confirmed by charles: how his bars were built and adjusted, and his current plan.
 
+- **Multi-target grid (2026-11-14):** {dir, vol, xsdir} × {5, 15, 30, 60 min}, stride 12, plain CNN
+  + series1d + HGB. Code in CV PR #3 / EC PR #3 and on Drive `Demo/Multi-Target Chart CNN Baseline/`.
+  Not run yet; charles runs it on Colab.
+
 ## Open questions
 - Jeffery's and Charles's bar data come from different pipelines. Which one is the source?
 - The demo predicts the next bar or 12 bars ahead. The proposal says 30 minutes, 6 bars.

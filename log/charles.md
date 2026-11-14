@@ -64,3 +64,19 @@ No entries yet. Charles's Claude appends here.
   previous runs moved to `results/run_*/`. Pushed to EC PR #2 and CV PR #2.
 - **Not verified:** notebooks not executed (no torch here). The bundle's windows were already
   filtered to a non-zero next-bar return when it was prepared (`zero_return_epsilon` at h=1).
+
+## 2026-11-14 (multi-target grid)
+- **Asked:** a new Drive folder "Multi-Target Chart CNN Baseline" (leave CNN-Relevant on Drive
+  untouched) with 15 / 30 / 60-minute horizons on top of 5 minutes, for absolute direction,
+  volatility and relative direction, to show direction carries little signal at high frequency.
+- **Done:** `CNN-Relevant/chartcnn/grid.py` (12 cells = {dir, vol, xsdir} × {h1, h3, h6, h12}),
+  notebook `Multi-Target Chart CNN Baseline/Multi_Target_Chart_CNN.ipynb`, optional bfloat16
+  autocast in `training.py` (default off). Stride 12 for all horizons. Models per cell: plain CNN,
+  series1d, HGB, rules (no residual). Each finished cell saves `predictions.parquet` + `done.json`;
+  rerun with the same `RUN_ID` skips it. Uploaded to Drive Demo/Multi-Target Chart CNN Baseline
+  with its own copy of `chartcnn/`. EC PR #3 and CV PR #3 (stacked on the #2 branches).
+- **Found:** chart rendering is ~0.15 ms per image, so the plain CNN epoch time is GPU-bound, not
+  rendering-bound; caching images would not help.
+- **Not verified:** no GPU run, so no results and no measured runtime (estimate 2.5–3.5 h on L4).
+  Labels crossing the overnight gap into an ex-date session use stored (adjusted) closes, not the
+  unadjusted return the policy asks for; unchanged from before.
