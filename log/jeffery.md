@@ -53,3 +53,11 @@ Entries before 2026-11-12 are condensed from a private log.
   there reaches the first clone, edits to different files merge, and a same-line conflict is
   reported and left for a person or Claude to resolve. A credential-like string blocks the push.
 - Added `ONBOARDING.md`, the prompt for connecting charles's Claude. Charles has not run it yet.
+
+## 2026-11-14 — Progress check
+- Asked for current progress. Read shared memory, fetched the remote and listed pull requests.
+  No code or data changed.
+- State: three open pull requests from charles (#1 to #3, stacked), none reviewed by jeffery.
+  The bar pipeline is still uncommitted on `test/mock-wrds`; `main` is 2 commits behind
+  `origin/main`. The full 2010-2024 build has not started.
+- Not verified: the contents of the pull requests were not read.
