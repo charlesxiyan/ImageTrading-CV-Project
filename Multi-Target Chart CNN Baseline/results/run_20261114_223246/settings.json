@@ -1,0 +1,124 @@
+{
+  "settings": {
+    "learning_rate": 1e-05,
+    "weight_decay": 0.0,
+    "batch_size": 128,
+    "eval_batch_size": 512,
+    "epochs": 12,
+    "patience": 2,
+    "min_delta": 1e-05,
+    "channels": [
+      64,
+      128,
+      256
+    ],
+    "head_height": 4,
+    "dropout": 0.5,
+    "amp": true,
+    "num_workers": 8,
+    "seed": 69
+  },
+  "cells": [
+    {
+      "name": "dir_h1",
+      "kind": "dir",
+      "target": "dir",
+      "horizon": 1,
+      "minutes": 5,
+      "stride": 12
+    },
+    {
+      "name": "vol_h1",
+      "kind": "vol",
+      "target": "vol",
+      "horizon": 1,
+      "minutes": 5,
+      "stride": 12
+    },
+    {
+      "name": "xsdir_h1",
+      "kind": "xsdir",
+      "target": "xs_dir",
+      "horizon": 1,
+      "minutes": 5,
+      "stride": 12
+    },
+    {
+      "name": "dir_h3",
+      "kind": "dir",
+      "target": "dir",
+      "horizon": 3,
+      "minutes": 15,
+      "stride": 12
+    },
+    {
+      "name": "vol_h3",
+      "kind": "vol",
+      "target": "vol",
+      "horizon": 3,
+      "minutes": 15,
+      "stride": 12
+    },
+    {
+      "name": "xsdir_h3",
+      "kind": "xsdir",
+      "target": "xs_dir",
+      "horizon": 3,
+      "minutes": 15,
+      "stride": 12
+    },
+    {
+      "name": "dir_h6",
+      "kind": "dir",
+      "target": "dir",
+      "horizon": 6,
+      "minutes": 30,
+      "stride": 12
+    },
+    {
+      "name": "vol_h6",
+      "kind": "vol",
+      "target": "vol",
+      "horizon": 6,
+      "minutes": 30,
+      "stride": 12
+    },
+    {
+      "name": "xsdir_h6",
+      "kind": "xsdir",
+      "target": "xs_dir",
+      "horizon": 6,
+      "minutes": 30,
+      "stride": 12
+    },
+    {
+      "name": "dir_h12",
+      "kind": "dir",
+      "target": "dir",
+      "horizon": 12,
+      "minutes": 60,
+      "stride": 12
+    },
+    {
+      "name": "vol_h12",
+      "kind": "vol",
+      "target": "vol",
+      "horizon": 12,
+      "minutes": 60,
+      "stride": 12
+    },
+    {
+      "name": "xsdir_h12",
+      "kind": "xsdir",
+      "target": "xs_dir",
+      "horizon": 12,
+      "minutes": 60,
+      "stride": 12
+    }
+  ],
+  "archs": [
+    "plain",
+    "series1d"
+  ],
+  "chartcnn": "2026-11-14.3"
+}
