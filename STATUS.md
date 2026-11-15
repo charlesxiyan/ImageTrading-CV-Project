@@ -26,7 +26,7 @@ The same data is reused for a Big Data course project. Presentation Dec 10, repo
 - Direction targets show no signal so far, AUC 0.50. A volatility target reaches AUC 0.69.
 - **GPU results are in.** CNN `run_20261114_020923` and pretrained `run_20261114_012926`: see
   `EXPERIMENTS.md`. Code, executed notebooks and small results are in CV PR #2 (contains PR #1)
-  and EC PR #2, branch `claude/project-thread-0s23rf`, waiting for review.
+  and EC PR #2, both merged 2026-11-15. Next: Colab rerun with dir_h1 / dir_h12 (`*_dir_targets.ipynb`).
 - Charles's data preparation (`us_pipeline`, universe, TAQ bars, adjustment scripts) is in
   `charlesxiyan/ImageTrading-EC-Project`, not in this repository. The EC repository is charles's
   own (for another course); jeffery does not review it.

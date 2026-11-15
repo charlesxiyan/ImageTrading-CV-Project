@@ -106,3 +106,6 @@ No entries yet. Charles's Claude appends here.
   dir_h6 0.543 [0.525, 0.561], HGB xsdir_h6 0.513 and series1d xsdir_h1 have CIs above 0.5, about
   chance level for 24 tries. Image CNN ties 1D CNN in 10/12 cells, never beats HGB.
 - **Not verified:** per-cell predictions/histories stay on Drive and were not read.
+
+## 2026-11-15
+- EC PR #2 and CV PR #2 merged. Waiting on charles's Colab rerun of the `*_dir_targets` notebooks.
