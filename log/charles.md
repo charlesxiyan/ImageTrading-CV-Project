@@ -95,3 +95,14 @@ No entries yet. Charles's Claude appends here.
   the start-up conversion makes that unnecessary.
 - **Not verified:** no GPU run. Drive's CNN-Relevant and Pretrained folders still have the old
   chartcnn (v1 windows, adjusted labels) until charles copies the new chartcnn there.
+
+## 2026-11-15 (multi-target grid results)
+- **Asked:** push the finished Colab run of the multi-target grid with this update.
+- **Done:** pulled executed notebook + grid_table/labels/takeaways/auc_by_horizon/settings of
+  `run_20261114_223246` from Drive into `Multi-Target Chart CNN Baseline/results/` (EC #3, CV #3),
+  results table in that README.
+- **Found:** L4 + bf16, 68 min for 12 cells. vol AUC 0.64–0.70 at every horizon (HGB best, CNN
+  ~0.015 lower). dir and xsdir: CNN AUC within 0.02 of 0.5, log loss worse than prior; only HGB
+  dir_h6 0.543 [0.525, 0.561], HGB xsdir_h6 0.513 and series1d xsdir_h1 have CIs above 0.5, about
+  chance level for 24 tries. Image CNN ties 1D CNN in 10/12 cells, never beats HGB.
+- **Not verified:** per-cell predictions/histories stay on Drive and were not read.

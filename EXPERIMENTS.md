@@ -19,3 +19,9 @@ Out-of-sample McFadden R2 of 0.09-0.2% for the CNN forecast alone.
 | 2026-11-14 | charles | CNN `run_20261114_020923` | same, stride 12 | `xsdir_h12` | same | AUC 0.508 / 0.499 / 0.495; HGB 0.503 | No signal; spread t = -0.20 |
 | 2026-11-14 | charles | Pretrained `run_20261114_012926` | 80 val timestamps, about 27k samples | `vol_h1` | Kronos-small 28.7M, Chronos-2 119M (+LoRA), Moirai2-small 11.4M, TimesFM 331M, Bolt-base 205M, zero-shot | AUC 0.699 / 0.615 (0.611) / 0.609 / 0.605 / 0.594; HGB 0.734, CNNs 0.718-0.722 | CNN rows from run_20261113_185632 |
 | 2026-11-14 | charles | Pretrained `run_20261114_012926` | same | `xsdir_h12` | same | all 0.48-0.51 | No signal |
+
+## run_20261114_223246 — multi-target grid (charles, 2026-11-14)
+Bundle v2, chartcnn 2026-11-14.3, stride 12, L4 bf16, 68 min. {dir, vol, xsdir} × {5, 15, 30, 60 min};
+plain CNN, series1d, HGB. vol AUC: CNN 0.684/0.661/0.647/0.652, HGB 0.701/0.678/0.663/0.667.
+dir/xsdir AUC 0.497–0.519 for CNNs (HGB dir_h6 0.543 is the only clear outlier). Conclusion: no
+direction signal at 5–60 min; volatility signal at all horizons; the image adds nothing over raw OHLCV.
