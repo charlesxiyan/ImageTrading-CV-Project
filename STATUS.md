@@ -33,7 +33,7 @@ The same data is reused for a Big Data course project. Presentation Dec 10, repo
 - To be confirmed by charles: how his bars were built and adjusted, and his current plan.
 
 - **Multi-target grid (2026-11-14):** {dir, vol, xsdir} × {5, 15, 30, 60 min}, stride 12, plain CNN
-  + series1d + HGB. Code in CV PR #3 / EC PR #3 and on Drive `Demo/Multi-Target Chart CNN Baseline/`.
+  + series1d + HGB. Code merged to `main` in both repos (2026-11-15, with the #2 PRs) and on Drive `Demo/Multi-Target Chart CNN Baseline/`.
   Not run yet; charles runs it on Colab.
 - **Bundle v2 (2026-11-14):** window lists no longer drop zero next-bar returns; labels use
   unadjusted prices and drop horizons containing an ex-date (chartcnn 2026-11-14.3). See DECISIONS.

@@ -109,3 +109,7 @@ No entries yet. Charles's Claude appends here.
 
 ## 2026-11-15
 - EC PR #2 and CV PR #2 merged. Waiting on charles's Colab rerun of the `*_dir_targets` notebooks.
+
+## 2026-11-15 (merge)
+- **Asked:** merge. **Done:** merged #3 into #2's branch, then #2 into `main`, in both repositories;
+  CV #1 shows merged (contained in #2); EC #1 closed as superseded (its 1D CNN is in `main`).
