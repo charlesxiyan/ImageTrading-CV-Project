@@ -1,0 +1,7 @@
+- **dir (absolute direction)**: best AUC by horizon 5 min 0.516 [0.496, 0.535] (HGB hand features), 15 min 0.517 [0.490, 0.546] (HGB hand features), 30 min 0.543 [0.525, 0.561] (HGB hand features), 60 min 0.519 [0.499, 0.536] (HGB hand features). 95% CI above 0.5 at 30 min.
+- **vol (volatility)**: best AUC by horizon 5 min 0.701 [0.669, 0.724] (HGB hand features), 15 min 0.678 [0.642, 0.708] (HGB hand features), 30 min 0.663 [0.632, 0.687] (HGB hand features), 60 min 0.667 [0.649, 0.688] (HGB hand features). 95% CI above 0.5 at 5 min, 15 min, 30 min, 60 min.
+- **xsdir (relative direction)**: best AUC by horizon 5 min 0.509 [0.497, 0.521] (HGB hand features), 15 min 0.505 [0.496, 0.516] (CNN (plain)), 30 min 0.513 [0.504, 0.525] (HGB hand features), 60 min 0.504 [0.495, 0.513] (HGB hand features). 95% CI above 0.5 at 30 min.
+- dir decile long-short (top − bottom, gross, bps per horizon): dir_h1 HGB hand features +3.50 bps (t = 2.14)
+- xsdir decile long-short (top − bottom, gross, bps per horizon): xsdir_h6 CNN (series1d) +3.94 bps (t = 2.03)
+- image CNN − 1D CNN AUC (paired day bootstrap) across 12 cells: better in 2, worse in 0, tied in 10.
+- image CNN − HGB AUC (paired day bootstrap) across 12 cells: better in 0, worse in 5, tied in 7.
