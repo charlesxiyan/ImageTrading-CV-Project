@@ -128,3 +128,8 @@ No entries yet. Charles's Claude appends here.
   and marks early-close sessions all-invalid; `configs/us_5min_2016_2025.json` (train <=2022,
   val 2023, test 2024-2025, pending charles's confirmation). All 62 tests pass.
 - **Not verified yet:** full adjustment run and validation are in progress.
+- **SPY benchmark (same day):** charles asked for SPY 5-min bars aligned with the stock archive.
+  Wrote `download_benchmark_bars.py` (CV working tree, untracked like the archive downloader):
+  same filter/SQL/grid/schema, PERMNO 84398, plus CIZ daily + 41 distributions. Pilot of 3
+  sessions OK (open 200.49 = CRSP daily open on 2016-01-04). Full download blocked by auto-mode
+  permissions; waiting for charles's explicit approval.
