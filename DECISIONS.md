@@ -45,3 +45,12 @@ Each entry: the decision, then why. Add the date and who decided.
   direction targets drop zeros per target and horizon at label time.
 - Labels are unadjusted traded-price returns. A label whose horizon contains an ex-date (only across
   the overnight gap) is dropped rather than computed, since its unadjusted return holds the event jump.
+
+## 2026-11-16: full data (charles)
+- **Sample is 2016-01-04 to 2025-12-31 for modeling; split train 2016-2022, validation 2023, test
+  2024-2025.** charles accepted the proposal. 2023 H1 was already used for tuning, so it is validation.
+- **CIZ distributions:** cash adjustment iff divamt > 0 and facpr = facshr = 0 (incl. ROC, capital
+  gains, special and non-USD dividends, whose CIZ amounts are already USD); any nonzero factor is left
+  to the cumulative factors. Checked against CRSP ret - retx: 19,374 / 19,384 groups within 1%.
+- **Charts are rendered per sample, never stored.** SPY is drawn as its own panel below the stock
+  chart (charles's choice), each panel on its own window-local axis.

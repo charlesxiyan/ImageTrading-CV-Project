@@ -38,11 +38,17 @@ The same data is reused for a Big Data course project. Presentation Dec 10, repo
 - **Bundle v2 (2026-11-14):** window lists no longer drop zero next-bar returns; labels use
   unadjusted prices and drop horizons containing an ex-date (chartcnn 2026-11-14.3). See DECISIONS.
 
-## Full 2016-2025 data build (charles, in progress 2026-11-16)
-- New WRDS archive covers 2016-01-04 to 2025-12-31: 2,514 sessions, 775 PERMNOs, CRSP CIZ format.
-- Adjustment inputs built; full dividend/split adjustment running. Then `us_pipeline prepare`
-  with `configs/us_5min_2016_2025.json` (proposed split: train <=2022, val 2023, test 2024-2025,
-  not yet confirmed by charles). Code on EC branch `claude/project-thread-5acfxn`, not pushed.
+## Full 2016-2025 data build (charles, done 2026-11-16)
+- Archive 2016-01-04..2025-12-31: 2,514 sessions, 775 PERMNOs, CRSP CIZ. Adjusted + validated (all files).
+  SPY (PERMNO 84398) on the same calendar/grid, adjusted + validated. us_pipeline prepare+audit:
+  79.5M windows (train 2016-22 59.6M / val 2023 7.0M / test 2024-25 12.9M); 21 early closes excluded.
+- Bundle `alldata_bundle_v1.zip` (1.19 GB, float32, windows end_index % 6 == 5, SPY arrays) lives
+  next to the archive locally; charles must upload it to Drive `Demo/AllData & AllModel/` himself
+  (the Drive connector caps uploads at 10 MB). Notebook `AllData_AllModel.ipynb` already there.
+- Notebook: 12 cells (dir/vol/xsdir x 5/15/30/60 min, stride 12) x {image CNN, image CNN + SPY panel
+  (468x234), 1D CNN, 1D CNN + SPY, HGB, HGB + 18 SPY features}; QUICK switch; test section opt-in.
+  Smoke-tested end to end locally on CPU. Not run on GPU yet.
+- Code: EC branch `claude/project-thread-5acfxn` commit fedd666, local only (not pushed).
 
 ## Open questions
 - Does the WRDS license allow TAQ-derived bars on shared servers and Colab? Not yet confirmed.

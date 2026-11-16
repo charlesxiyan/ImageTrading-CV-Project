@@ -140,3 +140,7 @@ No entries yet. Charles's Claude appends here.
   Bundle `alldata_bundle_v1.zip` 1.19 GB (float32, windows thinned to end_index % 6 == 5, SPY on
   the same clock), outside the repo next to the archive. New folder `AllData & AllModel` (EC branch):
   chartcnn copy 2026-11-16.1 with SPY panel (468x234), 1D+SPY, HGB+SPY; notebook generator; QUICK switch.
+- **Delivered (same day):** notebook uploaded to Drive `Demo/AllData & AllModel/`; local smoke
+  run of the whole notebook (incl. test section) passed on CPU. Waiting for charles to upload the
+  1.19 GB bundle and run QUICK, then the full grid. Not verified: any GPU run or real numbers;
+  RAM use on a standard Colab runtime (estimated ~6 GB for label arrays).
