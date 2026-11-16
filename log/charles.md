@@ -144,3 +144,5 @@ No entries yet. Charles's Claude appends here.
   run of the whole notebook (incl. test section) passed on CPU. Waiting for charles to upload the
   1.19 GB bundle and run QUICK, then the full grid. Not verified: any GPU run or real numbers;
   RAM use on a standard Colab runtime (estimated ~6 GB for label arrays).
+- charles: hold push/PR of EC branch `claude/project-thread-5acfxn` until he has run the
+  AllData & AllModel notebook; then push code and results together.
