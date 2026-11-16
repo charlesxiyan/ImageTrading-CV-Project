@@ -133,3 +133,10 @@ No entries yet. Charles's Claude appends here.
   same filter/SQL/grid/schema, PERMNO 84398, plus CIZ daily + 41 distributions. Pilot of 3
   sessions OK (open 200.49 = CRSP daily open on 2016-01-04). Full download blocked by auto-mode
   permissions; waiting for charles's explicit approval.
+- **Full build done (same day):** stock adjustment 102,142,206 rows, 19,380 cash ex-date groups,
+  validated (all files). SPY: 2,514 sessions, 9 empty bars, 41 dividends, validated. us_pipeline
+  prepare+audit: 79.5M windows (train 59.6M / val 7.0M / test 12.9M), 21 early closes excluded.
+  Fixed a bug: `decision_clock_ns` was written in microseconds under pandas 3 (`as_unit('ns')`).
+  Bundle `alldata_bundle_v1.zip` 1.19 GB (float32, windows thinned to end_index % 6 == 5, SPY on
+  the same clock), outside the repo next to the archive. New folder `AllData & AllModel` (EC branch):
+  chartcnn copy 2026-11-16.1 with SPY panel (468x234), 1D+SPY, HGB+SPY; notebook generator; QUICK switch.
