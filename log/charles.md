@@ -113,3 +113,18 @@ No entries yet. Charles's Claude appends here.
 ## 2026-11-15 (merge)
 - **Asked:** merge. **Done:** merged #3 into #2's branch, then #2 into `main`, in both repositories;
   CV #1 shows merged (contained in #2); EC #1 closed as superseded (its 1D CNN is in `main`).
+
+## 2026-11-16 (full 2016-2025 preprocessing, started)
+- **Asked:** run the full preprocessing pipeline (adjustment, cleaning, images) on the new
+  2016-2025 WRDS archive (`US Equity/wrds_5min_2016_latest_v1` under the Market Data folder).
+- **Found:** archive complete, 2,514 sessions (21 early closes), 102.1M bar slots, 2.8% empty,
+  775 PERMNOs, 516-531 a day (S&P 500 ∪ NDX 100 ∪ DJIA 30). Bars have the demo schema. CRSP
+  reference tables are in CIZ format (`dlycumfacpr`, `distype/disdetailtype`), not SIZ `distcd`.
+  19,374 of 19,384 cash ex-date groups match CRSP `ret - retx` within 1%, incl. the 8 non-USD
+  (FX) dividends, so CIZ `disdivamt` is in USD. The 10 misses are ROC/CAPG mixes and one SECEX.
+- **Done (EC repo, branch `claude/project-thread-5acfxn`, not pushed):** `prepare_archive_inputs.py`
+  (CIZ -> adjustment inputs; kind=cash if divamt>0 and facpr=facshr=0, else corporate);
+  `adjust_dividend_bars.py` accepts `kind` and is faster; `us_pipeline/data.py` accepts any period
+  and marks early-close sessions all-invalid; `configs/us_5min_2016_2025.json` (train <=2022,
+  val 2023, test 2024-2025, pending charles's confirmation). All 62 tests pass.
+- **Not verified yet:** full adjustment run and validation are in progress.

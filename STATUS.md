@@ -38,6 +38,12 @@ The same data is reused for a Big Data course project. Presentation Dec 10, repo
 - **Bundle v2 (2026-11-14):** window lists no longer drop zero next-bar returns; labels use
   unadjusted prices and drop horizons containing an ex-date (chartcnn 2026-11-14.3). See DECISIONS.
 
+## Full 2016-2025 data build (charles, in progress 2026-11-16)
+- New WRDS archive covers 2016-01-04 to 2025-12-31: 2,514 sessions, 775 PERMNOs, CRSP CIZ format.
+- Adjustment inputs built; full dividend/split adjustment running. Then `us_pipeline prepare`
+  with `configs/us_5min_2016_2025.json` (proposed split: train <=2022, val 2023, test 2024-2025,
+  not yet confirmed by charles). Code on EC branch `claude/project-thread-5acfxn`, not pushed.
+
 ## Open questions
 - Does the WRDS license allow TAQ-derived bars on shared servers and Colab? Not yet confirmed.
 
