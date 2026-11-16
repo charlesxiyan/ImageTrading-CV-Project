@@ -67,3 +67,11 @@ Entries before 2026-11-12 are condensed from a private log.
   Recorded in `DECISIONS.md` and `STATUS.md`.
 - Read the result summaries on the PR #3 branch (`takeaways.md`, `analysis.csv`, deciles,
   `frame_corr`, pretrained `comparison.csv`). Did not read the model or data code.
+
+## 2026-11-15 — Progress check
+- Asked for the latest progress. Synced memory, fetched the remote, read the multi-target grid
+  `grid_table.csv` on `origin/main`. No code or data changed.
+- Found: CV PRs #1 to #3 are all merged into `main`, so the review step is moot. The grid confirms
+  volatility signal at every horizon and no usable direction signal; at the proposal's 30-minute
+  horizon (dir_h6) only HGB clears 0.5 (AUC 0.543), with log loss barely above the prior.
+- Not verified: per-cell predictions on Drive; whether the `*_dir_targets` rerun has happened.

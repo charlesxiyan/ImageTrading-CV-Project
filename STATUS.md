@@ -1,6 +1,6 @@
 # Status
 
-Last updated 2026-11-14 by jeffery.
+Last updated 2026-11-15 by jeffery.
 
 ## Project
 CV course research project: do pretrained vision models help on intraday price charts?
@@ -39,10 +39,10 @@ The same data is reused for a Big Data course project. Presentation Dec 10, repo
   unadjusted prices and drop horizons containing an ex-date (chartcnn 2026-11-14.3). See DECISIONS.
 
 ## Open questions
-- The demo predicts the next bar or 12 bars ahead. The proposal says 30 minutes, 6 bars.
 - Does the WRDS license allow TAQ-derived bars on shared servers and Colab? Not yet confirmed.
 
 ## Next steps
-1. jeffery: review CV PRs #1 to #3.
+1. CV PRs #1 to #3 are merged (2026-11-15). Pretrained vision models (ImageNet ResNet-18,
+   DINOv2) and OHLC versus candlestick rendering, the proposal's core comparison, are not run yet.
 2. charles: merge his memory here; push training code; confirm the points above.
 3. Both: agree on one dataset, one label and one evaluation protocol before more training.
