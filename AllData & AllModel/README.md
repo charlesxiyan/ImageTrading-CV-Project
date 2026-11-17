@@ -57,6 +57,19 @@ Targets: `dir`, `vol` and `xsdir` at 5, 15, 30 and 60 minutes, stride 12.
 
 ## Results: `run_20261116_044159` (validation 2023)
 
+**Key findings, in short** (AUC: 0.5 is a coin flip; on these targets a change of 0.005 or more is meaningful,
+0.001–0.003 is noise):
+
+1. **Only volatility is predictable.** Whether the next 5–60 minutes will move more than usual: AUC 0.63–0.69 for
+   every model. Whether the price goes up (`dir`) or beats other stocks (`xsdir`): 0.49–0.52, close to a coin flip.
+2. **Drawing the chart does not help.** The image CNN never beats HGB on hand features (worse in 8 of 12 cells) and
+   is no better than a 1D CNN on the same numbers (better in 1, worse in 5).
+3. **Adding SPY helps HGB, not the networks.** HGB gains +0.006 to +0.008 AUC on volatility at every horizon and
+   +0.010 on direction at 5 minutes; it is higher in 10 of 12 cells and never significantly worse. The image CNN
+   with the SPY panel is unchanged on average (+0.0002); the 1D CNN with SPY is slightly worse (−0.0005).
+4. **The best model everywhere is HGB with SPY** (vol AUC 0.690 at 5 minutes).
+
+
 Full run on an L4 (`QUICK = False`): 12 cells × 4 networks + 2 HGBs, 549 minutes. CNNs trained on 300,000
 random training windows per cell; HGB on 1,000,000; every cell scored on all 247 validation days of 2023
 (~570,000 windows). Files: `results/run_20261116_044159/` and the executed `AllData_AllModel.ipynb`.
@@ -89,7 +102,16 @@ Each pair has the same model, the same training rows and the same validation row
 SPY input (18 extra features for HGB, the SPY panel for the image CNN, 5 SPY series for the 1D CNN).
 ![AUC with SPY minus without SPY, per cell and model](results/run_20261116_044159/spy_effect.png)
 
-Each bar is AUC with SPY minus AUC without SPY; above zero means SPY helped. The numbers:
+**How to read the chart.** Each bar is AUC with SPY minus AUC without SPY for one model and one cell; above the
+zero line means SPY helped. Blue is HGB, red the image CNN, brown the 1D CNN.
+
+- **Left, volatility:** all three models gain at 5 and 15 minutes; HGB gains +0.006 to +0.008 at every horizon.
+  SPY's own recent volatility tells you how much a single stock is likely to move.
+- **Middle, relative direction:** every bar is within ±0.003, so SPY makes no real difference.
+- **Right, absolute direction:** only HGB at 5 minutes gains (+0.010); the other bars sit below zero, so here SPY
+  is noise and the networks overfit it slightly.
+
+The numbers behind the chart:
 
 | target | horizon | HGB | image CNN | 1D CNN |
 |---|---|---|---|---|
