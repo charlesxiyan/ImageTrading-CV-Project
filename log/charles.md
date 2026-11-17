@@ -162,3 +162,4 @@ No entries yet. Charles's Claude appends here.
 - **Not verified:** per-cell prediction files stayed on Drive; test 2024-2025 not run.
 - Also mirrored the folder (commit 77e07bb state) to CV PR #4, branch `claude/project-thread-5acfxn`, reviewers faintcicado + charlesxiyan.
 - Added with-vs-without-SPY table to the README in EC #4 and CV #4 (mean AUC change: HGB +0.0034, 10/12 up; image CNN +0.0002; 1D CNN -0.0005). Per-cell paired CIs not computed: predictions are 30 MB each, Drive connector caps downloads at 10 MB.
+- charles prefers plain-language conclusions in result READMEs (key findings + how to read each chart), not just tables. Added to EC #4 / CV #4.
