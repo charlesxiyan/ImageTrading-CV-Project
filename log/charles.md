@@ -160,3 +160,4 @@ No entries yet. Charles's Claude appends here.
   image CNN vs 1D CNN 1 win / 5 losses / 6 ties; SPY features help HGB in 6 cells, never hurt;
   SPY panel helps image CNN in 3. CNN best epoch 1.5-1.9 of 8.
 - **Not verified:** per-cell prediction files stayed on Drive; test 2024-2025 not run.
+- Also mirrored the folder (commit 77e07bb state) to CV PR #4, branch `claude/project-thread-5acfxn`, reviewers faintcicado + charlesxiyan.
