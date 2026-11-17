@@ -87,7 +87,9 @@ Validation AUC (95% day-bootstrap intervals in `grid_table.csv`):
 
 Each pair has the same model, the same training rows and the same validation rows; the only difference is the
 SPY input (18 extra features for HGB, the SPY panel for the image CNN, 5 SPY series for the 1D CNN).
-Validation AUC, without → with, and the change:
+![AUC with SPY minus without SPY, per cell and model](results/run_20261116_044159/spy_effect.png)
+
+Each bar is AUC with SPY minus AUC without SPY; above zero means SPY helped. The numbers:
 
 | target | horizon | HGB | image CNN | 1D CNN |
 |---|---|---|---|---|
