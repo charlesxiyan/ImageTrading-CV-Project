@@ -161,3 +161,4 @@ No entries yet. Charles's Claude appends here.
   SPY panel helps image CNN in 3. CNN best epoch 1.5-1.9 of 8.
 - **Not verified:** per-cell prediction files stayed on Drive; test 2024-2025 not run.
 - Also mirrored the folder (commit 77e07bb state) to CV PR #4, branch `claude/project-thread-5acfxn`, reviewers faintcicado + charlesxiyan.
+- Added with-vs-without-SPY table to the README in EC #4 and CV #4 (mean AUC change: HGB +0.0034, 10/12 up; image CNN +0.0002; 1D CNN -0.0005). Per-cell paired CIs not computed: predictions are 30 MB each, Drive connector caps downloads at 10 MB.
