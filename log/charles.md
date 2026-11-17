@@ -163,3 +163,4 @@ No entries yet. Charles's Claude appends here.
 - Also mirrored the folder (commit 77e07bb state) to CV PR #4, branch `claude/project-thread-5acfxn`, reviewers faintcicado + charlesxiyan.
 - Added with-vs-without-SPY table to the README in EC #4 and CV #4 (mean AUC change: HGB +0.0034, 10/12 up; image CNN +0.0002; 1D CNN -0.0005). Per-cell paired CIs not computed: predictions are 30 MB each, Drive connector caps downloads at 10 MB.
 - charles prefers plain-language conclusions in result READMEs (key findings + how to read each chart), not just tables. Added to EC #4 / CV #4.
+- ViT ready: EC local branch `vit-t2t` commit 860ca06 (not pushed). Drive: `AllData & AllModel/AllData_AllModel_ViT.ipynb` + `chartcnn/` (2026-11-16.2). Local smoke passed incl. merge with previous run and test section. Upload trick: Drive connector file references work only from the scratchpad path (not paths with spaces/&).
