@@ -25,3 +25,10 @@ Bundle v2, chartcnn 2026-11-14.3, stride 12, L4 bf16, 68 min. {dir, vol, xsdir} 
 plain CNN, series1d, HGB. vol AUC: CNN 0.684/0.661/0.647/0.652, HGB 0.701/0.678/0.663/0.667.
 dir/xsdir AUC 0.497–0.519 for CNNs (HGB dir_h6 0.543 is the only clear outlier). Conclusion: no
 direction signal at 5–60 min; volatility signal at all horizons; the image adds nothing over raw OHLCV.
+
+## run_20261116_044159 (charles, AllData & AllModel, 2026-11-16)
+2016-2022 train / 2023 validation, stride 12, 12 cells (dir/vol/xsdir x 5/15/30/60 min), L4, 549 min.
+CNNs on 300k random train windows (Adam 1e-5, 8 epochs, patience 2), HGB on 1M. Validation AUC:
+vol best HGB+SPY 0.690/0.672/0.668/0.680; CNNs 0.633-0.664. xsdir best HGB+SPY 0.520-0.508, CNNs
+0.500-0.511. dir 0.49-0.516. Params: plain 776,450; plain_spy 936,194; series1d 720,770;
+series1d_spy 723,970. Results in EC PR #4, `AllData & AllModel/results/`.

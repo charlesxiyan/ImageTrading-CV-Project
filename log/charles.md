@@ -146,3 +146,17 @@ No entries yet. Charles's Claude appends here.
   RAM use on a standard Colab runtime (estimated ~6 GB for label arrays).
 - charles: hold push/PR of EC branch `claude/project-thread-5acfxn` until he has run the
   AllData & AllModel notebook; then push code and results together.
+
+## 2026-11-16 (AllData run pushed; ViT added)
+- **Asked:** push yesterday's finished AllData & AllModel run to GitHub; add the missing ViT.
+- **Done:** pulled executed notebook + `run_20261116_044159` summary files from Drive into
+  `AllData & AllModel/results/`; EC PR #4 (branch `claude/project-thread-5acfxn`, includes the
+  data-pipeline commit). ViT (`chartcnn/vit.py`, T2T-style soft splits + 8x96 backbone, 864,002 /
+  880,226 params with SPY panel) wired in as `vit`/`vit_spy`, own Adam lr 1e-4; notebook variant
+  runs only the ViTs and merges the CNN/HGB scores of `run_20261116_044159` (rows checked equal).
+  ViT is NOT in PR #4.
+- **Found (validation 2023, L4, 549 min):** vol AUC 0.63-0.69 (best HGB+SPY 0.690 at 5 min);
+  xsdir 0.50-0.52; dir ~0.50 (HGB+SPY 0.516 at 5 min). HGB > image CNN in 8/12 cells, ties 4;
+  image CNN vs 1D CNN 1 win / 5 losses / 6 ties; SPY features help HGB in 6 cells, never hurt;
+  SPY panel helps image CNN in 3. CNN best epoch 1.5-1.9 of 8.
+- **Not verified:** per-cell prediction files stayed on Drive; test 2024-2025 not run.
