@@ -77,7 +77,44 @@ Validation AUC (95% day-bootstrap intervals in `grid_table.csv`):
   xsdir 0.50–0.52 (only HGB's intervals clear 0.5 at all horizons); dir is at 0.50 except HGB + SPY at 5 min (0.516).
 - **HGB beats the image CNN** in 8 of 12 cells and ties in 4 (paired day bootstrap). The image CNN beats the
   1D CNN in 1 cell, loses in 5, ties in 6: the picture adds nothing over the same numbers.
-- **SPY helps a little.** HGB with SPY features beats HGB without in 6 cells and never loses; the SPY panel
-  helps the image CNN in 3 cells (never hurts); for the 1D CNN it helps in 3 and hurts in 2.
+- **SPY helps a little, mostly for volatility and mostly HGB** (table below): HGB with SPY features beats HGB
+  without in 6 cells and never loses; the SPY panel helps the image CNN in 3 cells (never hurts); for the 1D CNN
+  it helps in 3 and hurts in 2.
 - The CNNs stop early: the best epoch averaged 1.5–1.9 of 8, so more epochs on the same 300,000 windows
   would not help; more training windows or a higher learning rate might.
+
+### With SPY versus without SPY
+
+Each pair has the same model, the same training rows and the same validation rows; the only difference is the
+SPY input (18 extra features for HGB, the SPY panel for the image CNN, 5 SPY series for the 1D CNN).
+Validation AUC, without → with, and the change:
+
+| target | horizon | HGB | image CNN | 1D CNN |
+|---|---|---|---|---|
+| vol | 5 min | 0.684 → 0.690 (**+0.006**) | 0.658 → 0.662 (+0.004) | 0.657 → 0.664 (+0.007) |
+| vol | 15 min | 0.665 → 0.672 (**+0.006**) | 0.639 → 0.646 (+0.006) | 0.641 → 0.646 (+0.005) |
+| vol | 30 min | 0.659 → 0.668 (**+0.008**) | 0.637 → 0.634 (−0.003) | 0.633 → 0.634 (+0.001) |
+| vol | 60 min | 0.672 → 0.680 (**+0.008**) | 0.649 → 0.648 (−0.001) | 0.650 → 0.654 (+0.004) |
+| xsdir | 5 min | 0.518 → 0.520 (+0.003) | 0.507 → 0.508 (+0.002) | 0.511 → 0.508 (−0.003) |
+| xsdir | 15 min | 0.511 → 0.512 (+0.001) | 0.500 → 0.500 (+0.000) | 0.503 → 0.500 (−0.003) |
+| xsdir | 30 min | 0.509 → 0.510 (+0.001) | 0.501 → 0.501 (+0.000) | 0.504 → 0.502 (−0.001) |
+| xsdir | 60 min | 0.506 → 0.508 (+0.002) | 0.500 → 0.502 (+0.003) | 0.502 → 0.500 (−0.002) |
+| dir | 5 min | 0.506 → 0.516 (**+0.010**) | 0.500 → 0.498 (−0.002) | 0.503 → 0.499 (−0.004) |
+| dir | 15 min | 0.501 → 0.497 (−0.004) | 0.498 → 0.496 (−0.003) | 0.503 → 0.501 (−0.002) |
+| dir | 30 min | 0.501 → 0.498 (−0.002) | 0.499 → 0.494 (−0.005) | 0.495 → 0.490 (−0.005) |
+| dir | 60 min | 0.506 → 0.507 (+0.001) | 0.503 → 0.503 (−0.000) | 0.505 → 0.502 (−0.003) |
+| **mean change** | | **+0.0034** (higher in 10 of 12) | +0.0002 (6 of 12) | −0.0005 (4 of 12) |
+
+Paired day bootstrap (95%, same resampled days for both models; from `takeaways.md`): SPY makes HGB **better in 6
+cells, worse in 0**, tied in 6; the image CNN better in 3, worse in 0, tied in 9; the 1D CNN better in 3, worse in 2,
+tied in 7. Bold marks HGB cells whose change is at least +0.006 or is the one direction cell that moved.
+
+- **SPY helps volatility most**: every model gains at 5 and 15 minutes, HGB at every horizon (+0.006 to +0.008).
+  Market-wide volatility carries information about a single stock's next move size.
+- **For direction it is noise**, except HGB on `dir` at 5 minutes (+0.010, AUC 0.516). The networks lose a little
+  on `dir`, consistent with extra inputs and no extra signal.
+- The networks use SPY much less well than HGB, whose SPY features are explicit (SPY realized volatility, beta,
+  correlation, idiosyncratic volatility, return relative to SPY).
+
+Which cells' paired intervals exclude zero is not in this summary: the per-cell predictions (30 MB each) stay on
+Drive in `runs/run_20261116_044159/<cell>/predictions.parquet`.
