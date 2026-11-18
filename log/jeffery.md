@@ -83,3 +83,15 @@ Entries before 2026-11-12 are condensed from a private log.
   windows) with SPY features; run `run_20261116_044159` gives the same picture as the 2023 H1
   runs. CV PR #4 is open with jeffery as a requested reviewer. A ViT is ready but not run.
 - Not verified: the PR #4 diff and the per-cell predictions were not read.
+
+## 2026-11-18 — Big Data course ingestion plan
+- Asked: list the WRDS data the project uses, and plan the Spark profiling, cleaning and
+  ingestion submission for the Big Data course (due 2026-11-20). Planning only; no code or data.
+- Found: charles's pipeline aggregates TAQ trades into bars inside WRDS PostgreSQL, so raw
+  trades never land; his price filter keeps only conditions ` @EF` and excludes NULL conditions,
+  odd lots and auction prints. His 2016-2025 reference data comes from CRSP CIZ tables
+  (`dsf_v2`, `stkdistributions`, `stksecurityinfohist`). The laptop has 18 GB free disk.
+- Plan: Spark JDBC ingestion of raw TAQ trades for the universe (one month, March 2023) plus
+  CRSP and Compustat reference tables into Parquet; profiling, cleaning and bars in Spark;
+  validate against the existing 2023 pandas bars.
+- Not verified: Spark JDBC against WRDS (Duo, connection limit, pgpass support in the driver).
