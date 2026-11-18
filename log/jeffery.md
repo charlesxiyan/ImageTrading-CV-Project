@@ -75,3 +75,11 @@ Entries before 2026-11-12 are condensed from a private log.
   volatility signal at every horizon and no usable direction signal; at the proposal's 30-minute
   horizon (dir_h6) only HGB clears 0.5 (AUC 0.543), with log loss barely above the prior.
 - Not verified: per-cell predictions on Drive; whether the `*_dir_targets` rerun has happened.
+
+## 2026-11-17 — Progress check
+- Asked for the latest progress. Synced memory and fetched the remote; read charles's log and
+  `EXPERIMENTS.md`. No code or data changed.
+- Found: charles scaled up to 2016-2025 (train to 2022, validate 2023, test 2024-2025, 79.5M
+  windows) with SPY features; run `run_20261116_044159` gives the same picture as the 2023 H1
+  runs. CV PR #4 is open with jeffery as a requested reviewer. A ViT is ready but not run.
+- Not verified: the PR #4 diff and the per-cell predictions were not read.

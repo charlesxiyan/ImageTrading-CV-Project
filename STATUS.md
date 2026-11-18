@@ -1,6 +1,6 @@
 # Status
 
-Last updated 2026-11-15 by jeffery.
+Last updated 2026-11-17 by jeffery.
 
 ## Project
 CV course research project: do pretrained vision models help on intraday price charts?
@@ -49,6 +49,10 @@ The same data is reused for a Big Data course project. Presentation Dec 10, repo
   (468x234), 1D CNN, 1D CNN + SPY, HGB, HGB + 18 SPY features}; QUICK switch; test section opt-in.
   Smoke-tested end to end locally on CPU. Not run on GPU yet.
 - Code: EC branch `claude/project-thread-5acfxn` commit fedd666, local only (not pushed).
+
+- **AllData (2026-11-16):** 2016-2025 bars from charles's pipeline, train <=2022, val 2023,
+  test 2024-2025 not run. Run `run_20261116_044159` in CV PR #4 (open, jeffery to review).
+  A ViT variant is ready on Drive, not run.
 
 ## Open questions
 - Does the WRDS license allow TAQ-derived bars on shared servers and Colab? Not yet confirmed.
