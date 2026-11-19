@@ -95,3 +95,16 @@ Entries before 2026-11-12 are condensed from a private log.
   CRSP and Compustat reference tables into Parquet; profiling, cleaning and bars in Spark;
   validate against the existing 2023 pandas bars.
 - Not verified: Spark JDBC against WRDS (Duo, connection limit, pgpass support in the driver).
+
+## 2026-11-19 — Big Data course Spark pipeline (in progress)
+- Asked: build the Spark ingestion, profiling and cleaning submission in its own GitHub repo.
+  Created a separate private repository (Big Data course only; no data in git).
+- Done: Spark JDBC reads WRDS directly, using `~/.pgpass`, with no Duo prompt from the laptop.
+  Ingested 11 CRSP, Compustat and TAQ link tables (2016-2024) and raw TAQ trades for the
+  universe, 2023-03-06 to 03-17, all hours and conditions (about 24-41M trades a day, about
+  550 MB a day). Rebuilt the universe and symbol map in Spark SQL: identical to the pandas
+  pipeline row for row (1,185,097 and 130,467 rows). Spark bars for 2023-03-06 equal the
+  pandas bars exactly.
+- Found: under charles's stricter condition rule, 45% of bars have a different close, session
+  volume halves, and the bar 1 open differs on 371 of 523 securities (auction prints dropped).
+- Not verified yet: the full ten-day clean, bars and validation; the report is not written.

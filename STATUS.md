@@ -1,6 +1,6 @@
 # Status
 
-Last updated 2026-11-17 by jeffery.
+Last updated 2026-11-19 by jeffery.
 
 ## Project
 CV course research project: do pretrained vision models help on intraday price charts?
@@ -53,6 +53,9 @@ The same data is reused for a Big Data course project. Presentation Dec 10, repo
 - **AllData (2026-11-16):** 2016-2025 bars from charles's pipeline, train <=2022, val 2023,
   test 2024-2025 not run. Run `run_20261116_044159` in CV PR #4 (open, jeffery to review).
   A ViT variant is ready on Drive, not run.
+
+- **Big Data course (jeffery):** Spark pipeline in its own private repository: WRDS JDBC
+  ingestion, profiling, cleaning and 5-minute bars for 2023-03-06 to 03-17. Due 2026-11-20.
 
 ## Open questions
 - Does the WRDS license allow TAQ-derived bars on shared servers and Colab? Not yet confirmed.
