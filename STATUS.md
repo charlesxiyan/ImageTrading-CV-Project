@@ -55,7 +55,8 @@ The same data is reused for a Big Data course project. Presentation Dec 10, repo
   A ViT variant is ready on Drive, not run.
 
 - **Big Data course (jeffery):** Spark pipeline in its own private repository: WRDS JDBC
-  ingestion, profiling, cleaning and 5-minute bars for 2023-03-06 to 03-17. Due 2026-11-20.
+  ingestion, profiling, cleaning and 5-minute bars for 2023-03-06 to 03-17. Built and validated
+  (bars identical to the pandas pipeline); report ready. Due 2026-11-20.
 
 ## Open questions
 - Does the WRDS license allow TAQ-derived bars on shared servers and Colab? Not yet confirmed.

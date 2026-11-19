@@ -108,3 +108,14 @@ Entries before 2026-11-12 are condensed from a private log.
 - Found: under charles's stricter condition rule, 45% of bars have a different close, session
   volume halves, and the bar 1 open differs on 371 of 523 securities (auction prints dropped).
 - Not verified yet: the full ten-day clean, bars and validation; the report is not written.
+
+## 2026-11-19 — Big Data course submission built
+- Done: full pipeline ran on 10 days (2023-03-06 to 03-17). 317,208,218 raw trades ingested
+  through Spark JDBC (7.2 GB); 309,504,156 after cleaning, 88 outliers; 407,628 bars. Spark
+  universe, symbol map and bars are identical to the pandas pipeline: 0 differing values.
+- Found: 36% of regular-session trades set prices (odd lots are 64% of trades; 14% have no
+  condition string). All 3,449 repeated (symbol, exchange, sequence) keys are correction
+  records. Under charles's stricter condition rule, the first bar's open differs on 3,940 of
+  5,226 security-days and session volume falls from 28.2B to 13.1B shares.
+- Report PDF (9 pages) and code are ready; report and generated tables stay out of git because
+  the snippets hold licensed rows. Not verified: any run outside local mode.
