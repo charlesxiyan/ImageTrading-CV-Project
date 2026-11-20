@@ -150,3 +150,5 @@ Entries before 2026-11-12 are condensed from a private log.
 - Follow-up: added table notes under the two Layer 1 scale tables on Overleaf.
 - Follow-up: removed Table 2 (reference table row counts) on Overleaf; Table 1 centered.
 - Follow-up: removed Table 1 (daily trade counts) on Overleaf too.
+- Follow-up: user wants to review the Spark code before packaging; listed files and open questions
+  (layer names vs bronze/silver/gold, extra cleaning rules, which scripts to ship). Nothing packaged yet.
