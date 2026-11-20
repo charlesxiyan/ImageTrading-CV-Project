@@ -17,12 +17,15 @@ from pathlib import Path
 from build_dynamic_universe import build_universe, fetch_daily, records, table_ident
 
 POLICY = {
-    'version': 3,
+    'version': 4,
     'timezone': 'America/New_York',
     'session': '[09:30:00,16:00:00)',
     'bar_label': 'left; timestamps indicate interval start',
     'trade_filter': "price>0, size>0, tr_corr='00', tr_scond NULL/blank or only spaces/@/E/F/I (I = odd lot, <100 shares)",
-    'volume': 'Sum of shares for eligible filtered trades only; not total tape volume',
+    'volume': 'Sum of shares for all eligible trades, odd lots included; not total tape volume',
+    'prices': ("OHLC and VWAP from eligible round-lot trades (no 'I'). A bar without one is priced by "
+               "exchange odd lots (ex <> 'D'). TRF-reported odd lots (ex = 'D') never set a price; a bar with "
+               "only those keeps its volume and trade_count and has status no_priced_trades"),
     'auctions': 'Special opening/closing sale conditions excluded; 16:00 prints excluded',
     'adjustment': 'Raw unadjusted OHLCV; CRSP daily split factors saved separately',
     'ordering': 'SIP time_m, time_m_nano, tr_seqnum, tr_id, ex',
@@ -56,24 +59,37 @@ def aggregate_sql(table, minutes):
     # Version 3 also admits odd lots ('I', under 100 shares). They are real trades at market prices;
     # excluding them removes half or more of the volume of high-priced names, and their share grew over
     # 2016-2025, so volume would not be comparable across stocks or years.
+    # Version 4 keeps odd lots in volume and trade_count but not in prices. A few odd lots reported to a
+    # FINRA TRF (ex = 'D') print far from the market (AMZN at 181.22 against about 205 on 2025-06-02), and
+    # one such print in a 78-bar window rescales the whole chart. price_tier: 0 = round lot,
+    # 1 = exchange odd lot, NULL = TRF odd lot. Each bar is priced by its lowest available tier, so
+    # exchange odd lots only price a bar with no round lot (high-priced names), and TRF odd lots never do.
+    # Evidence: DataCheck/ODD_LOT_PRICES_2026-11-20.md.
     return f'''WITH eligible AS (
         SELECT sym_root, coalesce(sym_suffix,'') AS sym_suffix,
             floor((extract(epoch FROM time_m)-34200)/{minutes * 60})::int AS bucket,
             price, size, time_m, coalesce(time_m_nano,0) AS nano,
-            tr_seqnum, tr_id, ex
+            tr_seqnum, tr_id, ex,
+            CASE WHEN position('I' IN coalesce(tr_scond,'')) = 0 THEN 0
+                 WHEN ex <> 'D' THEN 1 END AS price_tier
         FROM {table_ident(table)}
         WHERE sym_root = ANY(%(roots)s)
           AND time_m >= '09:30:00'::time AND time_m < '16:00:00'::time
           AND price > 0 AND size > 0 AND tr_corr='00'
           AND translate(coalesce(tr_scond,''), ' @EFI', '') = ''
+    ), priced AS (
+        SELECT *, price_tier = min(price_tier) OVER (PARTITION BY sym_root, sym_suffix, bucket) AS sets_price
+        FROM eligible
+        WHERE (sym_root || '|' || sym_suffix) = ANY(%(symbols)s)
     ) SELECT sym_root, sym_suffix, bucket,
-        (array_agg(price ORDER BY time_m,nano,tr_seqnum,tr_id,ex))[1] AS open,
-        max(price) AS high, min(price) AS low,
-        (array_agg(price ORDER BY time_m DESC,nano DESC,tr_seqnum DESC,tr_id DESC,ex DESC))[1] AS close,
+        (array_agg(price ORDER BY time_m,nano,tr_seqnum,tr_id,ex) FILTER (WHERE sets_price))[1] AS open,
+        max(price) FILTER (WHERE sets_price) AS high, min(price) FILTER (WHERE sets_price) AS low,
+        (array_agg(price ORDER BY time_m DESC,nano DESC,tr_seqnum DESC,tr_id DESC,ex DESC)
+            FILTER (WHERE sets_price))[1] AS close,
         sum(size)::bigint AS volume, count(*)::bigint AS trade_count,
-        sum(price::double precision*size)/sum(size) AS vwap
-      FROM eligible
-      WHERE (sym_root || '|' || sym_suffix) = ANY(%(symbols)s)
+        sum(price::double precision*size) FILTER (WHERE sets_price)
+            / sum(size) FILTER (WHERE sets_price) AS vwap
+      FROM priced
       GROUP BY sym_root,sym_suffix,bucket ORDER BY sym_root,sym_suffix,bucket'''
 
 
@@ -174,9 +190,10 @@ def complete_grid(day, universe, mapping, bars, minutes):
     bars['sym_root'] = bars.sym_root.str.strip()
     bars['bucket'] = bars.bucket.astype('int32')
     result = grid.merge(bars,on=['sym_root','sym_suffix','bucket'],how='left',validate='many_to_one')
-    has_trade = result.trade_count.notna()
+    has_trade = result.close.notna()
     result['status'] = np.where(result.sym_root.isna(),'no_symbol_mapping',
-                              np.where(has_trade,'observed','no_eligible_trades'))
+                              np.where(has_trade,'observed',
+                                       np.where(result.trade_count.notna(),'no_priced_trades','no_eligible_trades')))
     for col in ['volume','trade_count']:
         result[col] = result[col].fillna(0).astype('int64')
     for col in ['open','high','low','close','vwap']:

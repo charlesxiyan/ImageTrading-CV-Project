@@ -13,11 +13,11 @@ session (point in time), so only ratios between sessions are used.
 
 ```bash
 cd PriceAdjustment
-V3=~/"Market Data/US Equity/v3"
+V4=~/"Market Data/US Equity/v4"
 for S in "" _spy; do
-  python prepare_archive_inputs.py --archive "$V3/01_raw$S" --output "$V3/02_adjust_inputs$S"
-  python adjust_dividend_bars.py --raw-root "$V3/02_adjust_inputs$S" --inputs "$V3/02_adjust_inputs$S" \
-         --output "$V3/02_adjusted$S"
-  python validate_dividend_bars.py --root "$V3/02_adjusted$S"
+  python prepare_archive_inputs.py --archive "$V4/01_raw$S" --output "$V4/02_adjust_inputs$S"
+  python adjust_dividend_bars.py --raw-root "$V4/02_adjust_inputs$S" --inputs "$V4/02_adjust_inputs$S" \
+         --output "$V4/02_adjusted$S"
+  python validate_dividend_bars.py --root "$V4/02_adjusted$S"
 done
 ```

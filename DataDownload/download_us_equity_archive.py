@@ -208,6 +208,27 @@ def mapping(db, root, year, members):
     return result
 
 
+def symbol_key(root, suffix):
+    """Root and suffix joined without a separator: 'GOOG'+'L' and 'GOOGL'+'' are the same security."""
+    return (root.fillna('').str.strip()+suffix.fillna('').str.strip()).str.upper()
+
+
+def symbol_params(daymap):
+    """Query parameters for one session's trades.
+
+    The TAQ daily master writes some Nasdaq share classes as one five-letter root ('GOOGL') on some
+    dates and as root plus suffix ('GOOG L') on others; in 2016 it switched on 2016-10-24, while the
+    WRDS daily link has no rows at all for these classes that year (GOOGL, CMCSA, DISCA, DISCK, LBTYA,
+    LVNTA). A five-letter root with no suffix therefore also asks for its split form, and
+    archive_grid joins bars on the combined key, so either spelling in the trade table matches.
+    """
+    roots, symbols = set(daymap.sym_root), set(daymap.sym_root+'|'+daymap.sym_suffix)
+    split = daymap[daymap.sym_suffix.eq('') & daymap.sym_root.str.len().eq(5)]
+    roots |= set(split.sym_root.str[:4])
+    symbols |= set(split.sym_root.str[:4]+'|'+split.sym_root.str[4])
+    return {'roots':sorted(roots),'symbols':sorted(symbols)}
+
+
 def archive_grid(day, universe, mapping, bars, minutes, session_minutes):
     import numpy as np
     import pandas as pd
@@ -222,10 +243,15 @@ def archive_grid(day, universe, mapping, bars, minutes, session_minutes):
     bars['sym_suffix'] = bars.sym_suffix.fillna('').str.strip()
     bars['sym_root'] = bars.sym_root.str.strip()
     bars['bucket'] = bars.bucket.astype('int32')
-    result = grid.merge(bars,on=['sym_root','sym_suffix','bucket'],how='left',validate='many_to_one')
-    has_trade = result.trade_count.notna()
+    # Join on the combined key; two spellings of one key in the same session is an error (many_to_one).
+    grid['key'] = symbol_key(grid.sym_root,grid.sym_suffix)
+    bars['key'] = symbol_key(bars.sym_root,bars.sym_suffix)
+    bars = bars.drop(columns=['sym_root','sym_suffix'])
+    result = grid.merge(bars,on=['key','bucket'],how='left',validate='many_to_one').drop(columns='key')
+    has_trade = result.close.notna()
     result['status'] = np.where(result.sym_root.isna(),'no_symbol_mapping',
-                              np.where(has_trade,'observed','no_eligible_trades'))
+                              np.where(has_trade,'observed',
+                                       np.where(result.trade_count.notna(),'no_priced_trades','no_eligible_trades')))
     for col in ['volume','trade_count']:
         result[col] = result[col].fillna(0).astype('int64')
     for col in ['open','high','low','close','vwap']:
@@ -345,8 +371,7 @@ def main():
         if year not in mappings:
             mappings[year] = mapping(db,root,year,universes[year])
         daymap = mappings[year].loc[mappings[year].date.eq(day)]
-        p = {'roots':sorted(daymap.sym_root.unique().tolist()),
-             'symbols':(daymap.sym_root+'|'+daymap.sym_suffix).tolist()}
+        p = symbol_params(daymap)
         sql = aggregate_sql(f'taqm_{year}.ctm_{day.replace("-", "")}',5)
         close = row.market_close.tz_convert('America/New_York').strftime('%H:%M:%S')
         sql = sql.replace("'16:00:00'::time",f"'{close}'::time")

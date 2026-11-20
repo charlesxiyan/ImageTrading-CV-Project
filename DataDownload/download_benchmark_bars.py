@@ -22,7 +22,7 @@ import pandas as pd
 from download_intraday_bars import aggregate_sql, write_json, write_parquet
 from download_us_equity_archive import Database, archive_grid, cached
 
-STOCK_ARCHIVE = Path.home()/'Market Data/US Equity/v3/01_raw'
+STOCK_ARCHIVE = Path.home()/'Market Data/US Equity/v4/01_raw'
 
 
 def resolve_permno(db, symbol, start, end):

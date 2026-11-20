@@ -13,7 +13,7 @@ Run each script from this folder. They import each other by module name.
 | `build_dynamic_universe.py` | Daily S&P 500 ∪ NASDAQ 100 ∪ DJIA 30 membership by PERMNO. |
 | `fetch_distribution_inputs.py`, `inspect_wrds_demo.py` | Demo-only: dividend inputs and a WRDS schema probe. |
 
-**Trade filter, policy version 3:**
+**Trade filter, policy version 4:**
 
 ```sql
 price > 0 AND size > 0 AND tr_corr = '00'
@@ -21,26 +21,35 @@ AND translate(coalesce(tr_scond, ''), ' @EFI', '') = ''
 ```
 
 A blank sale condition is a regular sale. WRDS stores it as NULL, so NULL counts as blank. `I` marks an odd lot.
-Versions 1 and 2 are wrong for model data:
+
+Every eligible trade counts in `volume` and `trade_count`. Prices (OHLC, VWAP) come from round lots only (no `I`).
+A bar with no round lot is priced by exchange odd lots (`ex <> 'D'`). Odd lots reported to a FINRA TRF (`ex = 'D'`)
+never set a price; a bar with only those keeps its volume and has status `no_priced_trades`.
+
+Versions 1 to 3 are wrong for model data:
 - version 1 dropped NULL;
-- version 2 dropped odd lots.
+- version 2 dropped odd lots;
+- version 3 let odd lots set prices, and a few TRF odd lots print far from the market (AMZN at 181.22 against
+  about 205 on 2025-06-02). One such bar rescales a whole chart image. Evidence:
+  `../DataCheck/ODD_LOT_PRICES_2026-11-20.md`.
 
 The evidence is in `../DataCheck/`. Check every new download there before using it.
 
 ```bash
 cd DataDownload
 pip install -r requirements-archive.txt
-V3=~/"Market Data/US Equity/v3"
+V4=~/"Market Data/US Equity/v4"
 
 # 1. Pilot: one session in each period where policy v1 failed differently, into the real archive folder.
-python -u download_us_equity_archive.py --output "$V3/01_raw" \
+python -u download_us_equity_archive.py --output "$V4/01_raw" \
        --days 2016-01-04,2017-06-01,2018-06-01,2023-06-01,2025-06-02
-python ../DataCheck/check_bar_coverage.py --archive --every 1 --root "$V3/01_raw"
+python ../DataCheck/check_bar_coverage.py --archive --every 1 --root "$V4/01_raw"
 python ../DataCheck/check_sale_conditions.py --date 2016-01-04 --symbols JPM KO AAPL MSFT --detail
+# Section 4 of check_bar_coverage.py (bar highs and lows vs CRSP) must pass as well.
 
 # 2. Full archive, same folder: the pilot sessions are verified and skipped. Resumes after interruptions.
-python run_archive_job.py "$V3/01_raw"
-python download_benchmark_bars.py --stock-archive "$V3/01_raw" --output "$V3/01_raw_spy"
+python run_archive_job.py "$V4/01_raw"
+python download_benchmark_bars.py --stock-archive "$V4/01_raw" --output "$V4/01_raw_spy"
 ```
 
 The pilot passes when both listing groups keep a similar share of CRSP volume in every one of the five
