@@ -149,3 +149,4 @@ Entries before 2026-11-12 are condensed from a private log.
   bar count: bars cover 5,226 stock-days, 5,225 of them have a priced bar and enter the CRSP comparison.
 - Follow-up: added table notes under the two Layer 1 scale tables on Overleaf.
 - Follow-up: removed Table 2 (reference table row counts) on Overleaf; Table 1 centered.
+- Follow-up: removed Table 1 (daily trade counts) on Overleaf too.
