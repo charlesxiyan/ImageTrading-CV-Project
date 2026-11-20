@@ -3,7 +3,7 @@ import paths  # noqa: F401  (step folders on sys.path)
 import unittest
 
 import pandas as pd
-from download_us_equity_archive import schedule, archive_grid, select_sessions
+from download_us_equity_archive import schedule, archive_grid, select_sessions, symbol_params
 
 
 class ArchiveCalendarTests(unittest.TestCase):
@@ -45,6 +45,41 @@ class ArchiveCalendarTests(unittest.TestCase):
                          ['2016-11-21', '2016-11-28'])
         with self.assertRaises(ValueError):
             select_sessions(cal, days='2016-11-24')   # Thanksgiving: not a session
+
+
+    def test_dual_class_split_spelling_matches(self):
+        """Master says 'GOOGL' with no suffix, the trade table says root 'GOOG' suffix 'L' (2016)."""
+        day = '2016-01-04'
+        universe = pd.DataFrame([
+            dict(date=day,permno=90319,ticker='GOOGL',indices='SP500',identifier_status='date_effective'),
+            dict(date=day,permno=14593,ticker='AAPL',indices='SP500',identifier_status='date_effective'),
+            dict(date=day,permno=83443,ticker='BRK',indices='SP500',identifier_status='date_effective')])
+        mapping = pd.DataFrame([
+            dict(date=day,permno=90319,ticker='GOOGL',sym_root='GOOGL',sym_suffix='',match_lvl=float('nan')),
+            dict(date=day,permno=14593,ticker='AAPL',sym_root='AAPL',sym_suffix='',match_lvl=1.),
+            dict(date=day,permno=83443,ticker='BRK',sym_root='BRK',sym_suffix='B',match_lvl=1.)])
+        params = symbol_params(mapping)
+        self.assertEqual(params['roots'], ['AAPL','BRK','GOOG','GOOGL'])
+        self.assertIn('GOOG|L', params['symbols'])
+        self.assertNotIn('AAP|L', params['symbols'])
+        bar = dict(bucket=0,open=10.,high=12.,low=9.,close=11.,volume=100,trade_count=2,vwap=10.5)
+        bars = pd.DataFrame([dict(sym_root='GOOG',sym_suffix='L',**bar),
+                             dict(sym_root='AAPL',sym_suffix=None,**bar),
+                             dict(sym_root='BRK',sym_suffix='B',**bar)])
+        result, quality = archive_grid(day,universe,mapping,bars,5,390)
+        self.assertEqual(quality['members_with_no_eligible_trades'], [])
+        first = result[result.bucket.eq(0)] if 'bucket' in result else result.groupby('permno').head(1)
+        self.assertEqual(sorted(first.permno[first.status.eq('observed')].tolist()), [14593,83443,90319])
+        self.assertEqual(result.loc[result.permno.eq(90319),'sym_root'].iloc[0], 'GOOGL')
+
+    def test_two_spellings_in_one_session_is_an_error(self):
+        day = '2016-01-04'
+        universe = pd.DataFrame([dict(date=day,permno=90319,ticker='GOOGL',indices='SP500',identifier_status='date_effective')])
+        mapping = pd.DataFrame([dict(date=day,permno=90319,ticker='GOOGL',sym_root='GOOGL',sym_suffix='',match_lvl=1.)])
+        bar = dict(bucket=0,open=10.,high=12.,low=9.,close=11.,volume=100,trade_count=2,vwap=10.5)
+        bars = pd.DataFrame([dict(sym_root='GOOG',sym_suffix='L',**bar),dict(sym_root='GOOGL',sym_suffix='',**bar)])
+        with self.assertRaises(Exception):
+            archive_grid(day,universe,mapping,bars,5,390)
 
 
 if __name__ == '__main__':

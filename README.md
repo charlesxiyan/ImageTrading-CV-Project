@@ -15,7 +15,7 @@ Data steps, in the order they run (each folder has a README with its commands):
 
 | Step | Folder | What it does |
 |---|---|---|
-| 1 | `DataDownload/` | TAQ five-minute bars, index universe and CRSP reference data from WRDS (stocks 2016-2025, SPY). The trade filter is policy version 3: blank (NULL) sale conditions and odd lots are kept. |
+| 1 | `DataDownload/` | TAQ five-minute bars, index universe and CRSP reference data from WRDS (stocks 2016-2025, SPY). The trade filter is policy version 4: blank (NULL) sale conditions and odd lots are kept in volume; prices come from round lots. |
 | 2 | `DataCheck/` | Acceptance check of every download against CRSP daily data: prices, volume kept by listing group and year, and coverage. A failing archive is not used. |
 | 3 | `PriceAdjustment/` | Split, cash-dividend and share-volume adjustment into a new folder; raw bars are never changed. |
 | 4 | `Pipeline/` | `us_pipeline`: audited 78-bar windows and the train, validation and test splits (`configs/`). |
@@ -24,11 +24,11 @@ Data steps, in the order they run (each folder has a README with its commands):
 Local data layout for the current build (licensed data, never committed):
 
 ```
-~/Market Data/US Equity/v3/
+~/Market Data/US Equity/v4/
   01_raw/  01_raw_spy/                 step 1
   02_adjust_inputs/  02_adjusted/      step 3 (plus the same two with _spy)
   03_prepared/                         step 4
-  04_bundle/alldata_bundle_v3.zip      step 5
+  04_bundle/alldata_bundle_v4.zip      step 5
 ```
 
 Experiments and other folders:

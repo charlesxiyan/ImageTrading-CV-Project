@@ -70,8 +70,8 @@ This is a **conservative filtered-trade demo**, not an official consolidated OHL
 - Session: [09:30:00,16:00:00) Eastern; prints at exactly 16:00 and later are excluded.
 - Require positive price and size and correction code `00`.
 - Accept sale-condition strings that are blank or composed of spaces, `@`, `E`, and `F` (regular trades, automatic execution, and intermarket sweep). A blank condition is stored as NULL in WRDS and is the regular-sale code for Tape A/B (NYSE-, Arca- and other non-Nasdaq-listed) symbols; Tape C uses `@`. Policy version 1 excluded NULL, which kept about 19% of JPM's regular-session volume against 84% of AAPL's; version 2 keeps NULL. The existing 2023 H1 demo files were built with version 1 and must be downloaded again into a new directory. Evidence: [DataCheck/DATA_REVIEW_2026-11-19.md](../DataCheck/DATA_REVIEW_2026-11-19.md).
-- Admit odd lots (`I`) from policy version 3. Exclude special opening/closing conditions, extended-hours, late, out-of-sequence, and other special conditions under this deliberately narrow whitelist.
-- OHLC, VWAP, volume, and trade count all use the same eligible subset. **Volume is eligible filtered volume, not total reported market volume.**
+- Admit odd lots (`I`) from policy version 3. From version 4 they count in volume and trade count but set prices only in a bar with no round lot, and only when reported by an exchange (not a FINRA TRF, `ex = 'D'`). Exclude special opening/closing conditions, extended-hours, late, out-of-sequence, and other special conditions under this deliberately narrow whitelist.
+- Volume and trade count use every eligible trade; OHLC and VWAP use the priced subset above. **Volume is eligible filtered volume, not total reported market volume.**
 - No quote-based outlier filtering or reconstruction of later cancellation/correction messages has been implemented. Screening correction flags alone is not full tape reconstruction.
 - Prices are raw, unadjusted transaction prices. Corporate-action factors are stored separately; windows spanning actions need consistent adjustment before modeling. Do not substitute the CRSP daily volume for the intraday eligible volume.
 

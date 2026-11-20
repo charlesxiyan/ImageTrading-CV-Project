@@ -2,12 +2,12 @@
 
 The archive starts on January 1, 2016. Its endpoint is the latest joint coverage of subscribed annual CRSP CIZ security history, daily data, S&P 500 membership, and TAQ. On November 14, 2026, joint coverage ended on December 31, 2025, although TAQ tables extended through November 13, 2026. The later TAQ period is deferred until compatible reference data are available. Coverage is frozen per archive; use a new archive directory for a refreshed snapshot.
 
-Run from `DataDownload/` in the project environment. Policy version 3 archives go to a new directory:
+Run from `DataDownload/` in the project environment. Policy version 4 archives go to a new directory:
 
 ```bash
 cd DataDownload
 WRDS_USERNAME=<your WRDS user> python -u download_us_equity_archive.py \
-  --output ~/"Market Data/US Equity/v3/01_raw"
+  --output ~/"Market Data/US Equity/v4/01_raw"
 ```
 
 The 2016-2025 `wrds_5min_2016_latest_v1` archive was built with trade-filter policy version 1, which dropped the regular
@@ -36,7 +36,7 @@ Daily TAQ symbols use date-effective CIZ CUSIP matches to the daily TAQ master, 
 
 Five-minute intervals use New York exchange time and left/start labels. NYSE session calendars include holidays and early closes (typically 42 intervals on half-days and 78 on full days). Only the official regular session is retained, excluding the exact closing timestamp.
 
-Eligible trades have positive price and size, correction code `00`, and sale conditions containing only spaces, `@`, `E`, or `F`. OHLC is based on eligible trades; volume is eligible share volume, not full consolidated tape volume. VWAP and eligible trade count are also saved. SIP timestamps, nanoseconds, sequence number, trade ID, and exchange determine ordering. These are server-aggregated trades, not quote bars or reconstructed order books. Special auction conditions are excluded. There is no quote-based outlier filter or reconstruction of later cancellations. This is a conservative research filter, not official exchange OHLCV.
+Eligible trades have positive price and size, correction code `00`, and sale conditions that are blank (NULL in WRDS) or contain only spaces, `@`, `E`, `F` or `I` (odd lot). Volume and eligible trade count include odd lots; volume is eligible share volume, not full consolidated tape volume. OHLC and VWAP come from round lots; a bar with no round lot is priced by exchange odd lots, and odd lots reported to a FINRA TRF (`ex = 'D'`) never set a price (policy version 4, `DataDownload/README.md`). A bar with only TRF odd lots keeps its volume, has no price and has status `no_priced_trades`. SIP timestamps, nanoseconds, sequence number, trade ID, and exchange determine ordering. These are server-aggregated trades, not quote bars or reconstructed order books. Special auction conditions are excluded. There is no quote-based outlier filter or reconstruction of later cancellations. This is a conservative research filter, not official exchange OHLCV.
 
 Empty intervals retain missing prices and zero eligible volume/count, with explicit status. No interpolation, resampling imputation, or forward filling is performed. Training-window construction must reject windows containing missing bars. Early closes also require window logic that understands the exchange calendar; do not reinterpret them as missing full-session observations.
 

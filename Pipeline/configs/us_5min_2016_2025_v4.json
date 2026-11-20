@@ -1,6 +1,6 @@
 {
-  "data_root": "~/Market Data/US Equity/v3/02_adjusted",
-  "artifact_root": "~/Market Data/US Equity/v3/03_prepared",
+  "data_root": "~/Market Data/US Equity/v4/02_adjusted",
+  "artifact_root": "~/Market Data/US Equity/v4/03_prepared",
   "bar_minutes": 5,
   "lookback": 78,
   "horizon": 1,

@@ -9,7 +9,7 @@ The 2023 H1 demo contains five-minute OHLCV derived from TAQ trades by server-si
 - Use each date's historical S&P 500 / NASDAQ 100 / DJIA 30 union, identified by PERMNO. Preserve historical ticker and TAQ symbol root/suffix separately.
 - Use New York regular-session timestamps and half-open intervals in [09:30,16:00). Bars are labeled by start time; complete bar information is available after the interval ends.
 - Require positive trade price and size, correction code `00`, and sale conditions that are blank (NULL in WRDS) or contain only spaces, `@`, `E`, `F` or `I` (odd lots, under 100 shares; admitted from policy version 3). Special auctions, extended-hours, and other conditions outside this whitelist are excluded. Policy version 1 also excluded NULL conditions, which removed the regular trades of every non-Nasdaq-listed symbol; the 2023 H1 demo described below was built with version 1. See [DataCheck/DATA_REVIEW_2026-11-19.md](DataCheck/DATA_REVIEW_2026-11-19.md).
-- OHLC, VWAP, volume, and trade count use the same eligible subset. Volume is filtered eligible share volume, not total tape volume.
+- Volume and trade count use every eligible trade. OHLC and VWAP use round lots only; a bar with no round lot is priced by exchange odd lots, and odd lots reported to a FINRA TRF (`ex = 'D'`) never set a price (policy version 4; a bar with only those has status `no_priced_trades`). Version 3 let every odd lot set prices; see [DataCheck/ODD_LOT_PRICES_2026-11-20.md](DataCheck/ODD_LOT_PRICES_2026-11-20.md). Volume is filtered eligible share volume, not total tape volume.
 - Preserve empty intervals as missing prices with zero eligible volume/count; do not forward-fill. Preserve halted index members with explicit identifier/mapping status.
 - Raw prices remain unadjusted in the source directory; CRSP daily factors are stored separately. File checksums, membership coverage, interval grids, unique keys, and OHLC ordering have been checked.
 - This is basic screening, not comprehensive cleaning: quote-based outlier checks and full cancellation/correction reconstruction remain outstanding.
@@ -24,7 +24,7 @@ adjusted, prepared or bundled. Results are reported for Nasdaq-listed stocks and
 - **Volume:** the share of CRSP daily volume that the eligible bars keep. The two groups must keep a
   similar share in every year. A gap of several times means the trade filter treats the tapes differently.
   Policy version 1 failed this test: by year the gap was 77% against 27%, then about equal, then 11% against 48%.
-- **Price:** the last bar's close against the CRSP close, and daily returns against CRSP returns.
+- **Price:** the last bar's close against the CRSP close, daily returns against CRSP returns, and the highest bar high and lowest bar low against CRSP's daily high and low.
 - **Coverage:** empty bars and complete windows in each group.
 
 Use `DataCheck/check_bar_coverage.py --archive` (offline) and `DataCheck/check_sale_conditions.py` (one session

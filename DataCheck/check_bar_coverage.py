@@ -6,11 +6,15 @@ Offline. Two layouts:
 - archive (download_us_equity_archive.py, `--archive`): `03_raw_bars_5min/year=/month=/` partitions and the
   CRSP CIZ `05_daily_reference/`. Every `--every`-th session is read (default 21, about one a month), so
   the whole 2016-2025 archive is checked in a few minutes.
-It answers three questions:
+It answers four questions:
 
 1. Are the prices right?   last bar close vs CRSP close, and daily returns vs CRSP daily returns.
 2. How much volume is kept? eligible bar volume / CRSP daily volume, per listing group.
 3. How many bars are empty, and how many complete 78-bar windows (+ next bar) survive?
+4. Are the bar highs and lows clean? highest bar high / lowest bar low vs CRSP's daily high / low
+   (archive layout only). Policy version 3 let odd lots reported to a FINRA TRF set bar prices, and a few
+   print far from the market: in a 20-stock sample, 59 of 220 security-days had a day high or low more
+   than 1% away from CRSP's, none with policy version 4 (see ODD_LOT_PRICES_2026-11-20.md).
 
 NASDAQ 100 membership is used as the Tape C (Nasdaq-listed) group, because NDX members must be
 Nasdaq-listed; the other group is mostly Tape A (NYSE-listed) with some Nasdaq names mixed in.
@@ -21,7 +25,7 @@ kept about 55% for the NDX group and 11% for the rest in 2023 (see DATA_REVIEW_2
 in June 2017 both about 77%, and from 2018 the other group kept 10-25% against 50-75%.
 
     python DataCheck/check_bar_coverage.py --root "~/Market Data/demo_2023_h1"
-    python DataCheck/check_bar_coverage.py --archive --root "~/Market Data/US Equity/v3/01_raw"
+    python DataCheck/check_bar_coverage.py --archive --root "~/Market Data/US Equity/v4/01_raw"
 """
 import argparse
 from pathlib import Path
@@ -29,7 +33,7 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 
-COLUMNS = ['date', 'bar_start', 'permno', 'ticker', 'indices', 'close', 'volume', 'status']
+COLUMNS = ['date', 'bar_start', 'permno', 'ticker', 'indices', 'high', 'low', 'close', 'volume', 'status']
 
 
 def load(root):
@@ -58,16 +62,19 @@ def load_archive(root, every):
     bars['observed'] = bars.status.eq('observed')
     years = sorted({d[:4] for d in bars.date.unique()})
     crsp = pd.concat([pd.read_parquet(root/'05_daily_reference'/f'year={y}'/'daily_reference.parquet',
-                                      columns=['permno', 'dlycaldt', 'dlyprc', 'dlyvol', 'primaryexch'])
+                                      columns=['permno', 'dlycaldt', 'dlyprc', 'dlyvol', 'dlyhigh', 'dlylow',
+                                               'primaryexch'])
                       for y in years], ignore_index=True)
     crsp['date'] = pd.to_datetime(crsp.dlycaldt).dt.strftime('%Y-%m-%d')
     crsp = crsp[crsp.date.isin(set(bars.date))].drop_duplicates(['date', 'permno'])
     crsp['permno'] = crsp.permno.astype('int64')
     crsp['prc'] = pd.to_numeric(crsp.dlyprc, errors='coerce').abs()
     crsp['vol'] = pd.to_numeric(crsp.dlyvol, errors='coerce')
+    crsp['hi'] = pd.to_numeric(crsp.dlyhigh, errors='coerce').abs()
+    crsp['lo'] = pd.to_numeric(crsp.dlylow, errors='coerce').abs()
     bars = bars.merge(crsp[['date', 'permno', 'primaryexch']], on=['date', 'permno'], how='left')
     bars['tape_c'] = bars.primaryexch.eq('Q')
-    return bars.drop(columns='primaryexch'), crsp[['date', 'permno', 'prc', 'vol']]
+    return bars.drop(columns='primaryexch'), crsp[['date', 'permno', 'prc', 'vol', 'hi', 'lo']]
 
 
 def complete_windows(bars, lookback=78):
@@ -98,7 +105,8 @@ def main():
     bars, crsp = load_archive(root, args.every) if args.archive else load(root)
     observed = bars[bars.observed].sort_values(['date', 'permno', 'slot'])
     daily = observed.groupby(['date', 'permno']).agg(
-        tape_c=('tape_c', 'last'), last=('close', 'last'), volume=('volume', 'sum')).reset_index()
+        tape_c=('tape_c', 'last'), last=('close', 'last'), volume=('volume', 'sum'),
+        high=('high', 'max'), low=('low', 'min')).reset_index()
     daily = daily.merge(crsp, on=['date', 'permno'])
     daily['close_gap'] = (daily['last']/daily.prc - 1).abs()
     daily['volume_kept'] = daily.volume/daily.vol
@@ -128,6 +136,13 @@ def main():
     ratio = kept[False]/kept[True]
     print(f'\n   volume kept, other / Nasdaq group: {ratio:.2f} '
           f'({"similar: filter looks tape-neutral" if .7 < ratio < 1/.7 else "FAIL: the trade filter treats the tapes differently"})')
+    if {'hi', 'lo'} <= set(daily):
+        gap = pd.concat([(daily.high/daily.hi - 1).abs(), (daily.low/daily.lo - 1).abs()], axis=1).max(axis=1)
+        within = (gap < .005).mean()
+        print('\n4. Bar highs and lows')
+        print(f'   highest bar high and lowest bar low vs CRSP daily high/low: within 0.5% for {within:.1%}, '
+              f'more than 1% away for {int((gap > .01).sum())} of {gap.notna().sum()} security-days, max {gap.max():.2%} '
+              f'({"pass" if within >= .95 else "FAIL: prints far from the market set bar prices"})')
     if args.archive:
         by_year = daily.assign(year=daily.date.str[:4]).groupby(['year', 'tape_c']).volume_kept.median().unstack()
         by_year.columns = ['other', 'Nasdaq']

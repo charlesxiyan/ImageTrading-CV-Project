@@ -23,6 +23,19 @@ class BarTests(unittest.TestCase):
         self.assertTrue(result[result.status.ne('observed')].close.isna().all())
         self.assertEqual(result.volume.sum(),100)
 
+    def test_bar_with_volume_but_no_price_is_not_observed(self):
+        # Only TRF odd lots in the bar: the SQL returns volume and trade_count but no OHLC.
+        extra=dict(sym_root='AAA',sym_suffix='',bucket=1,open=None,high=None,low=None,close=None,
+                   volume=7,trade_count=1,vwap=None)
+        self.bars=pd.concat([self.bars,pd.DataFrame([extra])],ignore_index=True)
+        result,q=complete_grid(self.day,self.universe,self.mapping,self.bars,5)
+        row=result[result.permno.eq(1)].iloc[1]
+        self.assertEqual(row.status,'no_priced_trades')
+        self.assertTrue(pd.isna(row.close))
+        self.assertEqual((row.volume,row.trade_count),(7,1))
+        self.assertEqual(q['observed_rows'],1)
+        self.assertEqual(q['eligible_volume'],107)
+
     def test_timezone_after_daylight_saving(self):
         result,_=complete_grid(self.day,self.universe,self.mapping,self.bars,5)
         self.assertEqual(str(result.bar_start.iloc[0]),'2023-03-13 09:30:00-04:00')
@@ -45,6 +58,12 @@ class BarTests(unittest.TestCase):
         # Blank (NULL in WRDS) is the regular-sale condition on Tape A/B and must stay eligible.
         self.assertIn("translate(coalesce(tr_scond,''), ' @EFI', '') = ''",sql)
         self.assertNotIn('tr_scond IS NOT NULL',sql)
+        # Policy 4: odd lots count in volume, but only round lots (else exchange odd lots) set prices.
+        self.assertIn("WHEN ex <> 'D' THEN 1 END AS price_tier",sql)
+        self.assertIn('max(price) FILTER (WHERE sets_price) AS high',sql)
+        self.assertIn('sum(size)::bigint AS volume, count(*)::bigint AS trade_count',sql)
+        # The archive and benchmark downloaders rewrite this literal for early closes.
+        self.assertEqual(sql.count("'16:00:00'::time"),1)
         with self.assertRaises(ValueError):
             aggregate_sql('taqm_2023.x;drop',5)
         with self.assertRaises(ValueError):
