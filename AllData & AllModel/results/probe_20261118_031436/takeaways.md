@@ -1,0 +1,12 @@
+- **dir**: best model by horizon 5 min 0.516 (HGB hand + SPY), 15 min 0.505 (random ViT-S MLP probe), 30 min 0.503 (random ViT-S linear probe), 60 min 0.508 (random ViT-S + SPY linear probe).
+- **vol**: best model by horizon 5 min 0.689 (HGB hand + SPY), 15 min 0.671 (HGB hand + SPY), 30 min 0.666 (HGB hand + SPY), 60 min 0.679 (HGB hand + SPY).
+- **xsdir**: best model by horizon 5 min 0.520 (HGB hand + SPY), 15 min 0.512 (HGB hand + SPY), 30 min 0.511 (HGB hand + SPY), 60 min 0.507 (HGB hand + SPY).
+- pretrained vs random encoder, linear probe (DINOv2-S linear probe − random ViT-S linear probe), paired day bootstrap over 12 cells: better in 5, worse in 1, tied in 6; mean AUC difference +0.0127.
+- pretrained vs random encoder, MLP probe (DINOv2-S MLP probe − random ViT-S MLP probe), paired day bootstrap over 12 cells: better in 4, worse in 0, tied in 8; mean AUC difference +0.0128.
+- MLP probe vs linear probe (DINOv2-S MLP probe − DINOv2-S linear probe), paired day bootstrap over 12 cells: better in 4, worse in 0, tied in 8; mean AUC difference +0.0016.
+- frozen linear probe vs image CNN from scratch (DINOv2-S linear probe − image CNN (scratch)), paired day bootstrap over 12 cells: better in 0, worse in 5, tied in 7; mean AUC difference -0.0032.
+- frozen MLP probe vs image CNN from scratch (DINOv2-S MLP probe − image CNN (scratch)), paired day bootstrap over 12 cells: better in 0, worse in 4, tied in 8; mean AUC difference -0.0016.
+- frozen MLP probe + SPY vs image CNN + SPY panel (DINOv2-S + SPY MLP probe − image CNN + SPY panel (scratch)), paired day bootstrap over 12 cells: better in 0, worse in 4, tied in 8; mean AUC difference -0.0032.
+- frozen MLP probe + SPY vs HGB hand + SPY (DINOv2-S + SPY MLP probe − HGB hand + SPY), paired day bootstrap over 12 cells: better in 0, worse in 10, tied in 2; mean AUC difference -0.0185.
+- with SPY features vs without (MLP probe) (DINOv2-S + SPY MLP probe − DINOv2-S MLP probe), paired day bootstrap over 12 cells: better in 1, worse in 1, tied in 10; mean AUC difference -0.0014.
+- CLIP vs DINOv2 (MLP probe) (CLIP-B/16 MLP probe − DINOv2-S MLP probe), paired day bootstrap over 12 cells: better in 2, worse in 2, tied in 8; mean AUC difference +0.0007.

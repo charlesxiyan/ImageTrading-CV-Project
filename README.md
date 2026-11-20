@@ -1,86 +1,78 @@
 # ImageTrading-CV-Project
 
-## Dynamic US equity universe
+Chart-image models for five-minute US equity bars, and the data pipeline that feeds them.
+Code and documentation only: data, prepared samples, run artifacts and model weights stay
+local and are ignored by git.
 
-`build_dynamic_universe.py` builds the daily **S&P 500 ∪ NASDAQ 100 ∪ Dow Jones Industrial Average 30** security universe for an inclusive date range. Each date receives the tickers effective on that historical date. Securities appearing in multiple indices are included once; distinct share classes remain separate securities.
+This repository mirrors the code and results of ImageTrading-EC-Project. Rules for both people and their
+Claude Code sessions are in `CLAUDE.md`, and shared project state is on the `memory` branch (`memory/`).
+The universe builder that used to sit at the root is now `DataDownload/build_dynamic_universe.py`;
+its documentation is in `DATA_PIPELINE.md` ("Dynamic US equity universe").
 
-### Installation and execution
+## Layout
 
-Use Python 3.9+ on a machine with WRDS access or in WRDS JupyterHub:
+Data steps, in the order they run (each folder has a README with its commands):
 
-```bash
-python -m pip install wrds
-python build_dynamic_universe.py --username YOUR_WRDS_USERNAME --inspect
-python build_dynamic_universe.py --username YOUR_WRDS_USERNAME --start 2020-01-01 --end 2020-12-31
+| Step | Folder | What it does |
+|---|---|---|
+| 1 | `DataDownload/` | TAQ five-minute bars, index universe and CRSP reference data from WRDS (stocks 2016-2025, SPY). The trade filter is policy version 3: blank (NULL) sale conditions and odd lots are kept. |
+| 2 | `DataCheck/` | Acceptance check of every download against CRSP daily data: prices, volume kept by listing group and year, and coverage. A failing archive is not used. |
+| 3 | `PriceAdjustment/` | Split, cash-dividend and share-volume adjustment into a new folder; raw bars are never changed. |
+| 4 | `Pipeline/` | `us_pipeline`: audited 78-bar windows and the train, validation and test splits (`configs/`). |
+| 5 | `AllData & AllModel/tools/build_alldata_bundle.py` | Packages the prepared data, SPY and `chartcnn` into the Colab zip. |
+
+Local data layout for the current build (licensed data, never committed):
+
+```
+~/Market Data/US Equity/v3/
+  01_raw/  01_raw_spy/                 step 1
+  02_adjust_inputs/  02_adjusted/      step 3 (plus the same two with _spy)
+  03_prepared/                         step 4
+  04_bundle/alldata_bundle_v3.zip      step 5
 ```
 
-The official WRDS Python client handles authentication. Do not store passwords in source files. `--inspect` reads metadata and prints candidate table columns, NASDAQ/Dow index names and IDs, and visible related tables, including TAQ tables. Visibility alone does not establish full subscription access or data quality; actual queries also check read permissions.
+Experiments and other folders:
 
-If the index name cannot be resolved uniquely, select its `index_id` from the **exact index name** in the inspection report, preserving leading zeros:
+| Path | What it is |
+|---|---|
+| `AllData & AllModel/` | 2016-2025 grid (image CNN, 1D CNN, HGB, with and without SPY), frozen DINOv2/CLIP probes, indicator-chart CNN. Results so far use the v1 bundle. |
+| `Daily Chart Replication/` | The paper's daily I5/I20 image CNN on the same stocks. |
+| `CNN-Relevant/` | Chart CNN baseline (plain and residual/ResNet variants) and a 1D CNN on raw OHLCV, executed notebook, diagnostics and run results. See its README. |
+| `Multi-Target Chart CNN Baseline/` | Direction, volatility and cross-sectional direction at 5-60 minutes on the 2023 H1 demo. |
+| `Pretrained Model Comparison/` | Pretrained time-series foundation models (Chronos-2, TimesFM, Moirai, Kronos) against the chart CNN on the same samples, executed notebook and results. See its README. |
+| `colab/` | Earlier CNN78u Colab tests: baseline, training-repair and LR-scheduler notebooks with their runners and validators. The data bundle (`cnn78u_colab_bundle.zip`) stays local. |
+| `diagnostics/` | Diagnosis of the CNN78u next-bar collapse (`BASELINE_DIAGNOSIS.md`, `check_baseline.py`). |
+| `tests/` | Offline unit tests (`tests/paths.py` puts the step folders on the import path). |
 
-```bash
-python build_dynamic_universe.py --start 2020-01-01 --end 2020-12-31 --ndx100-id VERIFIED_NDX_GVKEYX --djia30-id VERIFIED_DJIA_GVKEYX
-```
+Documentation:
+- [DATA_PIPELINE.md](DATA_PIPELINE.md) covers the universe, the bar standard, the acceptance check and price adjustment.
+- [DataDownload/US_EQUITY_ARCHIVE.md](DataDownload/US_EQUITY_ARCHIVE.md) covers the 2016-2025 archive.
+- [DataDownload/INTRADAY_DEMO.md](DataDownload/INTRADAY_DEMO.md) covers the 2023 H1 demo.
+- [Pipeline/US_PIPELINE.md](Pipeline/US_PIPELINE.md) covers the CNN78u pipeline.
 
-These IDs are placeholders and must be replaced. Do not select the NASDAQ Composite, a NASDAQ financial index, or the Dow Jones Transportation Average. The script does not guess fixed IDs or substitute QQQ/DIA holdings for index constituents.
+## Latest results (2023 H1 data, April 2023 validation)
 
-The default includes **every calendar day**, including weekends, using the membership effective on each date. For trading dates only:
+| model | parameters | `vol_h1` AUC | `xsdir_h12` AUC |
+|---|---|---|---|
+| Chart CNN, plain | 776,450 | 0.687 | 0.508 |
+| Chart CNN, residual | 2,047,362 | 0.685 | 0.499 |
+| 1D CNN on raw OHLCV (`series1d`) | 720,770 | 0.690 | 0.495 |
+| HGB on 20 hand features | 14,762-18,300 tree nodes | 0.705 | 0.503 |
 
-```bash
-python build_dynamic_universe.py --start 2020-01-01 --end 2020-12-31 --days trading
-```
+Volatility (`vol_h1`) is learnable, but the chart image adds nothing over the raw numbers and
+hand features do best. Cross-sectional direction (`xsdir_h12`) has no signal. Zero-shot
+foundation models (11M-331M parameters) do worse than the small trained models on `vol_h1`;
+Kronos, at 0.699 on a validation subsample, is the closest. Details, intervals and run IDs are in
+[CNN-Relevant/README.md](CNN-Relevant/README.md) and
+[Pretrained Model Comparison/README.md](Pretrained%20Model%20Comparison/README.md).
 
-Trading dates come from dates actually present in CRSP `dsi`, rather than a Monday-through-Friday calendar. Requests outside the available calendar range are rejected, including an end date beyond the database's latest date.
-
-### Outputs and Python usage
-
-Outputs default to this project's `data/universe/` directory. Repeated runs overwrite files with the same names; use a separate `--output` directory for each research interval.
-
-- `daily_tickers.json`: a sorted, deduplicated ticker list per date, such as `{"2020-01-02": ["AAPL", "..."], ...}`.
-- `daily_universe.csv`: `date,permno,ticker,indices`, with one row per date and PERMNO. Index memberships are separated by `|`.
-- `manifest.json`: source tables, index IDs, requested dates, generation time, and daily security counts for each index and their union.
-
-```python
-import json
-from pathlib import Path
-
-# Run from the project root.
-pools = json.loads(Path('data/universe/daily_tickers.json').read_text())
-tickers = pools['2020-01-02']
-```
-
-All default output paths are within `ImageTrading-CV-Project`. The original `ImageTrading` project requires no changes.
-
-### Sources and limitations
-
-1. **S&P 500**: tries `crsp_a_indexes.dsp500list`, then `crsp.dsp500list`; requires `permno/start/ending`.
-2. **NASDAQ 100 and DJIA 30**: tries `comp.idxcst_his`, then `comp_na_daily_all.idxcst_his`; uses `gvkey/iid/gvkeyx/from/thru`. Index names are resolved through `idx_index`, requiring `gvkeyx` (or `gvkey`) and `conm` (or `conmx`). **These are candidate adapters; historical coverage for these indices must be verified in your account.**
-3. Compustat constituents are mapped from `gvkey+iid` to PERMNO through the historical CCM `ccmxpf_linktable`, using security-level links, effective dates, and link types `LC/LU/LS`. Ambiguous mappings cause an error; the script does not arbitrarily select a link or substitute the company's current primary security.
-4. PERMNO is mapped to the **historical ticker** through CRSP `dsenames` / `msenames` and its `namedt/nameendt` intervals. Current `comp.security.tic` values are not used to backfill history. Punctuation and share-class notation are preserved.
-5. Date intervals are inclusive. NULL end dates are treated as ongoing; NULL membership start dates are not backfilled. Other interval conventions or schemas require an adapter based on the relevant data dictionary.
-
-Override table names with `--sp500-table`, `--members-table`, `--headers-table`, `--links-table`, `--names-table`, or `--calendar-table`. Names must use the `schema.table` format, and required columns are validated. If your account only exposes newer CRSP CIZ tables, the script reports a table or column mismatch. **Automatic CIZ conversion is not implemented**; add an adapter using your account's actual data dictionary rather than merely renaming a table.
-
-Before writing outputs, the script checks that all three indices are nonempty on every requested date, each constituent maps to a historical ticker, and mappings are unambiguous. **Nonempty results do not prove source completeness or freshness.** Historical records may be revised, vendor updates may lag, and NULL end dates may reflect stale records. Verify WRDS update dates and historical coverage, and inspect daily counts and abrupt changes in `manifest.json`. Counts are not fixed at 500/100/30 because company counts and security counts can differ.
-
-A WRDS account does not grant access to every underlying database. WRDS states that historical S&P 500 constituent access requires a CRSP subscription. Compustat's licensing for S&P index constituents has changed, so `idxcst_his` cannot be assumed to cover every index. Missing indices, dates without membership records, missing links, or missing tickers prevent new outputs from being generated. Resolve subscription or coverage issues first. The script does not backfill with current constituents or silently reduce the universe to S&P 500 alone. Failed runs leave existing output files untouched; check the manifest before using an earlier result.
-
-The result reconstructs membership by **historical effective date**. It is not an archive of information as originally published. Backtests must still respect signal timing, order timing, and announcement availability. Membership alone does not establish tradability; suspensions, price availability, and liquidity require separate filters. Do not exclude historical members based on future delisting information.
-
-### High-frequency data integration
-
-This step does not download intraday prices or depend on an unverified TAQ schema. Before integrating high-frequency data, confirm NYSE TAQ subscription access, available years, trades/quotes versus aggregated bars, timestamps, trade conditions, and cancellation/correction fields. **A CRSP historical ticker is not a universal join key for TAQ tables.** Map it by date and share class to the actual TAQ symbol root/suffix or other relevant fields. PERMNO is retained for security identification and auditing; this does not imply that TAQ tables contain PERMNO.
-
-### Validation
+## Setup
 
 ```bash
+python -m pip install -r Pipeline/requirements-pipeline.txt -r DataDownload/requirements-archive.txt
 python -m unittest discover -s tests -v
 ```
 
-Offline tests cover deduplication, index memberships, historical ticker changes, weekend retention, missing indices/mappings, ambiguous links, ticker collisions, output serialization, and SQL identifier validation. **Your WRDS account has not been connected; actual permissions, columns, index IDs, and historical coverage remain unverified, and no live download has been performed.** Start with `--inspect`, then validate a short interval containing a known constituent or ticker change against WRDS records.
-
-References:
-
-- [WRDS: downloading historical S&P 500 constituents and CRSP subscription requirements](https://wrds-www.wharton.upenn.edu/pages/grid-items/downloading-the-sp-500-constituents/)
-- [WRDS: historical S&P 500 constituent changes](https://wrds-www.wharton.upenn.edu/classroom/sp500-introduction/over-time/)
-- [CRSP: official CCM documentation, hosted by WRDS](https://wrds-www.wharton.upenn.edu/documents/415/CRSPAccess_Software_Guide_CCM_part.pdf)
+Data defaults live under `~/Market Data/`. WRDS scripts take the username from
+`WRDS_USERNAME` (else the local login name); credentials are handled by the WRDS client and
+are never stored in this repository.

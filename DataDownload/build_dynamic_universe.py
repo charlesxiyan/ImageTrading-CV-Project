@@ -86,6 +86,7 @@ def resolve_index(rows, label, override):
         aliases = {
             'NDX100': {'NASDAQ 100', 'NASDAQ 100 INDEX', 'NASDAQ 100 INDEX COMPOSITE'},
             'DJIA30': {'DOW JONES INDUSTRIAL AVERAGE', 'DOW JONES INDUSTRIALS',
+                       'DOW JONES INDUSTRIALS 30 STK',
                        'DOW JONES 30 INDUSTRIALS', 'DOW JONES INDUSTRIAL AVERAGE INDEX'},
         }
         matches = [r for r in rows if re.sub(r'[^A-Z0-9]+', ' ',

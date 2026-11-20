@@ -1,0 +1,10 @@
+- **vol**: best model by horizon 5 min 0.683 (HGB hand + SPY (ref)).
+- MA line vs original chart (CNN, chart + MA − CNN, original chart (this run)), paired day bootstrap over 1 cells: better in 0, worse in 0, tied in 1; mean AUC difference +0.0020.
+- EWSD band vs original chart (CNN, chart + EWSD band − CNN, original chart (this run)), paired day bootstrap over 1 cells: better in 1, worse in 0, tied in 0; mean AUC difference +0.0263.
+- MA + EWSD vs original chart (CNN, chart + MA + EWSD − CNN, original chart (this run)), paired day bootstrap over 1 cells: better in 1, worse in 0, tied in 0; mean AUC difference +0.0263.
+- adding MA on top of EWSD (CNN, chart + MA + EWSD − CNN, chart + EWSD band), paired day bootstrap over 1 cells: better in 0, worse in 0, tied in 1; mean AUC difference +0.0000.
+- hand/SPY features added to the original chart CNN (CNN, original chart + hand/SPY features − CNN, original chart (this run)), paired day bootstrap over 1 cells: better in 1, worse in 0, tied in 0; mean AUC difference +0.0382.
+- indicators when hand/SPY features are already in (CNN, chart + MA + EWSD + hand/SPY features − CNN, original chart + hand/SPY features), paired day bootstrap over 1 cells: better in 0, worse in 0, tied in 1; mean AUC difference -0.0003.
+- best chart-only CNN vs HGB hand + SPY (CNN, chart + MA + EWSD − HGB hand + SPY (ref)), paired day bootstrap over 1 cells: better in 0, worse in 1, tied in 0; mean AUC difference -0.0160.
+- CNN with everything vs HGB hand + SPY (CNN, chart + MA + EWSD + hand/SPY features − HGB hand + SPY (ref)), paired day bootstrap over 1 cells: better in 0, worse in 1, tied in 0; mean AUC difference -0.0045.
+- control: this run's original-chart CNN vs the reference run's (CNN, original chart (this run) − image CNN (ref run)), paired day bootstrap over 1 cells: better in 0, worse in 1, tied in 0; mean AUC difference -0.0072.
