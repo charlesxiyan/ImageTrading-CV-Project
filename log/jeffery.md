@@ -143,3 +143,5 @@ Entries before 2026-11-12 are condensed from a private log.
   report/make_chart.py, same geometry as chartcnn/images.py but candlesticks, which the current
   CNN does not use; it uses OHLC ticks). Still 4 pages, not committed.
 - Follow-up: removed the universe membership figure too; candlestick figure is now Figure 2. Still 4 pages.
+- Follow-up: pushed the 4-page report to a new Overleaf project for manual editing (kept the
+  main file name proposal.tex, added only the generated inputs it needs). Local clone is report-overleaf.
