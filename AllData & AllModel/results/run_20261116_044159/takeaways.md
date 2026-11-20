@@ -1,0 +1,10 @@
+- **dir (absolute direction)**: best AUC by horizon 5 min 0.516 [0.504, 0.526] (HGB hand + SPY), 15 min 0.503 [0.494, 0.511] (CNN (series1d)), 30 min 0.501 [0.494, 0.507] (HGB hand features), 60 min 0.507 [0.494, 0.520] (HGB hand + SPY). 95% CI above 0.5 at 5 min.
+- **vol (volatility)**: best AUC by horizon 5 min 0.690 [0.682, 0.698] (HGB hand + SPY), 15 min 0.672 [0.663, 0.680] (HGB hand + SPY), 30 min 0.668 [0.660, 0.676] (HGB hand + SPY), 60 min 0.680 [0.673, 0.686] (HGB hand + SPY). 95% CI above 0.5 at 5 min, 15 min, 30 min, 60 min.
+- **xsdir (relative direction)**: best AUC by horizon 5 min 0.520 [0.517, 0.523] (HGB hand + SPY), 15 min 0.512 [0.509, 0.515] (HGB hand + SPY), 30 min 0.510 [0.507, 0.514] (HGB hand + SPY), 60 min 0.508 [0.504, 0.511] (HGB hand + SPY). 95% CI above 0.5 at 5 min, 15 min, 30 min, 60 min.
+- dir decile long-short (top − bottom, gross, bps per horizon): dir_h1 HGB hand + SPY +1.28 bps (t = 3.11); dir_h1 CNN (plain) +0.55 bps (t = 2.32); dir_h1 CNN (series1d_spy) +0.70 bps (t = 2.35); dir_h6 HGB hand + SPY +1.38 bps (t = 2.92); dir_h3 HGB hand features +1.08 bps (t = 2.56); dir_h3 HGB hand + SPY +1.63 bps (t = 3.93)
+- xsdir decile long-short (top − bottom, gross, bps per horizon): xsdir_h1 HGB hand features +1.51 bps (t = 3.00); xsdir_h1 HGB hand + SPY +1.29 bps (t = 2.27); xsdir_h1 CNN (plain_spy) +0.74 bps (t = 2.07); xsdir_h1 CNN (series1d_spy) +0.96 bps (t = 2.84); xsdir_h6 HGB hand features +1.38 bps (t = 3.11); xsdir_h3 HGB hand features +1.53 bps (t = 3.73)
+- image CNN − 1D CNN AUC (paired day bootstrap) across 12 cells: better in 1, worse in 5, tied in 6.
+- image CNN − HGB AUC (paired day bootstrap) across 12 cells: better in 0, worse in 8, tied in 4.
+- HGB with SPY − HGB without AUC (paired day bootstrap) across 12 cells: better in 6, worse in 0, tied in 6.
+- image CNN with SPY panel − without AUC (paired day bootstrap) across 12 cells: better in 3, worse in 0, tied in 9.
+- 1D CNN with SPY − without AUC (paired day bootstrap) across 12 cells: better in 3, worse in 2, tied in 7.

@@ -1,0 +1,5 @@
+- **dir**: best model by horizon 5 min 0.516 (HGB hand + SPY (ref)).
+- **xsdir**: best model by horizon 5 min 0.517 (HGB hand + SPY (ref)).
+- MA line vs original chart (CNN, chart + MA − CNN, original chart (this run)), paired day bootstrap over 2 cells: better in 1, worse in 0, tied in 1; mean AUC difference +0.0036.
+- CNN with everything vs HGB hand + SPY (CNN, chart + MA + EWSD + hand/SPY features − HGB hand + SPY (ref)), paired day bootstrap over 2 cells: better in 0, worse in 1, tied in 1; mean AUC difference -0.0137.
+- control: this run's original-chart CNN vs the reference run's (CNN, original chart (this run) − image CNN (ref run)), paired day bootstrap over 2 cells: better in 0, worse in 1, tied in 1; mean AUC difference -0.0105.

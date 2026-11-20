@@ -1,0 +1,4 @@
+pandas>=2.3
+pyarrow>=16
+psycopg2-binary>=2.9
+pandas_market_calendars>=5.6
