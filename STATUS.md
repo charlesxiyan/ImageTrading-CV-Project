@@ -73,5 +73,8 @@ The same data is reused for a Big Data course project. Presentation Dec 10, repo
   Prices are fine. All AllData results so far use v1.
 - Fix: trade-filter policy v3 (NULL read as blank, odd lots kept), in EC #8 / CV #6 with the code
   reorganized into DataDownload/, DataCheck/, PriceAdjustment/, Pipeline/.
-- Next: pilot download over several periods, acceptance check, then the full re-download (only after
-  charles confirms), bundle v3, and re-run of the main experiments.
+- 2026-11-20: policy v4 (teoguo, EC #10): odd lots count in volume but not in prices. EC #11 fixes 2016
+  dual-class symbols (GOOGL, CMCSA, DISCA, DISCK, LBTYA, LVNTA, BATRA, BATRK had no trades for parts
+  of 2016). Both mirrored in CV #8. v4 pilot (5 sessions) passed every acceptance check.
+- Next: full v4 download into `v4/01_raw` (about 35 h, charles starts it), SPY and VIXY, full acceptance
+  check, price adjustment, bundle v4, then re-run of the main experiments.

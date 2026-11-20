@@ -184,3 +184,9 @@ No entries yet. Charles's Claude appends here.
 ## 2026-11-20 v3 pilot result
 - Pilot (2016-01-04, 2017-06-01, 2018-06-01, 2023-06-01, 2025-06-02) with filter v3 passed the balance check: other/Nasdaq volume kept 87/89, 88/88, 85/86, 77/78, 74/76 percent of CRSP (v1: 77/27, 77/78, 25/73, 12/52, 11/48).
 - Not verified by me: the close-accuracy line of the check output. Full re-download waits for Charles's go.
+
+## 2026-11-20 Dual-class symbol fix and policy v4
+- Asked: verify teoguo's report that 2016 dual-class stocks had no data. Confirmed: WRDS daily link has no 2016 rows for GOOGL, CMCSA, DISCA, DISCK, LBTYA, LVNTA (and BATRA/BATRK); the TAQ master spells them as five letters until 2016-10-21 while trades use root plus suffix (checked on WRDS), so 1,224 security-days in v1 had no trades.
+- Fix: EC #11 (join on root+suffix key), merged; EC #10 from teoguo (policy v4, odd lots in volume, not prices) was already merged. CV #8 mirrors both, merged.
+- v4 pilot (5 days) passed: no zero-trade members, closes 97.9% within 0.1%, highs/lows 0 of 2,612 more than 1% from CRSP, volume balance 0.99.
+- Not verified: the full v4 download (about 35 h, to be started by Charles).
