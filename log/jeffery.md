@@ -131,3 +131,10 @@ Entries before 2026-11-12 are condensed from a private log.
 - Asked: whether the report used the humanizer skill (it had not), and to rewrite it with it.
 - Done: rewrote the prose of the Big Data course report; tables, figures, numbers and LaTeX
   structure unchanged. Recompiled: 10 pages, no errors. Left uncommitted in that repository.
+
+## 2026-11-20 — Big Data report cut to 4 pages
+- Asked: trim the report to the user's outline (sources, ingestion with a three-layer diagram,
+  universe, profiling, three cleaning rules, bars checked against CRSP, snippets); drop
+  validation, code, limitations and all mapping and condition-code detail.
+- Done: rewrote report.tex to that outline, 4 pages in all; added two generated tables
+  (scale without timing, cleaned-trade snippet). Not committed.
