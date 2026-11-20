@@ -3,7 +3,7 @@ import paths  # noqa: F401  (step folders on sys.path)
 import unittest
 
 import pandas as pd
-from download_us_equity_archive import schedule, archive_grid
+from download_us_equity_archive import schedule, archive_grid, select_sessions
 
 
 class ArchiveCalendarTests(unittest.TestCase):
@@ -36,6 +36,15 @@ class ArchiveCalendarTests(unittest.TestCase):
         result = schedule('2024-03-08', '2024-03-11')
         self.assertEqual(result.market_open.dt.hour.tolist(), [14, 13])
         self.assertEqual(result.minutes.tolist(), [390, 390])
+
+    def test_select_sessions(self):
+        cal = schedule('2016-11-21', '2016-11-30')
+        self.assertEqual(len(select_sessions(cal)), len(cal))
+        self.assertEqual(select_sessions(cal, limit_days=2).date.tolist(), cal.date[:2].tolist())
+        self.assertEqual(select_sessions(cal, days='2016-11-28, 2016-11-21').date.tolist(),
+                         ['2016-11-21', '2016-11-28'])
+        with self.assertRaises(ValueError):
+            select_sessions(cal, days='2016-11-24')   # Thanksgiving: not a session
 
 
 if __name__ == '__main__':

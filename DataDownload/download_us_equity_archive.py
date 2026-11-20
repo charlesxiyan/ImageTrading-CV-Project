@@ -253,11 +253,25 @@ def archive_grid(day, universe, mapping, bars, minutes, session_minutes):
     return result[columns].sort_values(['permno','bar_start']).reset_index(drop=True), quality
 
 
+def select_sessions(cal, limit_days=0, days=None):
+    """Sessions to download: all, the first `limit_days`, or the listed dates (a pilot spread over
+    several periods). Listed dates must be sessions of this archive's calendar."""
+    if days:
+        wanted = sorted({d.strip() for d in days.split(',') if d.strip()})
+        unknown = sorted(set(wanted)-set(cal.date))
+        if unknown:
+            raise ValueError(f'Not sessions of this archive: {unknown}')
+        return cal.loc[cal.date.isin(wanted)]
+    return cal.iloc[:limit_days] if limit_days else cal
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--output',type=Path,required=True)
     parser.add_argument('--start',default='2016-01-01')
     parser.add_argument('--limit-days',type=int,default=0,help='Pilot only; zero downloads all days')
+    parser.add_argument('--days',default='',help='Pilot only: comma-separated session dates to download; '
+                        'the full run later resumes in the same directory and skips them')
     parser.add_argument('--metadata-only',action='store_true')
     args = parser.parse_args()
     root = args.output
@@ -320,7 +334,7 @@ def main():
     if args.metadata_only:
         print('Membership and corporate-action references downloaded; bars not requested.',flush=True)
         db.close(); return
-    selected = cal.iloc[:args.limit_days] if args.limit_days else cal
+    selected = select_sessions(cal,args.limit_days,args.days)
     mappings = {}
     for row in selected.itertuples():
         day, year = row.date,row.date[:4]
