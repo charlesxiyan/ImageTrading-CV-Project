@@ -164,3 +164,19 @@ No entries yet. Charles's Claude appends here.
 - Added with-vs-without-SPY table to the README in EC #4 and CV #4 (mean AUC change: HGB +0.0034, 10/12 up; image CNN +0.0002; 1D CNN -0.0005). Per-cell paired CIs not computed: predictions are 30 MB each, Drive connector caps downloads at 10 MB.
 - charles prefers plain-language conclusions in result READMEs (key findings + how to read each chart), not just tables. Added to EC #4 / CV #4.
 - ViT ready: EC local branch `vit-t2t` commit 860ca06 (not pushed). Drive: `AllData & AllModel/AllData_AllModel_ViT.ipynb` + `chartcnn/` (2026-11-16.2). Local smoke passed incl. merge with previous run and test section. Upload trick: Drive connector file references work only from the scratchpad path (not paths with spaces/&).
+
+## 2026-11-20 — TAQ filter bug (EC #6), repo reorganization, CV mirror
+- **Asked:** review teammate PR on data cleaning (EC #6); confirm the old data is wrong before re-downloading;
+  reorganize code into one folder per step; bring the CV repo up to date with EC.
+- **Found:** policy v1 filter `tr_scond IS NOT NULL AND translate(tr_scond,' @EF','')=''` dropped the
+  blank (NULL in WRDS) regular-sale condition. Confirmed on the v1 bundle (2023 ADV vs public: AAPL 67%,
+  MSFT 57%, JPM 18%, KO 17%, BAC 21%, XOM 18%, SPY 31%) and on the v1 archive by CRSP primary exchange,
+  one session per year: other listings 77% (2016-01), 77% (2017-06), 25% (2018-06) down to 11% (2025-06);
+  Nasdaq-listed 27%, 78%, 73% down to 48%. Bias is time-varying; closes are fine (97.8% within 0.1%).
+  The archive downloader lived only in an untracked local working tree and imported the old filter.
+- **Done:** merged EC #4, #5, #6 (Charles's go). EC #7: step folders DataDownload/DataCheck/
+  PriceAdjustment/Pipeline, archive downloader added (WRDS user from $WRDS_USERNAME), filter policy v3
+  (odd lots kept), CRSP acceptance check (`check_bar_coverage.py --archive`), v3 config and paths.
+  CV #5 mirrors EC #7 (supersedes CV #4), reviewer faintcicado. 69 tests pass in both.
+- **Not verified:** any download with policy v3. Charles must confirm before the full re-download
+  (about 23 h; the last one took 22.7 h at ~30 s a session). Pilot should cover 2016, 2017, 2018, 2023.

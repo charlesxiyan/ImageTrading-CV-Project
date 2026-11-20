@@ -54,3 +54,9 @@ Each entry: the decision, then why. Add the date and who decided.
   to the cumulative factors. Checked against CRSP ret - retx: 19,374 / 19,384 groups within 1%.
 - **Charts are rendered per sample, never stored.** SPY is drawn as its own panel below the stock
   chart (charles's choice), each panel on its own window-local axis.
+
+## 2026-11-20 — TAQ trade filter policy v3 (charles)
+Keep sale conditions that are blank/NULL or only spaces, `@`, `E`, `F`, `I`:
+`translate(coalesce(tr_scond,''),' @EFI','') = ''`. NULL is the regular sale on Tape A/B; odd lots (`I`)
+are real trades whose share grew over 2016-2025. Every new archive must pass the CRSP acceptance
+check (`DataCheck/check_bar_coverage.py --archive`) before it is adjusted or bundled.
