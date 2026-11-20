@@ -126,3 +126,8 @@ Entries before 2026-11-12 are condensed from a private log.
   connections, date-effective joins for the universe, filter steps plus a grouped
   `applyInPandas` outlier check, bars via `min_by`/`max_by` and a 78-bar grid, CRSP
   reconciliation. No code or data changed. STATUS.md is still correct.
+
+## 2026-11-20 — Big Data report prose rewritten
+- Asked: whether the report used the humanizer skill (it had not), and to rewrite it with it.
+- Done: rewrote the prose of the Big Data course report; tables, figures, numbers and LaTeX
+  structure unchanged. Recompiled: 10 pages, no errors. Left uncommitted in that repository.
