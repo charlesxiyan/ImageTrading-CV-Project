@@ -180,3 +180,7 @@ No entries yet. Charles's Claude appends here.
   CV #6 (was #5; branch data/step-folders-v3, per charles no "claude" in branch names) mirrors EC #8 (supersedes CV #4), reviewer faintcicado. 69 tests pass in both.
 - **Not verified:** any download with policy v3. Charles must confirm before the full re-download
   (about 23 h; the last one took 22.7 h at ~30 s a session). Pilot should cover 2016, 2017, 2018, 2023.
+
+## 2026-11-20 v3 pilot result
+- Pilot (2016-01-04, 2017-06-01, 2018-06-01, 2023-06-01, 2025-06-02) with filter v3 passed the balance check: other/Nasdaq volume kept 87/89, 88/88, 85/86, 77/78, 74/76 percent of CRSP (v1: 77/27, 77/78, 25/73, 12/52, 11/48).
+- Not verified by me: the close-accuracy line of the check output. Full re-download waits for Charles's go.
