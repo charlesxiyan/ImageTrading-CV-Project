@@ -145,3 +145,5 @@ Entries before 2026-11-12 are condensed from a private log.
 - Follow-up: removed the universe membership figure too; candlestick figure is now Figure 2. Still 4 pages.
 - Follow-up: pushed the 4-page report to a new Overleaf project for manual editing (kept the
   main file name proposal.tex, added only the generated inputs it needs). Local clone is report-overleaf.
+- Follow-up: added layer 2 and 3 sizes to the report on Overleaf (on top of the user's own edit) and fixed the
+  bar count: bars cover 5,226 stock-days, 5,225 of them have a priced bar and enter the CRSP comparison.
