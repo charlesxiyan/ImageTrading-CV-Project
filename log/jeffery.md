@@ -138,3 +138,7 @@ Entries before 2026-11-12 are condensed from a private log.
   validation, code, limitations and all mapping and condition-code detail.
 - Done: rewrote report.tex to that outline, 4 pages in all; added two generated tables
   (scale without timing, cleaned-trade snippet). Not committed.
+- Follow-up: removed the trade-distribution figure; the snippets section now has a candlestick
+  figure of AAPL on 2023-03-10, readable and as a 234 x 234 CNN-style image (new
+  report/make_chart.py, same geometry as chartcnn/images.py but candlesticks, which the current
+  CNN does not use; it uses OHLC ticks). Still 4 pages, not committed.
