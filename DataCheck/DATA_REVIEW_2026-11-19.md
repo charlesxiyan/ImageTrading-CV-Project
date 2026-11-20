@@ -1,6 +1,6 @@
 # Data review of the 2023 H1 demo — November 19, 2026
 
-Reviewer: Tian Guo (tg3077). Scope: the raw five-minute bars, the universe and symbol mapping, and the
+Reviewer: Tian Guo. Scope: the raw five-minute bars, the universe and symbol mapping, and the
 split / cash-dividend adjustment, checked on the real files (`demo_2023_h1`,
 `demo_2023_h1_dividend_adjusted`, `demo_2023_h1_distribution_inputs`), not only by reading the code.
 
