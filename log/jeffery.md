@@ -152,3 +152,6 @@ Entries before 2026-11-12 are condensed from a private log.
 - Follow-up: removed Table 1 (daily trade counts) on Overleaf too.
 - Follow-up: user wants to review the Spark code before packaging; listed files and open questions
   (layer names vs bronze/silver/gold, extra cleaning rules, which scripts to ship). Nothing packaged yet.
+- Follow-up: packaged the Spark code (8 modules, tests, run scripts, rewritten README; no
+  compare_rules, validate, smoke_jdbc or report/). Trimmed comments. Fresh unzip + new venv +
+  full run for 2023-03-10 from WRDS succeeded; bars identical to the earlier run. Repo changes not committed.
