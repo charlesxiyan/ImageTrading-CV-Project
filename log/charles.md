@@ -190,3 +190,6 @@ No entries yet. Charles's Claude appends here.
 - Fix: EC #11 (join on root+suffix key), merged; EC #10 from teoguo (policy v4, odd lots in volume, not prices) was already merged. CV #8 mirrors both, merged.
 - v4 pilot (5 days) passed: no zero-trade members, closes 97.9% within 0.1%, highs/lows 0 of 2,612 more than 1% from CRSP, volume balance 0.99.
 - Not verified: the full v4 download (about 35 h, to be started by Charles).
+
+## 2026-11-20 (roadmap notes)
+Asked: add 4 notes to roadmap artifact. Did: added CNN vs ViT results table to step 5 (from AllData grid_table.csv and probe run) and next-step cards for image-validity ablation, CNN vs ViT (LoRA), efficient compute (ViT LoRA / CNN INT8 PTQ), CNN filter/channel analysis. Not verified: none of these experiments run yet.
