@@ -174,9 +174,9 @@ No entries yet. Charles's Claude appends here.
   one session per year: other listings 77% (2016-01), 77% (2017-06), 25% (2018-06) down to 11% (2025-06);
   Nasdaq-listed 27%, 78%, 73% down to 48%. Bias is time-varying; closes are fine (97.8% within 0.1%).
   The archive downloader lived only in an untracked local working tree and imported the old filter.
-- **Done:** merged EC #4, #5, #6 (Charles's go). EC #7: step folders DataDownload/DataCheck/
+- **Done:** merged EC #4, #5, #6 (Charles's go). EC #8 (was #7): step folders DataDownload/DataCheck/
   PriceAdjustment/Pipeline, archive downloader added (WRDS user from $WRDS_USERNAME), filter policy v3
   (odd lots kept), CRSP acceptance check (`check_bar_coverage.py --archive`), v3 config and paths.
-  CV #5 mirrors EC #7 (supersedes CV #4), reviewer faintcicado. 69 tests pass in both.
+  CV #6 (was #5; branch data/step-folders-v3, per charles no "claude" in branch names) mirrors EC #8 (supersedes CV #4), reviewer faintcicado. 69 tests pass in both.
 - **Not verified:** any download with policy v3. Charles must confirm before the full re-download
   (about 23 h; the last one took 22.7 h at ~30 s a session). Pilot should cover 2016, 2017, 2018, 2023.

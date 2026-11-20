@@ -71,7 +71,7 @@ The same data is reused for a Big Data course project. Presentation Dec 10, repo
 - The 2016-2025 v1 archive and bundle (`alldata_bundle_v1`) have biased volume: the TAQ filter dropped
   blank (NULL) regular-sale conditions, hitting Nasdaq names in early 2016 and other listings from 2018.
   Prices are fine. All AllData results so far use v1.
-- Fix: trade-filter policy v3 (NULL read as blank, odd lots kept), in EC #7 / CV #5 with the code
+- Fix: trade-filter policy v3 (NULL read as blank, odd lots kept), in EC #8 / CV #6 with the code
   reorganized into DataDownload/, DataCheck/, PriceAdjustment/, Pipeline/.
 - Next: pilot download over several periods, acceptance check, then the full re-download (only after
   charles confirms), bundle v3, and re-run of the main experiments.
