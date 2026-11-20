@@ -119,3 +119,10 @@ Entries before 2026-11-12 are condensed from a private log.
   5,226 security-days and session volume falls from 28.2B to 13.1B shares.
 - Report PDF (9 pages) and code are ready; report and generated tables stay out of git because
   the snippets hold licensed rows. Not verified: any run outside local mode.
+
+## 2026-11-20 — Explained the Spark pipeline
+- Asked: explain how Spark is used in the Big Data course pipeline.
+- Done: explanation only, from the code: JDBC ingestion with symbol predicates over 4
+  connections, date-effective joins for the universe, filter steps plus a grouped
+  `applyInPandas` outlier check, bars via `min_by`/`max_by` and a 78-bar grid, CRSP
+  reconciliation. No code or data changed. STATUS.md is still correct.
