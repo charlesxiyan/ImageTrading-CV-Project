@@ -193,3 +193,6 @@ No entries yet. Charles's Claude appends here.
 
 ## 2026-11-20 (roadmap notes)
 Asked: add 4 notes to roadmap artifact. Did: added CNN vs ViT results table to step 5 (from AllData grid_table.csv and probe run) and next-step cards for image-validity ablation, CNN vs ViT (LoRA), efficient compute (ViT LoRA / CNN INT8 PTQ), CNN filter/channel analysis. Not verified: none of these experiments run yet.
+
+## 2026-11-21 (full download start)
+Asked: start full v4 download. Checked local EC main = a3e71a3 (#11), v4/01_raw config matches full run so pilot days resume. Gave Charles the run_archive_job.py command; he runs it. Not verified: whether it started.
