@@ -155,3 +155,6 @@ Entries before 2026-11-12 are condensed from a private log.
 - Follow-up: packaged the Spark code (8 modules, tests, run scripts, rewritten README; no
   compare_rules, validate, smoke_jdbc or report/). Trimmed comments. Fresh unzip + new venv +
   full run for 2023-03-10 from WRDS succeeded; bars identical to the earlier run. Repo changes not committed.
+- Follow-up: renamed the code package from tick2chart to project_data_ingestion (dir, imports,
+  run commands, env var PROJECT_DATA_DIR). Zip is ~/myworkspace/nyu/bdad/project_data_ingestion.zip;
+  fresh one-day run from WRDS passed, bars identical. Not committed.
