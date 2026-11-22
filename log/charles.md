@@ -196,3 +196,6 @@ Asked: add 4 notes to roadmap artifact. Did: added CNN vs ViT results table to s
 
 ## 2026-11-21 (full download start)
 Asked: start full v4 download. Checked local EC main = a3e71a3 (#11), v4/01_raw config matches full run so pilot days resume. Gave Charles the run_archive_job.py command; he runs it. Not verified: whether it started.
+
+## 2026-11-22 (v4 full download acceptance)
+Asked: data re-download finished. Did: read progress.json (2514/2514 complete), staged every 21st session + daily reference to container, ran DataCheck/check_bar_coverage.py --archive. Found: PASS on all four checks (closes 97.5% within 0.1%, volume ratio 0.99, H/L 99.8% within 0.5%, 0.01% empty bars). Outliers: VSM 2016-10-03 close 8.9% off (spin-off first day), 36 H/L >1% mostly CRSP H/L from excluded auctions. Not verified: check_sale_conditions.py on WRDS; sessions not in the sample.
