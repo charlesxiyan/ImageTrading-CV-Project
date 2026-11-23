@@ -241,3 +241,4 @@ Asked: redo the comparison experiments as a step-by-step argument (1 daily + pre
 - Run ids: 2a grid_20261123_083042, 3a grid_20261123_083117. Charles to rerun 3a then 2a with RETRAIN_ARCHS=["vit","vit_spy"].
 - Not verified: the fix on real data (synthetic check only).
 - Demo cleanup suggestion: alldata_bundle_v1.zip (1.19 GB) + ~3.7 GB v1 .parquet/.pt/.npy outside MindFlow + old folders; awaiting Charles.
+- Demo cleanup done at Charles's request (to Drive trash, ~4.9 GB): v1 bundle zip, AllData runs/probe_runs/indicator_runs, Daily runs, old folders Multi-Target/Pretrained Model Comparison/CNN-Relevant/chartcnn, 4 old root notebooks. Kept MindFlow, notebooks and .py in AllData/Daily, CNN_Paper_Style_Targets, wrds_demo_schema.json. v1 run outputs (run_20261116_044159, probe_20261118_031436, indicator runs) are now only in trash.
