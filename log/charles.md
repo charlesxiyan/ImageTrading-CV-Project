@@ -217,3 +217,6 @@ Merged EC #14 on Charles request; he reruns the chain. Not verified: prepare/aud
 
 ## 2026-11-23 (v4 bundle built)
 The v4 chain finished: all adjustments validated, us_pipeline prepare+audit passed (100.3M windows, +26% vs v1), bundle alldata_bundle_v4.zip 1.34 GB (train/val/test thinned 11.75M/1.67M/3.30M). Not verified: why 34% of candidate windows are invalid_input (v1 48%); bundle not yet uploaded or used in Colab.
+
+## 2026-11-23 (rerun plan, feature selection idea)
+Proposed v4 rerun tiers (grid + indicator FULL must; ViT via LoRA; skip daily JKX/demo) and an HGB feature-selection notebook (permutation, group ablation, forward selection) for the 38 hand features. Nothing built yet.
