@@ -208,3 +208,6 @@ Asked: v4 chain errored. Found: adjust_dividend_bars stopped on bars with volume
 
 ## 2026-11-23 (PR #13 merged)
 Merged EC #13 on Charles request. He reruns the v4 chain. Not verified: rerun result.
+
+## 2026-11-23 (PR #14)
+v4 chain rerun: stock and SPY adjustment validated; VIXY validator crashed because VIXY has no cash dividends (empty table). Opened EC PR #14 guarding the report. Not verified: prepare/audit/bundle.
