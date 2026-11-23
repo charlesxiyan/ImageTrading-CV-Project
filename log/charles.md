@@ -199,3 +199,6 @@ Asked: start full v4 download. Checked local EC main = a3e71a3 (#11), v4/01_raw 
 
 ## 2026-11-22 (v4 full download acceptance)
 Asked: data re-download finished. Did: read progress.json (2514/2514 complete), staged every 21st session + daily reference to container, ran DataCheck/check_bar_coverage.py --archive. Found: PASS on all four checks (closes 97.5% within 0.1%, volume ratio 0.99, H/L 99.8% within 0.5%, 0.01% empty bars). Outliers: VSM 2016-10-03 close 8.9% off (spin-off first day), 36 H/L >1% mostly CRSP H/L from excluded auctions. Not verified: check_sale_conditions.py on WRDS; sessions not in the sample.
+
+## 2026-11-23 (SPY/VIXY check, adjustment runner)
+Asked: SPY and VIXY downloaded. Did: confirmed both complete (2514 sessions), sampled 40 sessions each vs CRSP daily (SPY closes 100% within 0.1%, VIXY max 0.3%, no empty bars). Wrote a local runner script in the v4 data folder (not in git) chaining PriceAdjustment for stocks/SPY/VIXY, Pipeline prepare+audit with the v4 config, and the bundle build, logging to chain.log. Not verified: the chain has not run on v4 yet.
