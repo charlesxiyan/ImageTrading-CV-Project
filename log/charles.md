@@ -232,3 +232,12 @@ Asked: redo the comparison experiments as a step-by-step argument (1 daily + pre
 - Scratch ViT collapsed in all cells (AUC 0.500, prob_std ~1e-5) even on vol: training failure, not evidence. Proposed fixing ViT training (warmup, lower lr) and rerunning only ViT cells; awaiting Charles.
 - 4b: forward selection (2022) picks time_of_day, mean_abs_r12, spy_mean_abs_r12; on 2023 -0.005 (5m) / -0.008 (60m) vs all 38; top 10 ties at 5m; dropping volume+time group costs 0.034 at 60m.
 - Not verified: run-folder names (mapped by content).
+
+## 2026-11-23 (evening) Scratch ViT fix + retrain-only mode; Demo cleanup list
+- Cause of ViT collapse: std-0.02 init made tokenizer image signal ~4x smaller than position embedding (token std across images 0.004 -> 0.48 after fix); near-constant logits rounded in bf16 -> AUC exactly 0.500.
+- Fix (chartcnn 2026-11-23.2, EC PR #15 branch mindflow/step-notebooks): fan-in init + LayerNorm in tokenizer, mean pooling, AdamW lr 3e-4 wd 0.05, 1000-step warmup, grad clip 1.0, fp32 head, collapse warning. CNNs unchanged.
+- New RETRAIN_ARCHS in Step2a/3a: retrain only listed networks of a finished run on identical (asserted) rows; old net folders renamed <arch>_before_<version>. Smoke (all 9 notebooks + retrain) passes.
+- Uploaded to Drive; old run notebooks renamed *_run1_outputs.ipynb; old grid.py renamed grid_old_2026-11-23_1.py.txt (trash was blocked).
+- Run ids: 2a grid_20261123_083042, 3a grid_20261123_083117. Charles to rerun 3a then 2a with RETRAIN_ARCHS=["vit","vit_spy"].
+- Not verified: the fix on real data (synthetic check only).
+- Demo cleanup suggestion: alldata_bundle_v1.zip (1.19 GB) + ~3.7 GB v1 .parquet/.pt/.npy outside MindFlow + old folders; awaiting Charles.
