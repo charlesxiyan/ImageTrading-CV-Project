@@ -78,3 +78,4 @@ The same data is reused for a Big Data course project. Presentation Dec 10, repo
   of 2016). Both mirrored in CV #8. v4 pilot (5 sessions) passed every acceptance check.
 - 2026-11-23: v4 bundle built (`v4/04_bundle/alldata_bundle_v4.zip`, 1.34 GB; 100.3M windows, +26% vs v1; all validations and audit pass). Next: charles uploads it to Drive `Demo/AllData & AllModel/`, then
   re-run of the main experiments.
+- 2026-11-23: MindFlow (EC PR #15, Drive Demo/MindFlow with v4 bundle + code + 9 notebooks Step1a..Step5) replaces the ad-hoc v4 rerun plan. Next: charles runs them in order on Colab; smoke-tested only.

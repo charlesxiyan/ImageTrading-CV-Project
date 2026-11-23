@@ -220,3 +220,6 @@ The v4 chain finished: all adjustments validated, us_pipeline prepare+audit pass
 
 ## 2026-11-23 (rerun plan, feature selection idea)
 Proposed v4 rerun tiers (grid + indicator FULL must; ViT via LoRA; skip daily JKX/demo) and an HGB feature-selection notebook (permutation, group ablation, forward selection) for the 38 hand features. Nothing built yet.
+
+## 2026-11-23 (MindFlow notebooks)
+Asked: redo the comparison experiments as a step-by-step argument (1 daily + pretrained no signal, 2 intraday direction no signal incl. ViT with parameter counts, 3 volatility signal, 4 add image info until CNN reaches HGB) in Drive Demo/MindFlow. Built nine notebooks (EC PR #15, branch mindflow/step-notebooks, folder MindFlow/): 1a daily JKX, 1b daily pretrained (frozen DINOv2/CLIP probes + Chronos-2/TimesFM/Moirai/Kronos zero-shot), 2a/3a grids (CNN, SPY panel, ResNet, 1D CNN, ViT, HGB), 2b/3b pretrained, 4a ladder + features-only control, 4b HGB feature selection (chosen on 2022, confirmed on 2023), 5 summary. Code and notebooks uploaded to Drive MindFlow (v4 bundle already there). Synthetic smoke test passes for all nine. Not verified: anything on real data, foundation-model installs on Colab, run times.
