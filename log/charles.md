@@ -223,3 +223,12 @@ Proposed v4 rerun tiers (grid + indicator FULL must; ViT via LoRA; skip daily JK
 
 ## 2026-11-23 (MindFlow notebooks)
 Asked: redo the comparison experiments as a step-by-step argument (1 daily + pretrained no signal, 2 intraday direction no signal incl. ViT with parameter counts, 3 volatility signal, 4 add image info until CNN reaches HGB) in Drive Demo/MindFlow. Built nine notebooks (EC PR #15, branch mindflow/step-notebooks, folder MindFlow/): 1a daily JKX, 1b daily pretrained (frozen DINOv2/CLIP probes + Chronos-2/TimesFM/Moirai/Kronos zero-shot), 2a/3a grids (CNN, SPY panel, ResNet, 1D CNN, ViT, HGB), 2b/3b pretrained, 4a ladder + features-only control, 4b HGB feature selection (chosen on 2022, confirmed on 2023), 5 summary. Code and notebooks uploaded to Drive MindFlow (v4 bundle already there). Synthetic smoke test passes for all nine. Not verified: anything on real data, foundation-model installs on Colab, run times.
+
+## 2026-11-23 (later) MindFlow first results checked
+- Asked: are 1a, 2a, 3a, 4b done. All four finished on v4 (Drive MindFlow/runs).
+- 1a: daily JKX CNN and HGB AUC 0.47-0.52 in all 24 val/test cells, no signal.
+- 2a: direction 5 min best HGB+SPY xsdir 0.526, dir 0.516 (CI above 0.5, log-loss gain ~0.1%, L/S ~2 bps gross); 60 min ~0.50.
+- 3a: vol 5/60 min HGB+SPY 0.689/0.679, CNN 0.660/0.648, 1D CNN+SPY 0.664/0.655, ResNet 0.657/0.643.
+- Scratch ViT collapsed in all cells (AUC 0.500, prob_std ~1e-5) even on vol: training failure, not evidence. Proposed fixing ViT training (warmup, lower lr) and rerunning only ViT cells; awaiting Charles.
+- 4b: forward selection (2022) picks time_of_day, mean_abs_r12, spy_mean_abs_r12; on 2023 -0.005 (5m) / -0.008 (60m) vs all 38; top 10 ties at 5m; dropping volume+time group costs 0.034 at 60m.
+- Not verified: run-folder names (mapped by content).
