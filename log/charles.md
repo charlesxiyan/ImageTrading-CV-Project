@@ -202,3 +202,6 @@ Asked: data re-download finished. Did: read progress.json (2514/2514 complete), 
 
 ## 2026-11-23 (SPY/VIXY check, adjustment runner)
 Asked: SPY and VIXY downloaded. Did: confirmed both complete (2514 sessions), sampled 40 sessions each vs CRSP daily (SPY closes 100% within 0.1%, VIXY max 0.3%, no empty bars). Wrote a local runner script in the v4 data folder (not in git) chaining PriceAdjustment for stocks/SPY/VIXY, Pipeline prepare+audit with the v4 config, and the bundle build, logging to chain.log. Not verified: the chain has not run on v4 yet.
+
+## 2026-11-23 (v4 chain failure, PR #13)
+Asked: v4 chain errored. Found: adjust_dividend_bars stopped on bars with volume and no factor: 114 member-days after delisting where CRSP has no row; policy v4 TRF odd lots give volume-only bars. Did: EC PR #13 zeroes adjusted volume for factorless unpriced rows (volume_raw kept), adds a test; 74 tests pass. Not verified: full chain rerun.
