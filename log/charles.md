@@ -205,3 +205,6 @@ Asked: SPY and VIXY downloaded. Did: confirmed both complete (2514 sessions), sa
 
 ## 2026-11-23 (v4 chain failure, PR #13)
 Asked: v4 chain errored. Found: adjust_dividend_bars stopped on bars with volume and no factor: 114 member-days after delisting where CRSP has no row; policy v4 TRF odd lots give volume-only bars. Did: EC PR #13 zeroes adjusted volume for factorless unpriced rows (volume_raw kept), adds a test; 74 tests pass. Not verified: full chain rerun.
+
+## 2026-11-23 (PR #13 merged)
+Merged EC #13 on Charles request. He reruns the v4 chain. Not verified: rerun result.
