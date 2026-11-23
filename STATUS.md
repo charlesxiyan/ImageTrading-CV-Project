@@ -77,4 +77,4 @@ The same data is reused for a Big Data course project. Presentation Dec 10, repo
   dual-class symbols (GOOGL, CMCSA, DISCA, DISCK, LBTYA, LVNTA, BATRA, BATRK had no trades for parts
   of 2016). Both mirrored in CV #8. v4 pilot (5 sessions) passed every acceptance check.
 - 2026-11-22: full v4 download finished (2,514 sessions) and passed check_bar_coverage.py --archive (every 21st session). SPY and VIXY downloaded 2026-11-23. Next: run v4/run_v4_chain.sh (adjustment, prepare/audit, bundle), then
-  check, price adjustment, bundle v4, then re-run of the main experiments.
+  re-run of the main experiments.
