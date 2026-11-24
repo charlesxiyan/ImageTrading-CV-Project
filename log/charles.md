@@ -243,3 +243,9 @@ Asked: redo the comparison experiments as a step-by-step argument (1 daily + pre
 - Demo cleanup suggestion: alldata_bundle_v1.zip (1.19 GB) + ~3.7 GB v1 .parquet/.pt/.npy outside MindFlow + old folders; awaiting Charles.
 - Demo cleanup done at Charles's request (to Drive trash, ~4.9 GB): v1 bundle zip, AllData runs/probe_runs/indicator_runs, Daily runs, old folders Multi-Target/Pretrained Model Comparison/CNN-Relevant/chartcnn, 4 old root notebooks. Kept MindFlow, notebooks and .py in AllData/Daily, CNN_Paper_Style_Targets, wrds_demo_schema.json. v1 run outputs (run_20261116_044159, probe_20261118_031436, indicator runs) are now only in trash.
 - 22:10Z check: ViT fix WORKS on real data (3a retrain, early-stop subset AUC): vol 5m vit 0.660 / vit_spy 0.660, 60m vit 0.650 (CNN 0.660/0.648, HGB+SPY 0.689/0.679). Stuck ~0.5 for 1-2 warmup epochs then learns. 1b done: all daily pretrained/TSFM AUC 0.47-0.53 (DINOv2 linear I5R5 val 0.524 borderline, test 0.510). 4a still running. Told Charles to start 2a ViT retrain now, 3b after 3a finishes.
+
+## 2026-11-24 (status check, ~8 PM ET 11-23)
+- Asked: status of MindFlow runs.
+- Found (Drive outputs): 3a done 6:10 PM ET with fixed ViT (5m/60m 0.662/0.645 vs CNN 0.660/0.648, HGB+SPY 0.689/0.679). 2a ViT retrain 3/4 cells done, dir_h1 left, ~1.5-2 h. 4a still running (5m cell done). 1b done (all 0.47-0.53).
+- Next: 3b now, 2b after 2a, Step5 last (CPU). EC PR #15 awaits merge go.
+- Not verified: 2a/4a final tables (not written yet).
