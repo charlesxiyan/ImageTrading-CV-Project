@@ -79,4 +79,4 @@ The same data is reused for a Big Data course project. Presentation Dec 10, repo
 - 2026-11-23: v4 bundle built (`v4/04_bundle/alldata_bundle_v4.zip`, 1.34 GB; 100.3M windows, +26% vs v1; all validations and audit pass). Next: charles uploads it to Drive `Demo/AllData & AllModel/`, then
   re-run of the main experiments.
 - 2026-11-23: MindFlow (EC PR #15, Drive Demo/MindFlow with v4 bundle + code + 9 notebooks Step1a..Step5) replaces the ad-hoc v4 rerun plan. Next: charles runs them in order on Colab; smoke-tested only.
-- 2026-11-24: MindFlow status: all steps run on v4; foundation-model AUC clipping bug fixed (EC PR #15), Step5 rerun pending to rescore 2b/3b. Chain: daily null, intraday direction null, vol signal, CNN+EWSD+features ties HGB.
+- 2026-11-24: MindFlow complete on v4 (Step5 rerun 12:44 PM ET with corrected foundation-model AUCs). Chain: daily null, intraday direction null for all models, vol signal (HGB+SPY 0.689/0.679 best; foundation models 0.58-0.64), CNN+EWSD+features ties HGB. EC PR #15 awaiting merge.

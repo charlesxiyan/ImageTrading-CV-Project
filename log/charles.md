@@ -274,3 +274,9 @@ Asked: redo the comparison experiments as a step-by-step argument (1 daily + pre
 - Cause: frozen_probe.table (and indicator_cnn.table) computed AUC on scores clipped to [0,1]; foundation-model scores are not probabilities (vol ratio mostly >1, direction returns half negative) -> ties -> AUC biased to 0.5. CI used raw scores (correct). Only 2b/3b foundation-model AUCs affected.
 - Fix pushed to EC PR #15 (table AUC on raw scores; pretrained_ts.rebuild_tsfm_table; Step5 rescores 2b/3b once, old table kept). Smoke passes. Drive code and a new Step5 notebook uploaded; old copies renamed.
 - Not verified on real data yet: Charles to rerun the new Step5 on CPU. Foundation-model AUCs reported last night are understated.
+
+## 2026-11-24 (1:05 PM ET)
+- New Step5 finished 12:44 PM ET; 2b/3b foundation-model tables rescored, points now inside CIs.
+- 3b vol 5m/60m corrected: Kronos 0.644/0.623, Chronos-2 0.622/0.571, TimesFM 2.5 0.623/0.585, Moirai2 0.621/0.579, random walk 0.580/0.592 (CNN 0.661/0.646, HGB+SPY 0.688/0.679). At 60m only Kronos beats random walk.
+- 2b direction corrected: all 0.496-0.518 (Kronos dir 5m 0.518).
+- MindFlow chain complete on v4. PR #15 still awaiting merge go.
