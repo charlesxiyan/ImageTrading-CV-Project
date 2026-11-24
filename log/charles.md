@@ -258,3 +258,7 @@ Asked: redo the comparison experiments as a step-by-step argument (1 daily + pre
 ## 2026-11-24 (~10:50 PM ET 11-23)
 - 2a fully done 10:21 PM ET (grid_table rebuilt): dir best 5m 0.516 / 60m 0.508; xsdir 0.526 / 0.509 (HGB+SPY); ViT vs CNN worse 2, tied 2. Told Charles to start 2b now.
 - 3b probes done 10:22 PM ET (DINOv2 vs random +0.04; vs scratch CNN -0.006; vs HGB -0.034); Chronos-2/TimesFM/Moirai done, Kronos running.
+
+## 2026-11-24 (~11:30 PM ET 11-23)
+- 3b: only Kronos h12 left (~done 11:30 PM ET). Note: TimesFM 3.0 download 401 -> code fell back to google/timesfm-2.5-200m (231M params).
+- 2b started 10:49 PM ET (probe_20261124_034956), feature extraction phase; ETA ~1 AM ET. Step5 after 2b.
