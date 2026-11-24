@@ -268,3 +268,9 @@ Asked: redo the comparison experiments as a step-by-step argument (1 daily + pre
 - 3b TSFM zero-shot vol AUC 5m/60m: Kronos 0.638/0.621 (25 days; HGB same rows 0.681/0.684), Chronos-2 0.612/0.560, TimesFM 2.5 0.593/0.576, Moirai2 0.601/0.552, random walk 0.558/0.563 (49 days; HGB 0.688/0.679).
 - 2b direction: TSFM 0.497-0.515; probes pretrained ~= random (+0.0006); best still HGB+SPY xsdir 5m 0.526.
 - Next: Step5 summary on CPU.
+
+## 2026-11-24 (8:50 AM ET)
+- Step5 ran 7:50 AM ET. Found foundation-model rows with point AUC outside the CI.
+- Cause: frozen_probe.table (and indicator_cnn.table) computed AUC on scores clipped to [0,1]; foundation-model scores are not probabilities (vol ratio mostly >1, direction returns half negative) -> ties -> AUC biased to 0.5. CI used raw scores (correct). Only 2b/3b foundation-model AUCs affected.
+- Fix pushed to EC PR #15 (table AUC on raw scores; pretrained_ts.rebuild_tsfm_table; Step5 rescores 2b/3b once, old table kept). Smoke passes. Drive code and a new Step5 notebook uploaded; old copies renamed.
+- Not verified on real data yet: Charles to rerun the new Step5 on CPU. Foundation-model AUCs reported last night are understated.
