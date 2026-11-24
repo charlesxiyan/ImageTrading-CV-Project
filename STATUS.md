@@ -79,4 +79,4 @@ The same data is reused for a Big Data course project. Presentation Dec 10, repo
 - 2026-11-23: v4 bundle built (`v4/04_bundle/alldata_bundle_v4.zip`, 1.34 GB; 100.3M windows, +26% vs v1; all validations and audit pass). Next: charles uploads it to Drive `Demo/AllData & AllModel/`, then
   re-run of the main experiments.
 - 2026-11-23: MindFlow (EC PR #15, Drive Demo/MindFlow with v4 bundle + code + 9 notebooks Step1a..Step5) replaces the ad-hoc v4 rerun plan. Next: charles runs them in order on Colab; smoke-tested only.
-- 2026-11-24: MindFlow status: 1a,1b,2a,3a,4a,4b done; 3b nearly done (Kronos); next 2b, then Step5. 4a: CNN+EWSD+features 0.685/0.675 vs HGB+SPY 0.687/0.677, features-only 0.685/0.671.
+- 2026-11-24: MindFlow status: 1a..4b all done on v4 (2b 5:28 AM ET); only Step5 summary left. Chain confirmed: daily null, intraday direction null for all models, vol signal, CNN+EWSD+features ties HGB.

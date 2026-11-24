@@ -262,3 +262,9 @@ Asked: redo the comparison experiments as a step-by-step argument (1 daily + pre
 ## 2026-11-24 (~11:30 PM ET 11-23)
 - 3b: only Kronos h12 left (~done 11:30 PM ET). Note: TimesFM 3.0 download 401 -> code fell back to google/timesfm-2.5-200m (231M params).
 - 2b started 10:49 PM ET (probe_20261124_034956), feature extraction phase; ETA ~1 AM ET. Step5 after 2b.
+
+## 2026-11-24 (7:30 AM ET)
+- 3b done 12:31 AM ET; 2b done 5:28 AM ET (probe_20261124_034956).
+- 3b TSFM zero-shot vol AUC 5m/60m: Kronos 0.638/0.621 (25 days; HGB same rows 0.681/0.684), Chronos-2 0.612/0.560, TimesFM 2.5 0.593/0.576, Moirai2 0.601/0.552, random walk 0.558/0.563 (49 days; HGB 0.688/0.679).
+- 2b direction: TSFM 0.497-0.515; probes pretrained ~= random (+0.0006); best still HGB+SPY xsdir 5m 0.526.
+- Next: Step5 summary on CPU.
