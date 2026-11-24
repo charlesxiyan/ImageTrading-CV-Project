@@ -285,3 +285,9 @@ Asked: redo the comparison experiments as a step-by-step argument (1 daily + pre
 - Asked: next step per plan -> Charles chose VIX test first.
 - Built MindFlow Step6a_VIX_Regime (EC PR #15, code/regime.py): HGB vol, 38 base vs +VIX (prev-session close log, chg1, chg5, rel20; Cboe public CSV cached in MindFlow/data/) vs +multi-day RV (stock rv5d/rv20d/ratio, SPY rv5d/rv20d from intraday returns of completed sessions) vs both vs regime-only; paired day bootstrap on 2023, AUC by VIX tercile, permutation importance. CPU High-RAM ~50 min.
 - Smoke passes. Not verified: Cboe download (blocked in this container); fallback is a WRDS cboe.cboe export at MindFlow/data/VIX_History.csv.
+
+## 2026-11-24 (2:00 PM ET)
+- Charles started Step6a (1:29 PM ET) and asked for CNN+VIXY / ViT+VIXY.
+- Built (EC PR #15, chartcnn 2026-11-24.1): PANELS per arch (spy, vixy); archs plain_vixy, plain_spy_vixy, vit_vixy, vit_spy_vixy (702x234 for spy+vixy). tools/build_panel_bundle.py packs VIXY on the stock clock into vixy_panel_v4.zip (missing full-session bars filled flat); mindflow.stage_panels unpacks it. Step3a: RUN_ID=3a run + RETRAIN_ARCHS=VIXY_ARCHS adds them on identical rows. Smoke passes.
+- Waiting on Charles: run build_panel_bundle on the Mac (VIXY adjusted folder name assumed 02_adjusted_vixy, unverified), upload zip, run new Step3a (L4, ~2 h).
+- Not added: HGB with VIXY numeric features.
