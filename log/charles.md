@@ -249,3 +249,8 @@ Asked: redo the comparison experiments as a step-by-step argument (1 daily + pre
 - Found (Drive outputs): 3a done 6:10 PM ET with fixed ViT (5m/60m 0.662/0.645 vs CNN 0.660/0.648, HGB+SPY 0.689/0.679). 2a ViT retrain 3/4 cells done, dir_h1 left, ~1.5-2 h. 4a still running (5m cell done). 1b done (all 0.47-0.53).
 - Next: 3b now, 2b after 2a, Step5 last (CPU). EC PR #15 awaits merge go.
 - Not verified: 2a/4a final tables (not written yet).
+
+## 2026-11-24 (status check, ~9:50 PM ET 11-23)
+- 4a done (8:52 PM ET): ladder vol 5m/60m: plain 0.660/0.647, +SPY 0.660/0.648, +EWSD 0.678/0.664, +MA 0.677/0.664, +38 tab 0.685/0.675, tab-only control 0.685/0.671, HGB+SPY 0.687/0.677. EWSD +0.018 signif.; MA nothing; image adds ~+0.002 over features-only.
+- 2a ViT retrain done 9:08 PM ET: all 4 direction cells AUC 0.49-0.52, prob std ~1e-7 (constant output; expected with no signal; 3a proves the code learns). grid_table cell still running when checked.
+- 3b running (started 8:09 PM ET): frozen probes done (CLIP ~0.64), TS foundation models in progress.
