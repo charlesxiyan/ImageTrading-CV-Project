@@ -306,3 +306,4 @@ Asked: redo the comparison experiments as a step-by-step argument (1 daily + pre
 
 ## 2026-11-25 00:10 ET
 - Asked: confirm Step3a VIXY retrain finished. Found: on Drive only plain_spy_vixy cell 1 epoch 1 written (val AUC 0.652, 8:22 PM ET 11-24), nothing after for 3.5+ h; no vit_spy_vixy, no grid_table/takeaways. Likely Colab disconnect. Told Charles to check notebook / rerun same cell. Step6a VIXY-feature run not started yet. Not verified: actual notebook error.
+- 00:29 ET: Step3a VIXY retrain restarted on L4 (resumes plain_spy_vixy from epoch 1 last.pt). Note: T4 has no bf16 -> fp32; eval_batch 1024 on 702x234 ViT may OOM on T4 (lower eval batch if T4 ever used).
