@@ -321,3 +321,4 @@ Asked: redo the comparison experiments as a step-by-step argument (1 daily + pre
 
 ## 2026-11-25 17:25 ET
 - Charles asked whether Step6a needs running: no. Skipped the 6a VIXY-feature rerun (reason in DECISIONS). 6b is independent of 6a runs.
+- 17:25 ET: Charles started Step6b on Colab (browser closed, Pro+ background).
