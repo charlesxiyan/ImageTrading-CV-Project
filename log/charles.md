@@ -322,3 +322,4 @@ Asked: redo the comparison experiments as a step-by-step argument (1 daily + pre
 ## 2026-11-25 17:25 ET
 - Charles asked whether Step6a needs running: no. Skipped the 6a VIXY-feature rerun (reason in DECISIONS). 6b is independent of 6a runs.
 - 17:25 ET: Charles started Step6b on Colab (browser closed, Pro+ background).
+- 17:45 ET: Pushed MindFlow results for 1a-6a (summary files only, run used by Step 5; Drive paths stripped from settings; example price-chart images and predictions not committed) + results/README.md. Charles: merge only finished steps, no executed notebooks. Reverted 6b, 7a and the unrun 6a VIXY-feature commit on PR #15, merged EC PR #15 (3ee614a). 6b/7a code now on branch mindflow/final-and-efficiency (main + revert of reverts, same code as b82dcf4); open its PR when 6b has results.
