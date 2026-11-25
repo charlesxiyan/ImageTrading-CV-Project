@@ -291,3 +291,6 @@ Asked: redo the comparison experiments as a step-by-step argument (1 daily + pre
 - Built (EC PR #15, chartcnn 2026-11-24.1): PANELS per arch (spy, vixy); archs plain_vixy, plain_spy_vixy, vit_vixy, vit_spy_vixy (702x234 for spy+vixy). tools/build_panel_bundle.py packs VIXY on the stock clock into vixy_panel_v4.zip (missing full-session bars filled flat); mindflow.stage_panels unpacks it. Step3a: RUN_ID=3a run + RETRAIN_ARCHS=VIXY_ARCHS adds them on identical rows. Smoke passes.
 - Waiting on Charles: run build_panel_bundle on the Mac (VIXY adjusted folder name assumed 02_adjusted_vixy, unverified), upload zip, run new Step3a (L4, ~2 h).
 - Not added: HGB with VIXY numeric features.
+
+## 2026-11-25 (8:05 PM ET 11-24)
+- build_panel_bundle failed: wrong --prepared path; correct is v4/03_prepared/prepared (us_pipeline writes artifact_root/prepared). Docstring fixed. VIXY adjusted folder name still unverified.
