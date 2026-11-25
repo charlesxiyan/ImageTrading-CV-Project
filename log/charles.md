@@ -299,3 +299,7 @@ Asked: redo the comparison experiments as a step-by-step argument (1 daily + pre
 - Charles built vixy_panel_v4.zip on the Mac; told him to upload it and run new Step3a with RUN_ID=grid_20261123_083117, RETRAIN_ARCHS=VIXY_ARCHS.
 - Step6a done 2:14 PM ET 11-24. HGB vol 2023, 5m / 60m: base 0.6888/0.6788; +VIX 0.6897/0.6787 (tied); +multi-day RV 0.6914/0.6811 (better, +0.0026/+0.0023 significant); both 0.6915/0.6805 (better); regime-only 0.559/0.562.
 - By VIX tercile: positive share 0.43 -> 0.53; AUC falls 0.693 -> 0.669 (5m).
+
+## 2026-11-25 (8:55 PM ET 11-24)
+- Charles started Step3a VIXY retrain (~8:45 PM ET; plain_spy_vixy, vit_spy_vixy on 3a run grid_20261123_083117).
+- Added HGB + VIXY intraday features to Step6a (regime 2026-11-25.1: 11 vixy_* features over the 78-bar window, like SPY's; subsets "+ VIXY intraday" and "+ VIXY intraday + multi-day RV"). Smoke passes. New Step6a notebook uploaded (old one renamed run1_outputs). Charles to run it on CPU, ~1 h.

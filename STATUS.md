@@ -81,3 +81,4 @@ The same data is reused for a Big Data course project. Presentation Dec 10, repo
 - 2026-11-23: MindFlow (EC PR #15, Drive Demo/MindFlow with v4 bundle + code + 9 notebooks Step1a..Step5) replaces the ad-hoc v4 rerun plan. Next: charles runs them in order on Colab; smoke-tested only.
 - 2026-11-24: MindFlow complete on v4 (Step5 rerun 12:44 PM ET with corrected foundation-model AUCs). Chain: daily null, intraday direction null for all models, vol signal (HGB+SPY 0.689/0.679 best; foundation models 0.58-0.64), CNN+EWSD+features ties HGB. EC PR #15 awaiting merge.
 - 2026-11-24: Step6a done: daily VIX adds nothing to HGB; multi-day RV (rv5d/rv20d) +0.0025 AUC significant. VIXY panel: zip built, Step3a VIXY retrain pending (Charles).
+- 2026-11-25: running: Step3a VIXY retrain (L4) and Step6a rerun with HGB+VIXY intraday features (CPU). Compare both when done.
