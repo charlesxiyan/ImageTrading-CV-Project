@@ -303,3 +303,6 @@ Asked: redo the comparison experiments as a step-by-step argument (1 daily + pre
 ## 2026-11-25 (8:55 PM ET 11-24)
 - Charles started Step3a VIXY retrain (~8:45 PM ET; plain_spy_vixy, vit_spy_vixy on 3a run grid_20261123_083117).
 - Added HGB + VIXY intraday features to Step6a (regime 2026-11-25.1: 11 vixy_* features over the 78-bar window, like SPY's; subsets "+ VIXY intraday" and "+ VIXY intraday + multi-day RV"). Smoke passes. New Step6a notebook uploaded (old one renamed run1_outputs). Charles to run it on CPU, ~1 h.
+
+## 2026-11-25 00:10 ET
+- Asked: confirm Step3a VIXY retrain finished. Found: on Drive only plain_spy_vixy cell 1 epoch 1 written (val AUC 0.652, 8:22 PM ET 11-24), nothing after for 3.5+ h; no vit_spy_vixy, no grid_table/takeaways. Likely Colab disconnect. Told Charles to check notebook / rerun same cell. Step6a VIXY-feature run not started yet. Not verified: actual notebook error.
