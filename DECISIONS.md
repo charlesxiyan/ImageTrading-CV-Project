@@ -60,3 +60,4 @@ Keep sale conditions that are blank/NULL or only spaces, `@`, `E`, `F`, `I`:
 `translate(coalesce(tr_scond,''),' @EFI','') = ''`. NULL is the regular sale on Tape A/B; odd lots (`I`)
 are real trades whose share grew over 2016-2025. Every new archive must pass the CRSP acceptance
 check (`DataCheck/check_bar_coverage.py --archive`) before it is adjusted or bundled.
+- 2026-11-25 (charles): VIXY panel networks are evaluated on the 5-min cell only. Reasons to state in reports: (1) tied at 5 min for CNN and ViT, consistent with Step 6a (daily VIX adds nothing); 60-min results have followed the 5-min ranking; (2) compute limit: Colab gave only T4 (73 min/epoch for the 3-panel ViT), ~12 GPU-hours more for a comparison not expected to change the conclusion. Charles wants both reasons stated explicitly whenever something is skipped.
