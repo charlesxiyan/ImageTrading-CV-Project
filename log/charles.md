@@ -318,3 +318,6 @@ Asked: redo the comparison experiments as a step-by-step argument (1 daily + pre
 - Smoke (CPU) passed for Step6b, Step7a (4a source) and Step7a (6b source). GPU timing not measured (estimate ~4 h on L4).
 - Uploaded to Drive: final_model.py, new efficiency.py and mindflow.py (old ones trashed), Step6b notebook, new Step7a notebook (old trashed, never run).
 - Not verified: real-data run, RAM for RV tables (~6 GB estimate).
+
+## 2026-11-25 17:25 ET
+- Charles asked whether Step6a needs running: no. Skipped the 6a VIXY-feature rerun (reason in DECISIONS). 6b is independent of 6a runs.
