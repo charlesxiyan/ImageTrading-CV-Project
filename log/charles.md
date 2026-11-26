@@ -332,3 +332,10 @@ Asked: redo the comparison experiments as a step-by-step argument (1 daily + pre
 
 ## 2026-11-25 23:50 ET
 - 6b TEST done (run final_20261125_222625, test 2024-25, 485 days, ~1.52M rows/cell, files 04:13Z). AUC 5m/60m: HGB43 0.6983/0.6850, final CNN ewsd_tab_rv 0.6974/0.6827, HGB38 0.6973/0.6835, ma_ewsd_tab_rv 0.6970/0.6822, 4a CNN 0.6969/0.6809, MLP43 0.6960/0.6816. Checks: final CNN vs HGB43 5m tied (-0.0009), 60m worse (-0.0023); image vs numbers-only (no MA) better both (+0.0014/+0.0011); RV->HGB better both; RV->CNN 5m tied, 60m better (+0.0012); drop MA tied/better. Same story as 2023 val. Next: Step6c (CPU), Step7a SOURCE 6b ewsd_tab_rv.
+
+## 2026-11-26 00:58 ET
+- Step6c DONE (Drive runs/step6c_volatility_use, finished 04:58Z, ~3 min CPU). Final CNN ewsd_tab_rv vs HGB43, val 2023 / test 2024-25:
+  - IC vs |r|/own median 5m: CNN 0.117/0.129, HGB43 0.124/0.137 (ICIR ~1.5, >90% times positive); 60m CNN 0.103/0.114, HGB43 0.113/0.124. IC vs raw |r| ~0.23-0.24 vs no-forecast median 0.17-0.19. IC vs signed return ~0 (5m test +0.012 t3.5 only).
+  - Low-minus-high predicted-vol L/S: gross Sharpe -0.1 to -1.7 (no low-vol anomaly intraday), <= -3.5 at 1 bp. Dead.
+  - Long-only sizing: risk parity lowers vol slightly (5m test 0.076->0.067), Sharpe same; vol target halves vol-of-daily-vol (1.18->0.48) and cuts 60m test MDD 1909->1019 bp, but lowers Sharpe (60m 0.95->0.56; 5m ~ -0.1).
+  - Time-series risk forecast: Spearman(pred book vol, |EW book return|) 0.42-0.45 for all models vs ~0 for no-forecast.
