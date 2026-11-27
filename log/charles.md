@@ -417,3 +417,4 @@ Asked: redo the comparison experiments as a step-by-step argument (1 daily + pre
 - Not verified: Mac local copy of roadmap not refreshed (laptop closed).
 - Opened CV PR #9 mirroring EC #13-#17; tests 13 pass.
 - Mac 心路历程.html refreshed to roadmap v13; rule saved: always sync it.
+- CV PR #9 merged on Charles's 合并.

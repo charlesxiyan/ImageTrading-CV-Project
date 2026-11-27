@@ -95,3 +95,4 @@ The same data is reused for a Big Data course project. Presentation Dec 10, repo
 - 2026-11-27 15:45 ET: EC PR #17 (mindflow/pure-image-and-distillation): 6d/7b/7b+/8a with val-2023 results; awaiting Charles's 合并. 6e, 7a, VIXY-intraday 6a code stay on mindflow/final-and-efficiency (no results yet).
 - 2026-11-27 15:55 ET: EC PR #17 MERGED (6d/7b/7b+/8a now on main).
 - 2026-11-27 16:40 ET: roadmap v13 published (log loss + learning curves in stages 7/8/10/11, 6b/6d gallery images, to-do refreshed). 8a occlusion log-loss code on EC branch mindflow/inside-log-loss (smoke running, no PR yet); Charles reruns 8a after. CV PR #9 (mindflow/mirror-ec-mindflow) mirrors EC #13-#17 (MindFlow + delisted-volume fixes), faintcicado reviewer, awaiting 合并. Rule: mirror every EC merge into CV.
+- 2026-11-27 16:48 ET: CV PR #9 MERGED (cd1a308): CV now mirrors EC main 2f676d2.
