@@ -418,3 +418,4 @@ Asked: redo the comparison experiments as a step-by-step argument (1 daily + pre
 - Opened CV PR #9 mirroring EC #13-#17; tests 13 pass.
 - Mac 心路历程.html refreshed to roadmap v13; rule saved: always sync it.
 - CV PR #9 merged on Charles's 合并.
+- 2026-11-27 16:50 ET: EC PR #18 opened (8a log loss), Drive updated; roadmap v14 stage 12 overfitting check; Mac synced. Not verified: real 8a log-loss numbers (needs Colab rerun).
