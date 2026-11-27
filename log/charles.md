@@ -403,3 +403,4 @@ Asked: redo the comparison experiments as a step-by-step argument (1 daily + pre
 ## 2026-11-27 15:55 ET run-saving checklist, beyond AUC
 - Asked: what teammates' new notebooks (on their own Drive, building on 6b/6d) should save; Charles thinks AUC alone is not enough (train/test loss, QQ-plot etc.).
 - Answered: save settings.json (+bundle sha, versions), network_parameters.csv, history.csv (add eval-mode train loss on a fixed subset; current train_loss is a running mean with dropout on), predictions.parquet per row with join keys + label + logit (val and test; ideally raw |r| and stock median), best/last.pt, tables + takeaways; no images. Proposed diagnostics notebook (Step9a): learning curves, log loss/Brier, reliability diagram, QQ of daily AUC differences / raw |r| / logits, AUC by time of day/stock/month. Awaiting go.
+- 2026-11-27 15:55 ET: EC PR #17 merged by Charles.
