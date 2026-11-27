@@ -1,0 +1,10 @@
+- **vol**: best model by horizon 5 min 0.687 (HGB hand + SPY), 60 min 0.677 (HGB hand + SPY).
+- pretrained vs random encoder, linear probe (DINOv2-S linear probe − random ViT-S linear probe), paired day bootstrap over 2 cells: better in 2, worse in 0, tied in 0; mean AUC difference +0.0408.
+- pretrained vs random encoder, MLP probe (DINOv2-S MLP probe − random ViT-S MLP probe), paired day bootstrap over 2 cells: better in 2, worse in 0, tied in 0; mean AUC difference +0.0361.
+- MLP probe vs linear probe (DINOv2-S MLP probe − DINOv2-S linear probe), paired day bootstrap over 2 cells: better in 2, worse in 0, tied in 0; mean AUC difference +0.0036.
+- frozen linear probe vs image CNN from scratch (DINOv2-S linear probe − image CNN (scratch)), paired day bootstrap over 2 cells: better in 0, worse in 2, tied in 0; mean AUC difference -0.0095.
+- frozen MLP probe vs image CNN from scratch (DINOv2-S MLP probe − image CNN (scratch)), paired day bootstrap over 2 cells: better in 0, worse in 2, tied in 0; mean AUC difference -0.0058.
+- frozen MLP probe + SPY vs image CNN + SPY panel (DINOv2-S + SPY MLP probe − image CNN + SPY panel (scratch)), paired day bootstrap over 2 cells: better in 0, worse in 2, tied in 0; mean AUC difference -0.0060.
+- frozen MLP probe + SPY vs HGB hand + SPY (DINOv2-S + SPY MLP probe − HGB hand + SPY), paired day bootstrap over 2 cells: better in 0, worse in 2, tied in 0; mean AUC difference -0.0337.
+- with SPY features vs without (MLP probe) (DINOv2-S + SPY MLP probe − DINOv2-S MLP probe), paired day bootstrap over 2 cells: better in 0, worse in 0, tied in 2; mean AUC difference +0.0008.
+- CLIP vs DINOv2 (MLP probe) (CLIP-B/16 MLP probe − DINOv2-S MLP probe), paired day bootstrap over 2 cells: better in 1, worse in 0, tied in 1; mean AUC difference +0.0010.

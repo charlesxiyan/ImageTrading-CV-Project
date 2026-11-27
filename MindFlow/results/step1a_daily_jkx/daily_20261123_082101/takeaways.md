@@ -1,0 +1,26 @@
+**validation**
+- dir I20/R5, JKX CNN (ensemble): AUC 0.499 [0.462, 0.532] (not different from 0.5); long-short -1.2 bps per 5 d (t -0.07, Sharpe -0.07).
+- dir I20/R5, HGB hand features: AUC 0.515 [0.483, 0.549] (not different from 0.5); long-short +13.7 bps per 5 d (t +0.73, Sharpe +0.75).
+- dir I5/R5, JKX CNN (ensemble): AUC 0.524 [0.494, 0.559] (not different from 0.5); long-short +27.6 bps per 5 d (t +1.53, Sharpe +1.57).
+- dir I5/R5, HGB hand features: AUC 0.515 [0.487, 0.541] (not different from 0.5); long-short +16.0 bps per 5 d (t +0.75, Sharpe +0.77).
+- dir I20/R20, JKX CNN (ensemble): AUC 0.505 [0.461, 0.551] (not different from 0.5); long-short +29.9 bps per 20 d (t +0.41, Sharpe +0.46).
+- dir I20/R20, HGB hand features: AUC 0.475 [0.425, 0.524] (not different from 0.5); long-short +9.9 bps per 20 d (t +0.06, Sharpe +0.07).
+- xsdir I20/R5, JKX CNN (ensemble): AUC 0.498 [0.488, 0.507] (not different from 0.5); long-short -2.5 bps per 5 d (t -0.20, Sharpe -0.20).
+- xsdir I20/R5, HGB hand features: AUC 0.500 [0.487, 0.514] (not different from 0.5); long-short -5.6 bps per 5 d (t -0.28, Sharpe -0.29).
+- xsdir I5/R5, JKX CNN (ensemble): AUC 0.497 [0.487, 0.508] (not different from 0.5); long-short -3.6 bps per 5 d (t -0.30, Sharpe -0.31).
+- xsdir I5/R5, HGB hand features: AUC 0.500 [0.488, 0.513] (not different from 0.5); long-short -30.9 bps per 5 d (t -1.33, Sharpe -1.37).
+- xsdir I20/R20, JKX CNN (ensemble): AUC 0.490 [0.474, 0.506] (not different from 0.5); long-short +9.8 bps per 20 d (t +0.18, Sharpe +0.21).
+- xsdir I20/R20, HGB hand features: AUC 0.498 [0.477, 0.519] (not different from 0.5); long-short -3.3 bps per 20 d (t -0.04, Sharpe -0.04).
+**test**
+- dir I20/R5, JKX CNN (ensemble): AUC 0.482 [0.462, 0.502] (not different from 0.5); long-short -17.8 bps per 5 d (t -1.24, Sharpe -0.90).
+- dir I20/R5, HGB hand features: AUC 0.496 [0.466, 0.519] (not different from 0.5); long-short +23.1 bps per 5 d (t +1.40, Sharpe +1.02).
+- dir I5/R5, JKX CNN (ensemble): AUC 0.502 [0.484, 0.521] (not different from 0.5); long-short -4.9 bps per 5 d (t -0.37, Sharpe -0.27).
+- dir I5/R5, HGB hand features: AUC 0.493 [0.471, 0.517] (not different from 0.5); long-short +11.1 bps per 5 d (t +0.79, Sharpe +0.58).
+- dir I20/R20, JKX CNN (ensemble): AUC 0.484 [0.463, 0.507] (not different from 0.5); long-short +4.0 bps per 20 d (t +0.06, Sharpe +0.04).
+- dir I20/R20, HGB hand features: AUC 0.472 [0.430, 0.509] (not different from 0.5); long-short +98.3 bps per 20 d (t +1.17, Sharpe +0.90).
+- xsdir I20/R5, JKX CNN (ensemble): AUC 0.495 [0.489, 0.501] (not different from 0.5); long-short -16.1 bps per 5 d (t -1.48, Sharpe -1.08).
+- xsdir I20/R5, HGB hand features: AUC 0.503 [0.495, 0.514] (not different from 0.5); long-short +15.6 bps per 5 d (t +0.98, Sharpe +0.72).
+- xsdir I5/R5, JKX CNN (ensemble): AUC 0.502 [0.494, 0.509] (not different from 0.5); long-short +5.5 bps per 5 d (t +0.55, Sharpe +0.40).
+- xsdir I5/R5, HGB hand features: AUC 0.505 [0.495, 0.514] (not different from 0.5); long-short +33.4 bps per 5 d (t +2.22, Sharpe +1.62).
+- xsdir I20/R20, JKX CNN (ensemble): AUC 0.496 [0.476, 0.512] (not different from 0.5); long-short +4.3 bps per 20 d (t +0.08, Sharpe +0.06).
+- xsdir I20/R20, HGB hand features: AUC 0.504 [0.489, 0.522] (not different from 0.5); long-short +32.6 bps per 20 d (t +0.73, Sharpe +0.57).

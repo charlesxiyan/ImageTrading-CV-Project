@@ -1,0 +1,8 @@
+{
+  "final": "ewsd_tab_rv",
+  "label": "CNN, chart + EWSD + 38 numbers + multi-day RV",
+  "chosen_on": "validation 2023",
+  "cell": "vol_h1",
+  "run": "final_20261125_222625",
+  "step4a": "indicator_20261123_200955"
+}

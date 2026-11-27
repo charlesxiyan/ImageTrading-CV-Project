@@ -111,8 +111,9 @@ def apply_adjustments(bars,factors):
     missing=result.price_adjustment_multiplier.isna()
     if (missing&original[PRICE_COLUMNS].notna().any(axis=1)).any():
         raise ValueError('Observed prices without exact-day factors')
-    if (result.volume_adjustment_multiplier.isna()&original.volume.ne(0)).any():
-        raise ValueError('Nonzero volume without a share factor')
+    # A row without a factor has no CRSP daily record: the PERMNO has been delisted (e.g. a completed merger)
+    # while the index still lists it. Policy v4 can leave such a bar with TRF odd-lot volume and no price.
+    # The series has ended, so its volume is set to zero below; volume_raw keeps the shares.
     for col in PRICE_COLUMNS:
         result[col+'_raw']=original[col]
         result[col]=original[col]*result.price_adjustment_multiplier
@@ -123,8 +124,8 @@ def apply_adjustments(bars,factors):
             raise ValueError('Nonpositive/nonfinite adjusted price')
     result['volume_raw']=original.volume
     result['volume']=original.volume.astype(float)*result.volume_adjustment_multiplier
-    # Wholly empty rows without factors remain genuinely zero-volume intervals.
-    result.loc[missing&original.volume.eq(0),'volume']=0.
+    # Rows without factors carry no price, so they count as empty intervals with zero adjusted volume.
+    result.loc[missing,'volume']=0.
     for col in original.columns.difference(PRICE_COLUMNS+['volume']):
         pd.testing.assert_series_equal(original[col].reset_index(drop=True),result[col].reset_index(drop=True),check_names=False)
     good=result.status.eq('observed')
@@ -160,7 +161,7 @@ def run(raw_root,inputs,output):
         'treatment_counts':audit.treatment.value_counts().to_dict(),'cash_exdate_groups':len(cash),
         'cash_affected_permnos':int(cash.permno.nunique()) if len(cash) else 0,
         'days':len(source['completed']),'rows':0,'cash_changed_rows':0,'volume_changed_rows':0,
-        'missing_factor_no_price_rows':0,'completed':{}}
+        'missing_factor_no_price_rows':0,'missing_factor_volume_dropped_rows':0,'completed':{}}
     for day,item in sorted(source['completed'].items()):
         path=raw_root/item['file']
         if sha256(path)!=item['sha256']:
@@ -170,6 +171,8 @@ def run(raw_root,inputs,output):
         report['cash_changed_rows']+=int((adjusted.cash_dividend_multiplier.lt(1-1e-12)&adjusted.close.notna()).sum())
         report['volume_changed_rows']+=int((~np.isclose(adjusted.volume,adjusted.volume_raw)).sum())
         report['missing_factor_no_price_rows']+=int(adjusted.adjustment_status.eq('missing_factor_no_price').sum())
+        report['missing_factor_volume_dropped_rows']+=int((adjusted.adjustment_status.eq('missing_factor_no_price')
+                                                           &adjusted.volume_raw.ne(0)).sum())
     output.mkdir(parents=True)
     bars_dir=output/'bars_5min'
     bars_dir.mkdir()

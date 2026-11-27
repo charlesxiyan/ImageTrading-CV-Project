@@ -1,0 +1,57 @@
+{
+  "settings": {
+    "train_stride": 5,
+    "min_bars": 60,
+    "seeds": 5,
+    "learning_rate": 1e-05,
+    "batch_size": 128,
+    "max_epochs": 30,
+    "patience": 2,
+    "min_delta": 0.0,
+    "dropout": 0.5,
+    "holdout_share": 0.3,
+    "max_train": null,
+    "seed": 69
+  },
+  "cells": [
+    {
+      "name": "dir_I5R5",
+      "image_days": 5,
+      "horizon": 5,
+      "target": "dir"
+    },
+    {
+      "name": "xsdir_I5R5",
+      "image_days": 5,
+      "horizon": 5,
+      "target": "xsdir"
+    },
+    {
+      "name": "dir_I20R5",
+      "image_days": 20,
+      "horizon": 5,
+      "target": "dir"
+    },
+    {
+      "name": "xsdir_I20R5",
+      "image_days": 20,
+      "horizon": 5,
+      "target": "xsdir"
+    },
+    {
+      "name": "dir_I20R20",
+      "image_days": 20,
+      "horizon": 20,
+      "target": "dir"
+    },
+    {
+      "name": "xsdir_I20R20",
+      "image_days": 20,
+      "horizon": 20,
+      "target": "xsdir"
+    }
+  ],
+  "quick": false,
+  "run_test": true,
+  "daily_jkx": "2026-11-19.1"
+}

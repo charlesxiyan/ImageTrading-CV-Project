@@ -1,0 +1,9 @@
+check,a,b,cell,diff,low,high,verdict
+"distillation, small CNN","small CNN 16-32-64, distilled","small CNN 16-32-64, labels",vol_h1,0.0009916651861465071,0.0002858840084759812,0.0017003061697519657,better
+"distillation, small CNN on the half-height chart","small CNN, half-height chart, distilled","small CNN, half-height chart, labels",vol_h1,0.0010431514235412264,0.00034992392037941356,0.0017729519613045221,better
+"distillation, 43-number MLP (vs the 6b MLP trained on labels)","43-number MLP, distilled (no image)","43-number MLP, labels (6b)",vol_h1,0.0008144560012940716,0.00021373666370715083,0.001410422191380456,better
+distilled small CNN vs the teacher,"small CNN 16-32-64, distilled",teacher: final CNN (6b),vol_h1,0.00032429090693820013,-0.00017442692113092405,0.0007953700016466524,tied
+distilled half-height CNN vs the teacher,"small CNN, half-height chart, distilled",teacher: final CNN (6b),vol_h1,0.00043758619442292276,-7.615182830430776e-05,0.0009339363292198089,tied
+distilled MLP vs the teacher,"43-number MLP, distilled (no image)",teacher: final CNN (6b),vol_h1,0.0005337551556999671,-0.00041416599843170643,0.0015520836995409654,tied
+distilled small CNN vs HGB 43,"small CNN 16-32-64, distilled",HGB 43 (6b),vol_h1,-0.0009360120478421437,-0.0019827063990862205,0.0003636325562333203,tied
+half-height chart vs full chart (both distilled),"small CNN, half-height chart, distilled","small CNN 16-32-64, distilled",vol_h1,0.00011329528748472262,-3.6844605798447276e-05,0.00027618859095108464,tied

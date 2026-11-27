@@ -1,0 +1,82 @@
+step,model,parameters,note,cells
+1a,cnn,708866, varies by cell (max shown; HGB tree nodes),6
+1a,hgb,18300,,6
+1b,clip_b16_linear,1537,trainable probe head; encoder frozen,6
+1b,clip_b16_mlp,787457,trainable probe head; encoder frozen,6
+1b,dinov2_s_linear,769,trainable probe head; encoder frozen,6
+1b,dinov2_s_mlp,394241,trainable probe head; encoder frozen,6
+1b,dinov2_s_random_linear,769,trainable probe head; encoder frozen,6
+1b,dinov2_s_random_mlp,394241,trainable probe head; encoder frozen,6
+1b,frozen_clip_b16,85799424,,1
+1b,frozen_dinov2_s,22056576,,1
+1b,frozen_dinov2_s_random,22056576,,1
+1b,tsfm_chronos2,119477664,,1
+1b,tsfm_kronos,28699418,,1
+1b,tsfm_moirai2,11387208,,1
+1b,tsfm_randomwalk,0,,1
+1b,tsfm_timesfm,231289280,,1
+2a,hgb_hand_features,18300, varies by cell (max shown; HGB tree nodes),4
+2a,hgb_hand_spy,18300,,4
+2a,plain,776450,,4
+2a,plain_spy,936194,,4
+2a,residual,2047362,,4
+2a,series1d,720770,,4
+2a,series1d_spy,723970,,4
+2a,vit,864322,,4
+2a,vit_spy,880546,,4
+2b,clip_b16_linear,1537,trainable probe head; encoder frozen,4
+2b,clip_b16_mlp,787457,trainable probe head; encoder frozen,4
+2b,clip_b16_spy_linear,3073,trainable probe head; encoder frozen,4
+2b,clip_b16_spy_mlp,1573889,trainable probe head; encoder frozen,4
+2b,dinov2_s_linear,769,trainable probe head; encoder frozen,4
+2b,dinov2_s_mlp,394241,trainable probe head; encoder frozen,4
+2b,dinov2_s_random_linear,769,trainable probe head; encoder frozen,4
+2b,dinov2_s_random_mlp,394241,trainable probe head; encoder frozen,4
+2b,dinov2_s_random_spy_linear,1537,trainable probe head; encoder frozen,4
+2b,dinov2_s_random_spy_mlp,787457,trainable probe head; encoder frozen,4
+2b,dinov2_s_spy_linear,1537,trainable probe head; encoder frozen,4
+2b,dinov2_s_spy_mlp,787457,trainable probe head; encoder frozen,4
+2b,frozen_clip_b16,85799424,,1
+2b,frozen_dinov2_s,22056576,,1
+2b,frozen_dinov2_s_random,22056576,,1
+2b,tsfm_chronos2,119477664,,1
+2b,tsfm_kronos,28699418,,1
+2b,tsfm_moirai2,11387208,,1
+2b,tsfm_randomwalk,0,,1
+2b,tsfm_timesfm,231289280,,1
+3a,hgb_hand_features,18300, varies by cell (max shown; HGB tree nodes),2
+3a,hgb_hand_spy,18300,,2
+3a,plain,776450,,2
+3a,plain_spy,936194,,2
+3a,residual,2047362,,2
+3a,series1d,720770,,2
+3a,series1d_spy,723970,,2
+3a,vit,864322,,2
+3a,vit_spy,880546,,2
+3b,clip_b16_linear,1537,trainable probe head; encoder frozen,2
+3b,clip_b16_mlp,787457,trainable probe head; encoder frozen,2
+3b,clip_b16_spy_linear,3073,trainable probe head; encoder frozen,2
+3b,clip_b16_spy_mlp,1573889,trainable probe head; encoder frozen,2
+3b,dinov2_s_linear,769,trainable probe head; encoder frozen,2
+3b,dinov2_s_mlp,394241,trainable probe head; encoder frozen,2
+3b,dinov2_s_random_linear,769,trainable probe head; encoder frozen,2
+3b,dinov2_s_random_mlp,394241,trainable probe head; encoder frozen,2
+3b,dinov2_s_random_spy_linear,1537,trainable probe head; encoder frozen,2
+3b,dinov2_s_random_spy_mlp,787457,trainable probe head; encoder frozen,2
+3b,dinov2_s_spy_linear,1537,trainable probe head; encoder frozen,2
+3b,dinov2_s_spy_mlp,787457,trainable probe head; encoder frozen,2
+3b,frozen_clip_b16,85799424,,1
+3b,frozen_dinov2_s,22056576,,1
+3b,frozen_dinov2_s_random,22056576,,1
+3b,tsfm_chronos2,119477664,,1
+3b,tsfm_kronos,28699418,,1
+3b,tsfm_moirai2,11387208,,1
+3b,tsfm_randomwalk,0,,1
+3b,tsfm_timesfm,231289280,,1
+4a,ewsd,776450,,2
+4a,ma,776450,,2
+4a,ma_ewsd,776450,,2
+4a,ma_ewsd_tab,783236,,2
+4a,plain,776450,,2
+4a,plain_tab,783236,,2
+4a,tab_only,6786,,2

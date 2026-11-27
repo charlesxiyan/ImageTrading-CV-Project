@@ -1,0 +1,62 @@
+{
+  "settings": {
+    "learning_rate": 1e-05,
+    "weight_decay": 0.0,
+    "batch_size": 128,
+    "eval_batch_size": 256,
+    "epochs": 8,
+    "patience": 2,
+    "min_delta": 1e-05,
+    "channels": [
+      64,
+      128,
+      256
+    ],
+    "head_height": 4,
+    "dropout": 0.5,
+    "vit_learning_rate": 0.0003,
+    "vit_weight_decay": 0.05,
+    "vit_warmup_steps": 1000,
+    "vit_grad_clip": 1.0,
+    "vit_pool": "mean",
+    "vit_dim": 96,
+    "vit_depth": 8,
+    "vit_heads": 4,
+    "vit_mlp_ratio": 3.0,
+    "vit_drop_path": 0.1,
+    "vit_dropout": 0.1,
+    "max_train_nn": 300000,
+    "max_train_hgb": 1000000,
+    "early_stop_every_kth_day": 4,
+    "amp": true,
+    "num_workers": 8,
+    "seed": 69
+  },
+  "cells": [
+    {
+      "name": "vol_h1",
+      "kind": "vol",
+      "target": "vol",
+      "horizon": 1,
+      "minutes": 5,
+      "stride": 12
+    }
+  ],
+  "archs": [
+    "plain",
+    "plain_spy",
+    "residual",
+    "series1d",
+    "series1d_spy",
+    "vit",
+    "vit_spy",
+    "plain_spy_vixy",
+    "vit_spy_vixy"
+  ],
+  "retrain": [
+    "plain_spy_vixy",
+    "vit_spy_vixy"
+  ],
+  "quick": false,
+  "chartcnn": "2026-11-24.1"
+}

@@ -1,0 +1,10 @@
+arch,model,input,parameters
+plain,image CNN,"(1, 234, 234)",776450
+plain_spy,image CNN + SPY panel,"(1, 468, 234)",936194
+residual,residual image CNN,"(1, 234, 234)",2047362
+series1d,1D CNN,"(5, 78)",720770
+series1d_spy,1D CNN + SPY,"(10, 78)",723970
+vit,image ViT (T2T-style),"(1, 234, 234)",864322
+vit_spy,image ViT + SPY panel,"(1, 468, 234)",880546
+plain_spy_vixy,image CNN + SPY + VIXY panels,"(1, 702, 234)",1095938
+vit_spy_vixy,image ViT + SPY + VIXY panels,"(1, 702, 234)",896770

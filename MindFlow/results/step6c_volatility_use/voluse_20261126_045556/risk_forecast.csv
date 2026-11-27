@@ -1,0 +1,21 @@
+model,spearman_pred_risk_vs_abs_book_return,times,cell,split
+final CNN (ewsd_tab_rv),0.4218904277479252,1560,vol_h1,validation 2023
+HGB 43 (38 + multi-day RV),0.4175960188371846,1560,vol_h1,validation 2023
+HGB 38,0.4091862678722715,1560,vol_h1,validation 2023
+Step 4a CNN (38 numbers),0.4068402236927536,1560,vol_h1,validation 2023
+no forecast (training median |r|),0.1601877394153061,1560,vol_h1,validation 2023
+final CNN (ewsd_tab_rv),0.44758509612629277,3132,vol_h1,test 2024-25
+HGB 43 (38 + multi-day RV),0.4453314936228749,3132,vol_h1,test 2024-25
+HGB 38,0.4473348687472821,3132,vol_h1,test 2024-25
+Step 4a CNN (38 numbers),0.44877539035836517,3132,vol_h1,test 2024-25
+no forecast (training median |r|),-0.017025247633824268,3132,vol_h1,test 2024-25
+final CNN (ewsd_tab_rv),0.4467159283640422,1559,vol_h12,validation 2023
+HGB 43 (38 + multi-day RV),0.4494648623165719,1559,vol_h12,validation 2023
+HGB 38,0.4474029916278783,1559,vol_h12,validation 2023
+Step 4a CNN (38 numbers),0.4495773338637786,1559,vol_h12,validation 2023
+no forecast (training median |r|),0.15304467071322045,1559,vol_h12,validation 2023
+final CNN (ewsd_tab_rv),0.4287890782868289,3129,vol_h12,test 2024-25
+HGB 43 (38 + multi-day RV),0.4235687852735297,3129,vol_h12,test 2024-25
+HGB 38,0.42606976123845014,3129,vol_h12,test 2024-25
+Step 4a CNN (38 numbers),0.42822775832332904,3129,vol_h12,test 2024-25
+no forecast (training median |r|),-0.0016681087562354883,3129,vol_h12,test 2024-25

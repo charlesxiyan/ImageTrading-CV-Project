@@ -1,0 +1,12 @@
+- **vol (volatility)**: best AUC by horizon 5 min 0.689 [0.681, 0.697] (HGB hand + SPY). 95% CI above 0.5 at 5 min.
+- image CNN − 1D CNN AUC (paired day bootstrap) across 1 cells: better in 0, worse in 0, tied in 1.
+- image CNN − HGB AUC (paired day bootstrap) across 1 cells: better in 0, worse in 1, tied in 0.
+- HGB with SPY − HGB without AUC (paired day bootstrap) across 1 cells: better in 1, worse in 0, tied in 0.
+- image CNN with SPY panel − without AUC (paired day bootstrap) across 1 cells: better in 0, worse in 0, tied in 1.
+- 1D CNN with SPY − without AUC (paired day bootstrap) across 1 cells: better in 0, worse in 0, tied in 1.
+- image ViT − image CNN AUC (paired day bootstrap) across 1 cells: better in 1, worse in 0, tied in 0.
+- residual image CNN − plain image CNN AUC (paired day bootstrap) across 1 cells: better in 0, worse in 1, tied in 0.
+- image ViT with SPY panel − without AUC (paired day bootstrap) across 1 cells: better in 0, worse in 0, tied in 1.
+- image CNN + SPY with VIXY panel − without AUC (paired day bootstrap) across 1 cells: better in 0, worse in 0, tied in 1.
+- image ViT + SPY with VIXY panel − without AUC (paired day bootstrap) across 1 cells: better in 0, worse in 0, tied in 1.
+- image CNN + SPY + VIXY − HGB hand + SPY AUC (paired day bootstrap) across 1 cells: better in 0, worse in 1, tied in 0.

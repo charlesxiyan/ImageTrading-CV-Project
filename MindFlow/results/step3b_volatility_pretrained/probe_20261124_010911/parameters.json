@@ -1,0 +1,10 @@
+{
+  "frozen_dinov2_s": 22056576,
+  "frozen_dinov2_s_random": 22056576,
+  "frozen_clip_b16": 85799424,
+  "tsfm_randomwalk": 0,
+  "tsfm_chronos2": 119477664,
+  "tsfm_timesfm": 231289280,
+  "tsfm_moirai2": 11387208,
+  "tsfm_kronos": 28699418
+}
