@@ -367,3 +367,10 @@ Asked: redo the comparison experiments as a step-by-step argument (1 daily + pre
 - Asked: distill the pure-image line first (for tomorrow's advisor meeting), and a 6e notebook for the 60-min pure-image run after distillation.
 - Did: EC a9a65d2 on mindflow/final-and-efficiency: code/pure_distill.py + Step7b_plus_Pure_Image_Distillation (teacher 6d pure_all; students small 16-32-64 hard/kd 78,914 params, half-height hard/kd, tiny 8-16-32 kd 29,858; alpha 0.7 T 1; speed/size frontier; test section). Step6e_Pure_Image_60min = 6d cells with HORIZONS [12], VARIANTS [pure_all]. Step keys "6e", "7b+". Smoke OK. Uploaded pure_distill.py, mindflow.py (kept teammate's 7c line) and both notebooks to Drive; 6d notebook on Drive left as run.
 - Not verified: no real-data run; time estimate ~1-1.5 h on A100 is a guess.
+
+## 2026-11-27 05:20Z — weight analysis of the 6d pure-image CNN (weights only, no data)
+- Asked: what did the model learn; look at weight distributions.
+- Did: reconstructed init (seed 69) for 6d pure_all / pure_key, compared W with W0; figures kept in the project files (weights/), script figs.py there too. Not in git.
+- Found: conv layers moved only ~5% from init (5.1/4.7/5.7% pure_all), BN gamma 0.993-1.007 (lr 1e-5, best epoch 2-3), so raw histograms look like init. Layer-1 dW concentrates on the LEFT column of each 3-px bar (open tick + session-open marker line): |dW| ~2x the other columns, 61-64% of channels positive. Head |w| near uniform over 4 vertical bins (22-27%) and channels; recent 5-8 bars weighted 1.37x (all) / 1.64x (key) of mean; left-edge peak is mostly zero-padding.
+- Not verified: weight size is not importance. Needs data: strip/marker occlusion, channel ablation, Grad-CAM (not written yet).
+- 7b+ running on Charles's L4 since ~00:17 ET; self check-in scheduled 08:30 ET to read results and prep advisor summary (meeting 13:30 ET).
