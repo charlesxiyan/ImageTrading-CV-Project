@@ -374,3 +374,9 @@ Asked: redo the comparison experiments as a step-by-step argument (1 daily + pre
 - Found: conv layers moved only ~5% from init (5.1/4.7/5.7% pure_all), BN gamma 0.993-1.007 (lr 1e-5, best epoch 2-3), so raw histograms look like init. Layer-1 dW concentrates on the LEFT column of each 3-px bar (open tick + session-open marker line): |dW| ~2x the other columns, 61-64% of channels positive. Head |w| near uniform over 4 vertical bins (22-27%) and channels; recent 5-8 bars weighted 1.37x (all) / 1.64x (key) of mean; left-edge peak is mostly zero-padding.
 - Not verified: weight size is not importance. Needs data: strip/marker occlusion, channel ablation, Grad-CAM (not written yet).
 - 7b+ running on Charles's L4 since ~00:17 ET; self check-in scheduled 08:30 ET to read results and prep advisor summary (meeting 13:30 ET).
+
+## 2026-11-27 06:10Z — Step 8a notebook (data-based "what the pure-image CNN learned")
+- Asked: go beyond weights (activation size matters); how to analyse what the model learned.
+- Did: EC branch mindflow/final-and-efficiency 6e81eda: code/inside_cnn.py + tools/cells_inside.py -> Step8a_Inside_Pure_CNN (step key "8a" -> step8a_inside_pure_cnn). Fixed 6d models, 20k val-2023 rows (~80/day), no training: region occlusion (mean/black fill), erase (session line, open/high-low/close ticks), 6-bar time blocks, per-number zeroing (pure_all), activation x weight std maps + channel ablation (top-k vs random), Grad-CAM + grad x input region shares, ridge probing of 43 numbers + time of day (GroupKFold by day). Smoke OK (scores match 6d saved scores, corr 1.0). Uploaded to Drive (mindflow.py re-uploaded WITH the 7c line).
+- Not verified: real run; GPU time estimate 20-40 min on L4.
+- 7b+ (puredistill_20261127_051847) running on L4: small_kd ~2.7 min/epoch, es AUC 0.694 at epoch 7.

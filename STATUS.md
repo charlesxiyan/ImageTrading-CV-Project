@@ -89,3 +89,4 @@ The same data is reused for a Big Data course project. Presentation Dec 10, repo
 - 2026-11-27: Step6d pure-image DONE (val 5m): pure_key 0.6866 ties final 0.6881; pure_all 0.6894 = HGB43. Test 2024-25 and 60m not run. Roadmap updated (stage 8). Note: teammate added pruning.py / step 7c on Drive only.
 - 2026-11-27 11:30 PM ET: Step7b_plus_Pure_Image_Distillation and Step6e_Pure_Image_60min on Drive (smoke OK). Charles to run 7b+ first (advisor meeting 11-27), then 6e.
 - 2026-11-27 00:17 ET: 7b+ running on Charles's L4. Weight analysis of 6d done (weights only; data-based occlusion/Grad-CAM not yet written).
+- 2026-11-27 01:10 ET: Step8a_Inside_Pure_CNN on Drive (smoke OK), not run yet; independent of 7b+, needs only 6d/6b runs.
