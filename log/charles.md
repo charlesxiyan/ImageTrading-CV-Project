@@ -347,3 +347,8 @@ Asked: redo the comparison experiments as a step-by-step argument (1 daily + pre
 
 ## 2026-11-26 21:00 ET
 - Step7b DONE on val 2023 (run distill_20261126_232557, ~55 min on GPU, 5m only). AUC: teacher 0.6881, HGB43 0.6894, MLP labels (6b) 0.6878, MLP distilled 0.6887, small CNN labels 0.6875 / distilled 0.6885, half-height labels 0.6875 / distilled 0.6886. Distillation better for all 3 students (+0.0008..+0.0010, significant); distilled students tie teacher; half-height = full. GPU bf16 batch 256: teacher 56 ms, small 12.6 ms (4.5x), half 6.7 ms (8.3x), MLP 0.29 ms (192x). Params 783,556 / 86,020 / 7,106. Test section not run yet.
+
+## 2026-11-27 — Roadmap artifact updated to v4 + steps 6a–7b
+- Asked: update the 心路历程 roadmap page with everything done since 2026-11-20.
+- Did: republished the same artifact (version 6). All numbers now v4 (val 2023, test 2024–25). Stages 3–6 refreshed (ViT collapse noted as fixed training bug, ViT = CNN 0.662; ablation image over features +0.002; feature selection kept 38). Added stage 7 (regime: VIX flat, multi-day RV +0.0025, VIXY no; final CNN 783,556 params val/test vs HGB43/HGB38/MLP43), stage 8 (6c IC/ICIR, long-short negative, vol targeting halves vol-of-vol, max DD 19.1%→10.2%), stage 9 (7b distillation table + speeds; 7a pending teammate with pipeline storage numbers). New "next" cards: 7b test, 7a run, filter analysis/Grad-CAM, cleanup/report.
+- Not verified: page checked only by headless render (no horizontal scroll at 400/1200 px, no JS errors); figures copied from earlier results, not recomputed.
