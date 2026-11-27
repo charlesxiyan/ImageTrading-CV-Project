@@ -1,0 +1,8 @@
+variant,model,total,cnn,feature_mlp
+plain,"CNN, original chart (this run)",776450,776450,0
+ewsd,"CNN, chart + EWSD band",776450,776450,0
+ma_ewsd,"CNN, chart + MA + EWSD",776450,776450,0
+ma_ewsd_tab,"CNN, chart + MA + EWSD + hand/SPY features",783236,776450,6786
+tab_only,"features only (MLP, no image)",6786,0,6786
+plain_tab,"CNN, original chart + hand/SPY features",783236,776450,6786
+ma,"CNN, chart + MA",776450,776450,0

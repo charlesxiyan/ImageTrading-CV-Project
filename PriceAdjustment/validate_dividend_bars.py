@@ -45,10 +45,10 @@ def validate(root):
     cash=pd.read_parquet(root/'cash_dividend_factors.parquet')
     report={'status':'validated_complete','files':len(m['completed']),'rows':rows,
         'missing_close_rows':empty,'cash_exdate_groups':len(cash),
-        'cash_affected_permnos':int(cash.permno.nunique()),
+        'cash_affected_permnos':int(cash.permno.nunique()) if len(cash) else 0,
         'cash_changed_rows':m['cash_changed_rows'],'volume_changed_rows':m['volume_changed_rows'],
         'volume_changed_permnos':sorted(volume_ids),
-        'quoted_previous_closes':int(cash.previous_price_was_quote.sum()),
+        'quoted_previous_closes':int(cash.previous_price_was_quote.sum()) if len(cash) else 0,
         'folder_bytes_before_report':sum(p.stat().st_size for p in root.rglob('*') if p.is_file()),
         'checks':['all output checksums','unchanged raw file checksums','raw field preservation',
                   'all price formulas','share volume formula','unchanged trade counts and identifiers',

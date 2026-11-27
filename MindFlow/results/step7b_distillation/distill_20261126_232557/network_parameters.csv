@@ -1,0 +1,7 @@
+model,label,total,cnn,numbers_mlp,megabytes
+teacher,teacher: final CNN (6b),783556,776450,7106,3.001415252685547
+stu_mlp_kd,"43-number MLP, distilled (no image)",7106,0,7106,0.02974414825439453
+stu_small_kd,"small CNN 16-32-64, distilled",86020,78914,7106,0.3379631042480469
+stu_small_hard,"small CNN 16-32-64, labels",86020,78914,7106,0.3379631042480469
+stu_small_half_kd,"small CNN, half-height chart, distilled",86020,78914,7106,0.3379631042480469
+stu_small_half_hard,"small CNN, half-height chart, labels",86020,78914,7106,0.3379631042480469

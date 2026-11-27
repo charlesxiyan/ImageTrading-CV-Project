@@ -1,0 +1,12 @@
+- **dir (absolute direction)**: best AUC by horizon 5 min 0.516 [0.504, 0.527] (HGB hand + SPY), 60 min 0.508 [0.501, 0.514] (CNN (plain)). 95% CI above 0.5 at 5 min, 60 min.
+- **xsdir (relative direction)**: best AUC by horizon 5 min 0.526 [0.524, 0.529] (HGB hand + SPY), 60 min 0.509 [0.506, 0.512] (HGB hand + SPY). 95% CI above 0.5 at 5 min, 60 min.
+- dir decile long-short (top − bottom, gross, bps per horizon): dir_h12 HGB hand + SPY +1.90 bps (t = 2.49); dir_h1 HGB hand features +1.09 bps (t = 3.29); dir_h1 HGB hand + SPY +2.03 bps (t = 4.49); dir_h1 CNN (plain_spy) +0.64 bps (t = 2.22); dir_h1 CNN (residual) +0.78 bps (t = 3.35); dir_h1 CNN (series1d) +1.02 bps (t = 3.73); dir_h1 CNN (series1d_spy) +0.94 bps (t = 3.43)
+- xsdir decile long-short (top − bottom, gross, bps per horizon): xsdir_h12 CNN (plain) -1.17 bps (t = -2.19); xsdir_h12 CNN (plain_spy) -1.60 bps (t = -2.66); xsdir_h1 HGB hand features +1.96 bps (t = 5.43); xsdir_h1 HGB hand + SPY +1.99 bps (t = 4.35); xsdir_h1 CNN (plain_spy) +0.70 bps (t = 2.69); xsdir_h1 CNN (residual) +0.70 bps (t = 2.65); xsdir_h1 CNN (series1d) +1.51 bps (t = 5.77); xsdir_h1 CNN (series1d_spy) +1.07 bps (t = 3.47)
+- image CNN − 1D CNN AUC (paired day bootstrap) across 4 cells: better in 0, worse in 3, tied in 1.
+- image CNN − HGB AUC (paired day bootstrap) across 4 cells: better in 0, worse in 2, tied in 2.
+- HGB with SPY − HGB without AUC (paired day bootstrap) across 4 cells: better in 1, worse in 0, tied in 3.
+- image CNN with SPY panel − without AUC (paired day bootstrap) across 4 cells: better in 0, worse in 0, tied in 4.
+- 1D CNN with SPY − without AUC (paired day bootstrap) across 4 cells: better in 0, worse in 1, tied in 3.
+- image ViT − image CNN AUC (paired day bootstrap) across 4 cells: better in 0, worse in 2, tied in 2.
+- residual image CNN − plain image CNN AUC (paired day bootstrap) across 4 cells: better in 1, worse in 0, tied in 3.
+- image ViT with SPY panel − without AUC (paired day bootstrap) across 4 cells: better in 1, worse in 0, tied in 3.

@@ -1,0 +1,4 @@
+variant,model,total,cnn,feature_mlp
+ma_ewsd_tab_rv,"CNN, chart + MA + EWSD + 38 numbers + multi-day RV",783556,776450,7106
+tab_only_rv,"features only (MLP, 38 + multi-day RV, no image)",7106,0,7106
+ewsd_tab_rv,"CNN, chart + EWSD + 38 numbers + multi-day RV",783556,776450,7106

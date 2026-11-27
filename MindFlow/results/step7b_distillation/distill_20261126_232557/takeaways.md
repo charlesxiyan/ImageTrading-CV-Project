@@ -1,0 +1,23 @@
+Teacher `ewsd_tab_rv` (Step 6b run final_20261125_222625); alpha 0.7, T 1.0.
+
+- vol_h1 teacher: final CNN (6b): AUC 0.6881 [0.6796, 0.6961], 783,556 parameters
+- vol_h1 HGB 43 (6b): AUC 0.6894 [0.6806, 0.6975]
+- vol_h1 43-number MLP, labels (6b): AUC 0.6878 [0.6792, 0.6962]
+- vol_h1 43-number MLP, distilled (no image): AUC 0.6887 [0.6799, 0.6969], 7,106 parameters
+- vol_h1 small CNN 16-32-64, distilled: AUC 0.6885 [0.6799, 0.6962], 86,020 parameters
+- vol_h1 small CNN 16-32-64, labels: AUC 0.6875 [0.6789, 0.6954], 86,020 parameters
+- vol_h1 small CNN, half-height chart, distilled: AUC 0.6886 [0.6800, 0.6964], 86,020 parameters
+- vol_h1 small CNN, half-height chart, labels: AUC 0.6875 [0.6789, 0.6955], 86,020 parameters
+- vol_h1 distillation, small CNN: +0.0010 [+0.0003, +0.0017] -> better
+- vol_h1 distillation, small CNN on the half-height chart: +0.0010 [+0.0003, +0.0018] -> better
+- vol_h1 distillation, 43-number MLP (vs the 6b MLP trained on labels): +0.0008 [+0.0002, +0.0014] -> better
+- vol_h1 distilled small CNN vs the teacher: +0.0003 [-0.0002, +0.0008] -> tied
+- vol_h1 distilled half-height CNN vs the teacher: +0.0004 [-0.0001, +0.0009] -> tied
+- vol_h1 distilled MLP vs the teacher: +0.0005 [-0.0004, +0.0016] -> tied
+- vol_h1 distilled small CNN vs HGB 43: -0.0009 [-0.0020, +0.0004] -> tied
+- vol_h1 half-height chart vs full chart (both distilled): +0.0001 [-0.0000, +0.0003] -> tied
+- 43-number MLP, distilled (no image): 0.009 of the teacher's parameters, 191.6x faster per batch of 256 on the GPU
+- small CNN 16-32-64, distilled: 0.110 of the teacher's parameters, 4.5x faster per batch of 256 on the GPU
+- small CNN 16-32-64, labels: 0.110 of the teacher's parameters, 4.5x faster per batch of 256 on the GPU
+- small CNN, half-height chart, distilled: 0.110 of the teacher's parameters, 8.3x faster per batch of 256 on the GPU
+- small CNN, half-height chart, labels: 0.110 of the teacher's parameters, 8.3x faster per batch of 256 on the GPU

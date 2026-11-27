@@ -1,0 +1,28 @@
+**Final model: `ewsd_tab_rv`** = CNN, chart + EWSD + 38 numbers + multi-day RV (783,556 parameters)
+
+- vol_h1 CNN, chart + EWSD + 38 numbers + multi-day RV: AUC 0.6881 [0.6796, 0.6961]
+- vol_h1 HGB 38 + multi-day RV (same rows): AUC 0.6894 [0.6806, 0.6975]
+- vol_h1 HGB 38 hand + SPY (same rows): AUC 0.6863 [0.6773, 0.6948]
+- vol_h1 Step 4a CNN, chart + MA + EWSD + 38 numbers: AUC 0.6848 [0.6761, 0.6930]
+- vol_h1 features only (MLP, 38 + multi-day RV, no image): AUC 0.6878 [0.6792, 0.6962]
+- vol_h12 CNN, chart + EWSD + 38 numbers + multi-day RV: AUC 0.6760 [0.6691, 0.6825]
+- vol_h12 HGB 38 + multi-day RV (same rows): AUC 0.6780 [0.6711, 0.6842]
+- vol_h12 HGB 38 hand + SPY (same rows): AUC 0.6760 [0.6693, 0.6821]
+- vol_h12 Step 4a CNN, chart + MA + EWSD + 38 numbers: AUC 0.6748 [0.6681, 0.6809]
+- vol_h12 features only (MLP, 38 + multi-day RV, no image): AUC 0.6739 [0.6670, 0.6804]
+- vol_h1 multi-day RV added to the Step 4a hybrid CNN: +0.0026 [+0.0017, +0.0035] -> better
+- vol_h12 multi-day RV added to the Step 4a hybrid CNN: +0.0010 [-0.0001, +0.0020] -> tied
+- vol_h1 dropping the MA line: +0.0008 [-0.0002, +0.0017] -> tied
+- vol_h12 dropping the MA line: +0.0002 [-0.0001, +0.0005] -> tied
+- vol_h1 multi-day RV added to HGB (same rows): +0.0031 [+0.0020, +0.0044] -> better
+- vol_h12 multi-day RV added to HGB (same rows): +0.0021 [+0.0007, +0.0035] -> better
+- vol_h1 final CNN (with MA) vs HGB with the same 43 numbers: -0.0020 [-0.0031, -0.0008] -> worse
+- vol_h12 final CNN (with MA) vs HGB with the same 43 numbers: -0.0022 [-0.0039, -0.0007] -> worse
+- vol_h1 final CNN (no MA) vs HGB with the same 43 numbers: -0.0013 [-0.0026, +0.0001] -> tied
+- vol_h12 final CNN (no MA) vs HGB with the same 43 numbers: -0.0020 [-0.0036, -0.0006] -> worse
+- vol_h1 image validity: chart + numbers vs the numbers alone (with MA): -0.0005 [-0.0015, +0.0004] -> tied
+- vol_h12 image validity: chart + numbers vs the numbers alone (with MA): +0.0019 [-0.0002, +0.0040] -> tied
+- vol_h1 image validity: chart + numbers vs the numbers alone (no MA): +0.0003 [-0.0009, +0.0014] -> tied
+- vol_h12 image validity: chart + numbers vs the numbers alone (no MA): +0.0020 [+0.0000, +0.0042] -> better
+- vol_h1 features-only MLP vs HGB on the same 43 numbers: -0.0015 [-0.0027, -0.0002] -> worse
+- vol_h12 features-only MLP vs HGB on the same 43 numbers: -0.0041 [-0.0060, -0.0017] -> worse

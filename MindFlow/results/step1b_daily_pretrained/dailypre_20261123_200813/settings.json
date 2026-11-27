@@ -1,0 +1,84 @@
+{
+  "settings": {
+    "train_stride": 5,
+    "min_bars": 60,
+    "holdout_share": 0.3,
+    "max_train": null,
+    "seed": 69,
+    "probe_lr": 0.001,
+    "probe_batch": 4096,
+    "probe_epochs": 30,
+    "probe_patience": 3,
+    "linear_l2_grid": [
+      1e-05,
+      0.0001,
+      0.001
+    ],
+    "mlp_hidden": 512,
+    "mlp_dropout": 0.2,
+    "mlp_weight_decay_grid": [
+      0.01,
+      0.1
+    ],
+    "encode_batch": 512,
+    "amp": true,
+    "tsfm_context": 60,
+    "tsfm_max_rows": null
+  },
+  "cells": [
+    {
+      "name": "dir_I5R5",
+      "image_days": 5,
+      "horizon": 5,
+      "target": "dir"
+    },
+    {
+      "name": "xsdir_I5R5",
+      "image_days": 5,
+      "horizon": 5,
+      "target": "xsdir"
+    },
+    {
+      "name": "dir_I20R5",
+      "image_days": 20,
+      "horizon": 5,
+      "target": "dir"
+    },
+    {
+      "name": "xsdir_I20R5",
+      "image_days": 20,
+      "horizon": 5,
+      "target": "xsdir"
+    },
+    {
+      "name": "dir_I20R20",
+      "image_days": 20,
+      "horizon": 20,
+      "target": "dir"
+    },
+    {
+      "name": "xsdir_I20R20",
+      "image_days": 20,
+      "horizon": 20,
+      "target": "xsdir"
+    }
+  ],
+  "encoders": [
+    "dinov2_s",
+    "dinov2_s_random",
+    "clip_b16"
+  ],
+  "probes": [
+    "linear",
+    "mlp"
+  ],
+  "tsfm": [
+    "randomwalk",
+    "chronos2",
+    "timesfm",
+    "moirai2",
+    "kronos"
+  ],
+  "step1a": "MindFlow/runs/step1a_daily_jkx/daily_20261123_082101",
+  "quick": false
+}

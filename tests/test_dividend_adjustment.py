@@ -80,6 +80,18 @@ class DividendTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError,'exact-day'):
             apply_adjustments(bar('2023-01-06'),f)
 
+    def test_delisted_unpriced_volume_is_zeroed_and_kept_raw(self):
+        # After delisting the index can still list the PERMNO; a bar with TRF odd-lot volume
+        # and no price has no CRSP factor. Its adjusted volume is zero, the raw shares are kept.
+        f,e,r=inputs();f,a,audit,cash=prepare_adjustments(f,e,r)
+        b=bar('2023-01-06');b.loc[0,['open','high','low','close','vwap']]=np.nan
+        b.loc[0,'status']='no_priced_trades';b.loc[0,['volume','trade_count']]=[37,2]
+        adjusted=apply_adjustments(b,f)
+        self.assertTrue(adjusted.close.isna().all())
+        self.assertEqual(adjusted.volume.iloc[0],0.)
+        self.assertEqual(adjusted.volume_raw.iloc[0],37)
+        self.assertEqual(adjusted.adjustment_status.iloc[0],'missing_factor_no_price')
+
     def test_reference_vintage_mismatch_and_double_adjustment_fail(self):
         f,e,r=inputs();bad=r.copy();bad.loc[0,'cfacpr']=3.
         with self.assertRaisesRegex(ValueError,'vintage'):

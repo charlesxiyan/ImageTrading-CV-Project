@@ -1,0 +1,4 @@
+step,added,group,auc,gap_to_full
+1,time_of_day,stock volume and time,0.6199546495471276,0.033220911700576394
+2,mean_abs_r12,stock volatility,0.6498098714383118,0.003365689809392225
+3,spy_mean_abs_r12,SPY,0.6546469211339987,-0.0014713598862946542

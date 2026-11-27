@@ -1,0 +1,17 @@
+check,a,b,cell,diff,low,high,verdict
+multi-day RV added to the Step 4a hybrid CNN,"CNN, chart + MA + EWSD + 38 numbers + multi-day RV","Step 4a CNN, chart + MA + EWSD + 38 numbers",vol_h1,0.0025974262208795333,0.0017446925477938191,0.0035464277535710294,better
+multi-day RV added to the Step 4a hybrid CNN,"CNN, chart + MA + EWSD + 38 numbers + multi-day RV","Step 4a CNN, chart + MA + EWSD + 38 numbers",vol_h12,0.0010169528824026455,-5.275543341475563e-05,0.0020393773649579968,tied
+dropping the MA line,"CNN, chart + EWSD + 38 numbers + multi-day RV","CNN, chart + MA + EWSD + 38 numbers + multi-day RV",vol_h1,0.0007751145691705304,-0.00017622211830294607,0.0016820398020542273,tied
+dropping the MA line,"CNN, chart + EWSD + 38 numbers + multi-day RV","CNN, chart + MA + EWSD + 38 numbers + multi-day RV",vol_h12,0.00019496459873430256,-0.00012141349944569946,0.0004972627722542893,tied
+multi-day RV added to HGB (same rows),HGB 38 + multi-day RV (same rows),HGB 38 hand + SPY (same rows),vol_h1,0.0031358207678679304,0.0020323497603279505,0.004357304671161212,better
+multi-day RV added to HGB (same rows),HGB 38 + multi-day RV (same rows),HGB 38 hand + SPY (same rows),vol_h12,0.002118362857108557,0.0006514867661079809,0.003479339108665474,better
+final CNN (with MA) vs HGB with the same 43 numbers,"CNN, chart + MA + EWSD + 38 numbers + multi-day RV",HGB 38 + multi-day RV (same rows),vol_h1,-0.0020354175239508743,-0.0030563448798321875,-0.0007702678612054126,worse
+final CNN (with MA) vs HGB with the same 43 numbers,"CNN, chart + MA + EWSD + 38 numbers + multi-day RV",HGB 38 + multi-day RV (same rows),vol_h12,-0.002244283923977832,-0.003906391770745418,-0.0006818551310726718,worse
+final CNN (no MA) vs HGB with the same 43 numbers,"CNN, chart + EWSD + 38 numbers + multi-day RV",HGB 38 + multi-day RV (same rows),vol_h1,-0.0012603029547803438,-0.0025526237338168918,0.00013784374107718685,tied
+final CNN (no MA) vs HGB with the same 43 numbers,"CNN, chart + EWSD + 38 numbers + multi-day RV",HGB 38 + multi-day RV (same rows),vol_h12,-0.002049319325243529,-0.0035975812642727338,-0.0006373920743124743,worse
+image validity: chart + numbers vs the numbers alone (with MA),"CNN, chart + MA + EWSD + 38 numbers + multi-day RV","features only (MLP, 38 + multi-day RV, no image)",vol_h1,-0.0004944137235764261,-0.0014968152096690778,0.000426059706587858,tied
+image validity: chart + numbers vs the numbers alone (with MA),"CNN, chart + MA + EWSD + 38 numbers + multi-day RV","features only (MLP, 38 + multi-day RV, no image)",vol_h12,0.0018515230392421704,-0.0001697455713173978,0.004037760350818022,tied
+image validity: chart + numbers vs the numbers alone (no MA),"CNN, chart + EWSD + 38 numbers + multi-day RV","features only (MLP, 38 + multi-day RV, no image)",vol_h1,0.0002807008455941044,-0.0008610529517913412,0.0013706160899417579,tied
+image validity: chart + numbers vs the numbers alone (no MA),"CNN, chart + EWSD + 38 numbers + multi-day RV","features only (MLP, 38 + multi-day RV, no image)",vol_h12,0.002046487637976473,3.556238080211778e-05,0.004205081302070694,better
+features-only MLP vs HGB on the same 43 numbers,"features only (MLP, 38 + multi-day RV, no image)",HGB 38 + multi-day RV (same rows),vol_h1,-0.0015410038003744483,-0.0026747799889698305,-0.0001735725020460665,worse
+features-only MLP vs HGB on the same 43 numbers,"features only (MLP, 38 + multi-day RV, no image)",HGB 38 + multi-day RV (same rows),vol_h12,-0.0040958069632200025,-0.006037670392598213,-0.001729205713524451,worse

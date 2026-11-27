@@ -1,0 +1,28 @@
+model,parameters
+DINOv2 ViT-S/14 (frozen encoder),22056576
+"random ViT-S/14 (DINOv2 architecture, untrained) (frozen encoder)",22056576
+CLIP ViT-B/16 (frozen encoder),85799424
+"random walk, recent sigma (not pretrained)",0
+Chronos-2 (zero-shot),119477664
+TimesFM (zero-shot),231289280
+Moirai 2 small (zero-shot),11387208
+Kronos-small (zero-shot),28699418
+DINOv2-S linear probe (trainable head),769
+DINOv2-S MLP probe (trainable head),394241
+DINOv2-S + SPY linear probe (trainable head),1537
+DINOv2-S + SPY MLP probe (trainable head),787457
+random ViT-S linear probe (trainable head),769
+random ViT-S MLP probe (trainable head),394241
+random ViT-S + SPY linear probe (trainable head),1537
+random ViT-S + SPY MLP probe (trainable head),787457
+CLIP-B/16 linear probe (trainable head),1537
+CLIP-B/16 MLP probe (trainable head),787457
+CLIP-B/16 + SPY linear probe (trainable head),3073
+CLIP-B/16 + SPY MLP probe (trainable head),1573889
+"image CNN (Step reference, trained)",776450
+"image CNN + SPY panel (Step reference, trained)",936194
+"residual image CNN (Step reference, trained)",2047362
+"1D CNN (Step reference, trained)",720770
+"1D CNN + SPY (Step reference, trained)",723970
+"image ViT (T2T-style) (Step reference, trained)",864322
+"image ViT + SPY panel (Step reference, trained)",880546

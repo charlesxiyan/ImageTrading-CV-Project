@@ -1,0 +1,28 @@
+{
+  "step6b": "final_20261125_222625",
+  "final": "ewsd_tab_rv",
+  "cells": [
+    {
+      "name": "vol_h1",
+      "kind": "vol",
+      "target": "vol",
+      "horizon": 1,
+      "minutes": 5,
+      "stride": 12
+    },
+    {
+      "name": "vol_h12",
+      "kind": "vol",
+      "target": "vol",
+      "horizon": 12,
+      "minutes": 60,
+      "stride": 12
+    }
+  ],
+  "costs_bp": [
+    0.0,
+    1.0,
+    2.0
+  ],
+  "vol_use": "2026-11-25.1"
+}

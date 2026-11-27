@@ -1,0 +1,6 @@
+- vol_h1 + VIX: AUC 0.6897 vs 0.6888, diff +0.0009 [-0.0003, +0.0020] -> tied
+- vol_h1 + multi-day RV: AUC 0.6914 vs 0.6888, diff +0.0026 [+0.0012, +0.0039] -> better
+- vol_h1 + VIX + multi-day RV: AUC 0.6915 vs 0.6888, diff +0.0026 [+0.0013, +0.0040] -> better
+- vol_h12 + VIX: AUC 0.6787 vs 0.6788, diff -0.0001 [-0.0018, +0.0015] -> tied
+- vol_h12 + multi-day RV: AUC 0.6811 vs 0.6788, diff +0.0023 [+0.0009, +0.0039] -> better
+- vol_h12 + VIX + multi-day RV: AUC 0.6805 vs 0.6788, diff +0.0017 [+0.0002, +0.0035] -> better
