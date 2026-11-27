@@ -64,3 +64,4 @@ check (`DataCheck/check_bar_coverage.py --archive`) before it is adjusted or bun
 - 2026-11-25: Step6a rerun with HGB + VIXY intraday features skipped. Reason: no expected gain (VIXY panel tied in 3a for CNN and ViT; daily VIX tied in 6a, subsumed by stock RV). Step6b computes the RV features itself and does not need a 6a run.
 - 2026-11-27 (Charles): report more than AUC: train/validation loss curves, log loss / calibration, and statistical diagnostics (QQ-plots etc.). Every run must save per-row predictions with join keys (security_index, end_index, decision_date) so later analyses need no retraining.
 - 2026-11-27: Charles: every EC merge must also be mirrored into the CV repo (mirror PR).
+- 2026-11-27: Charles: every roadmap update must also refresh the local 心路历程 folder copy on his Mac.

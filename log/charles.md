@@ -416,3 +416,4 @@ Asked: redo the comparison experiments as a step-by-step argument (1 daily + pre
 - 8a occlusion log-loss rise needs a Colab rerun; code change (inside_cnn.py drop_table log loss + Brier + per-row scores) on EC branch mindflow/inside-log-loss, smoke test running, no PR yet.
 - Not verified: Mac local copy of roadmap not refreshed (laptop closed).
 - Opened CV PR #9 mirroring EC #13-#17; tests 13 pass.
+- Mac 心路历程.html refreshed to roadmap v13; rule saved: always sync it.
