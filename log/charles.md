@@ -389,3 +389,9 @@ Asked: redo the comparison experiments as a step-by-step argument (1 daily + pre
 - Charles could not follow the 8a text; made 4 Chinese figures (project files inside8a/: method, region drops, time blocks, probe) and re-explained.
 - New hypothesis (not verified): labels can cross sessions (stride 6 keeps bar_of_day 77 = 16:00; vol_h1 label then = overnight to next 9:35 bar). For those windows the session-open line sits in column 0, so "oldest 6 bars" and "session-open line" importance are likely the same overnight effect. Check: AUC by time of day / drop 16:00 rows (6d predictions.parquet has end_index; 35 MB, too big for Drive connector).
 - Roadmap v10.
+
+## 2026-11-27 (afternoon) 7b+ results, roadmap v12
+- Asked: link and location of the roadmap; a local copy. Put a standalone copy (charset header added) in a non-repo folder on Charles's Mac; project-files copy at roadmap/.
+- 7b+ run puredistill_20261127_063830 finished (val 2023, 5m vol): teacher 6d pure_all 0.6894; small pure-image CNN 78,914 params distilled 0.6892 vs labels 0.6865 (+0.0026 signif), ties teacher and HGB43; half-height 0.6889 (labels 0.6885, KD gain n.s.), 7.8x faster; tiny 29,858 params 0.6880 (-0.0013 vs teacher signif). L4 bf16 batch 256: teacher 82 ms, small 18.5, half 10.5, tiny 9.7.
+- Saved to EC branch mindflow/final-and-efficiency (db2bd1a) under MindFlow/results/step7b_plus_pure_distillation/. Roadmap stage 10 updated (v12).
+- Not verified: test 2024-25 for 7b+; local Mac copy of roadmap not refreshed (device offline at the time).

@@ -90,3 +90,5 @@ The same data is reused for a Big Data course project. Presentation Dec 10, repo
 - 2026-11-27 11:30 PM ET: Step7b_plus_Pure_Image_Distillation and Step6e_Pure_Image_60min on Drive (smoke OK). Charles to run 7b+ first (advisor meeting 11-27), then 6e.
 - 2026-11-27 00:17 ET: 7b+ running on Charles's L4. Weight analysis of 6d done (weights only; data-based occlusion/Grad-CAM not yet written).
 - 2026-11-27: Step8a done (inside_20261127_063450). 7b+ stalled twice after small_kd training (scoring step); resume RUN_ID puredistill_20261127_063830 with pure_distill 2026-11-27.2.
+
+- 2026-11-27: 7b+ pure-image distillation DONE (puredistill_20261127_063830): small pure-image CNN 78,914 params distilled 0.6892 ties teacher 0.6894 and HGB43; tiny 29,858 params -0.0013. Results in EC MindFlow/results/step7b_plus_pure_distillation/. Test 2024-25 not run. Branch mindflow/final-and-efficiency has no PR yet.
