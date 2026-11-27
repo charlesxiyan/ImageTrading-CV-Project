@@ -362,3 +362,8 @@ Asked: redo the comparison experiments as a step-by-step argument (1 daily + pre
 ## 2026-11-27 — Step 6d run done; roadmap updated
 - Run pure_20261127_023749 (A100, ~35 min, 5 min only, val 2023, same rows as 6b): original chart 0.6599; chart+EWSD 0.6776; pure_key 0.6866 (+0.0089 signif; tied with final 0.6881; -0.0028 vs HGB43 signif); pure_all 0.6894 (+0.0027 over key signif; tied with HGB43 0.6894, final, MLP43). 776,450 params each. Test and 60m not run.
 - Results committed to EC branch mindflow/final-and-efficiency (500c827, MindFlow/results/step6d_pure_image). Roadmap artifact v7: new stage 8 PURE IMAGE with two real 2023-01-12 samples; USE -> 9, EFFICIENCY -> 10.
+
+## 2026-11-27 — Step 7b+ (pure-image distillation) and Step 6e (pure image, 60 min) written
+- Asked: distill the pure-image line first (for tomorrow's advisor meeting), and a 6e notebook for the 60-min pure-image run after distillation.
+- Did: EC a9a65d2 on mindflow/final-and-efficiency: code/pure_distill.py + Step7b_plus_Pure_Image_Distillation (teacher 6d pure_all; students small 16-32-64 hard/kd 78,914 params, half-height hard/kd, tiny 8-16-32 kd 29,858; alpha 0.7 T 1; speed/size frontier; test section). Step6e_Pure_Image_60min = 6d cells with HORIZONS [12], VARIANTS [pure_all]. Step keys "6e", "7b+". Smoke OK. Uploaded pure_distill.py, mindflow.py (kept teammate's 7c line) and both notebooks to Drive; 6d notebook on Drive left as run.
+- Not verified: no real-data run; time estimate ~1-1.5 h on A100 is a guess.
