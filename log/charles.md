@@ -358,3 +358,7 @@ Asked: redo the comparison experiments as a step-by-step argument (1 daily + pre
 - Did: EC branch mindflow/final-and-efficiency 268d927: code/pure_image.py + Step6d_Pure_Image notebook. Variants pure_key (423x234: 6b chart+EWSD, grey session-open line for time of day, SPY EWSD band, volume band log(vol/mean prev 78), 4 multi-day RV bars stock/SPY 5d/20d on one log scale) and pure_all (+ strip of all 43 standardised numbers as bars, 466x234). Strip scales fitted on train only. Same CNN/rows/training as 6b; joins 6b + 4a scores for paired checks; saves sample PNGs. Smoke (synthetic) passes. Uploaded pure_image.py, mindflow.py (6d registered) and the notebook to Drive.
 - Found: Drive code/ had a teammate's pruning.py and a "7c": "step7c_pruning" entry in mindflow.py that is not in git; kept it in the Drive copy, not added to the repo.
 - Not verified: no real-data run; L4 time estimate (~2.5-3 h for both variants at 5 min) is extrapolated from 6b.
+
+## 2026-11-27 — Step 6d run done; roadmap updated
+- Run pure_20261127_023749 (A100, ~35 min, 5 min only, val 2023, same rows as 6b): original chart 0.6599; chart+EWSD 0.6776; pure_key 0.6866 (+0.0089 signif; tied with final 0.6881; -0.0028 vs HGB43 signif); pure_all 0.6894 (+0.0027 over key signif; tied with HGB43 0.6894, final, MLP43). 776,450 params each. Test and 60m not run.
+- Results committed to EC branch mindflow/final-and-efficiency (500c827, MindFlow/results/step6d_pure_image). Roadmap artifact v7: new stage 8 PURE IMAGE with two real 2023-01-12 samples; USE -> 9, EFFICIENCY -> 10.
