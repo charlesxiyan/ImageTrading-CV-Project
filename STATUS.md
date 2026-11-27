@@ -92,3 +92,4 @@ The same data is reused for a Big Data course project. Presentation Dec 10, repo
 - 2026-11-27: Step8a done (inside_20261127_063450). 7b+ stalled twice after small_kd training (scoring step); resume RUN_ID puredistill_20261127_063830 with pure_distill 2026-11-27.2.
 
 - 2026-11-27: 7b+ pure-image distillation DONE (puredistill_20261127_063830): small pure-image CNN 78,914 params distilled 0.6892 ties teacher 0.6894 and HGB43; tiny 29,858 params -0.0013. Results in EC MindFlow/results/step7b_plus_pure_distillation/. Test 2024-25 not run. Branch mindflow/final-and-efficiency has no PR yet.
+- 2026-11-27 15:45 ET: EC PR #17 (mindflow/pure-image-and-distillation): 6d/7b/7b+/8a with val-2023 results; awaiting Charles's 合并. 6e, 7a, VIXY-intraday 6a code stay on mindflow/final-and-efficiency (no results yet).
