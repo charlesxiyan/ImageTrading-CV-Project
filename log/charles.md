@@ -420,3 +420,4 @@ Asked: redo the comparison experiments as a step-by-step argument (1 daily + pre
 - CV PR #9 merged on Charles's 合并.
 - 2026-11-27 16:50 ET: EC PR #18 opened (8a log loss), Drive updated; roadmap v14 stage 12 overfitting check; Mac synced. Not verified: real 8a log-loss numbers (needs Colab rerun).
 - 2026-11-27 17:58 ET: wrote Step 6f compact pictures (4 layouts), smoke OK, uploaded to Drive, branch pushed without PR. Not verified: real speed/AUC.
+- 2026-11-28 03:10Z: read 8a rerun + 6f partial results from Drive; told Charles to resume 6f.
