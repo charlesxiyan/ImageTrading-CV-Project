@@ -421,3 +421,9 @@ Asked: redo the comparison experiments as a step-by-step argument (1 daily + pre
 - 2026-11-27 16:50 ET: EC PR #18 opened (8a log loss), Drive updated; roadmap v14 stage 12 overfitting check; Mac synced. Not verified: real 8a log-loss numbers (needs Colab rerun).
 - 2026-11-27 17:58 ET: wrote Step 6f compact pictures (4 layouts), smoke OK, uploaded to Drive, branch pushed without PR. Not verified: real speed/AUC.
 - 2026-11-28 03:10Z: read 8a rerun + 6f partial results from Drive; told Charles to resume 6f.
+
+## 2026-11-28 06:00Z — Step 6f results, PR, roadmap v15
+- Read 6f final results from Drive run compact_20261127_230744: all layouts tie pure_all except quarter height (-0.0010 signif.); compact (6x117x234) 2.7x faster on GPU, no significant loss.
+- Committed summary tables/takeaways/learning curves (no predictions, no sample charts) to EC branch mindflow/compact-images; opened EC PR #19 (base mindflow/inside-log-loss).
+- Roadmap v15: 6f box in stage 8, 8a log-loss table in stage 11, removed the 8a rerun to-do.
+- Not verified: Mac 心路历程.html copy not refreshed (device offline). 6f test years not run.

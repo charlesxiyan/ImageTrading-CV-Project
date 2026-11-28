@@ -32,3 +32,4 @@ CNNs on 300k random train windows (Adam 1e-5, 8 epochs, patience 2), HGB on 1M. 
 vol best HGB+SPY 0.690/0.672/0.668/0.680; CNNs 0.633-0.664. xsdir best HGB+SPY 0.520-0.508, CNNs
 0.500-0.511. dir 0.49-0.516. Params: plain 776,450; plain_spy 936,194; series1d 720,770;
 series1d_spy 723,970. Results in EC PR #4, `AllData & AllModel/results/`.
+- 2026-11-28 Step6f compact pictures, run compact_20261127_230744 (A100, val 2023 5m vol_h1): pure_all 0.6894 / quarter 0.6883 (signif. worse) / compact 0.6889 / channels 0.6894 / filled 0.6889; log loss 0.6278/0.6286/0.6288/0.6281/0.6281; GPU speed 1.0/3.25/2.73/1.63/1.0x. Test not run.
