@@ -427,3 +427,4 @@ Asked: redo the comparison experiments as a step-by-step argument (1 daily + pre
 - Committed summary tables/takeaways/learning curves (no predictions, no sample charts) to EC branch mindflow/compact-images; opened EC PR #19 (base mindflow/inside-log-loss).
 - Roadmap v15: 6f box in stage 8, 8a log-loss table in stage 11, removed the 8a rerun to-do.
 - Not verified: Mac 心路历程.html copy not refreshed (device offline). 6f test years not run.
+- 06:35Z: Mac 心路历程.html refreshed to roadmap v15.
