@@ -435,3 +435,4 @@ Asked: redo the comparison experiments as a step-by-step argument (1 daily + pre
 ## 2026-11-28 16:10Z — 3-slide CV presentation deck
 - Asked: 3 slides, full story, 3-minute CV presentation. Made a private Slides artifact (English, ~60 s notes per slide): 1 direction->volatility (0.50 / CNN 0.660 / HGB 0.689); 2 missing info drawn on fixed scales, pure-image 0.6894/ll 0.6278 vs HGB43 0.6894/0.6287; 3 occlusion open line +0.020 ll, 79k distilled 0.6892/0.6280, 6f 2.7x (ll +0.001 pending), takeaway information sets ceiling.
 - Pending: update slide 3 + roadmap after Charles's 6f log-loss rerun.
+- 16:35Z: made a short Chinese roadmap page (12 steps, 1-2 sentences each, theory in one line, key results table with AUC+log loss, next steps; no real-data images) as a separate private artifact for Charles to share with teammates; HTML copy in project files roadmap/roadmap_short.html.
