@@ -429,3 +429,4 @@ Asked: redo the comparison experiments as a step-by-step argument (1 daily + pre
 - Not verified: Mac 心路历程.html copy not refreshed (device offline). 6f test years not run.
 - 06:35Z: Mac 心路历程.html refreshed to roadmap v15.
 - 06:40Z: roadmap v16 adds 6f sample pictures (5 layouts, one real val sample) + per-layout text in stage 8; Mac copy synced.
+- 06:45Z: roadmap v17: 6f takeaways rewritten with Charles's chosen three points (black = coordinate space; cost is only compute, half height is the limit; information sets the ceiling) + filled is only a control. Mac synced.
